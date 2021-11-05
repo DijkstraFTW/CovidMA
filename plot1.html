@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+
+<div style="width:480px;height:480px;position:relative;">
+<img onload="setTimeout(function(){reduce();}, interval);" src="http://images.freshmeat.net/editorials/r_intro/images/line-graph-1.jpg" />
+<div id="dvCover" style="position:absolute;width:370px;height:320px;background-color:white;border:solid 1px white;top:70px;left:70px;"></div>color:white;border:solid 1px blue;top:70px;left:70px;"></div>
+</div>
+
+<script type="text/javascript">
+var step = 3;
+var interval = 20;
+var cover = document.getElementById("dvCover");
+var currentWidth = 370;
+var currentLeft = 70;
+setTimeout(function(){reduce();}, interval);
+
+function reduce()
+{
+    if (currentWidth > 0)
+    {
+        currentWidth -= step;
+        currentLeft += step;
+        cover.style.width = currentWidth + "px";
+        cover.style.left = currentLeft + "px";
+
+        setTimeout(function(){reduce();}, interval);
+    }
+    else
+    {
+        cover.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

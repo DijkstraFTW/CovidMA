@@ -1,0 +1,191 @@
+.covid-img {
+    position: absolute;
+    height: auto;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.covid-title {
+    /* COVID-19 in Morocco */
+    position: absolute;
+    width: 849px;
+    height: 99px;
+    left: 43px;
+    top: 206px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 80px;
+    line-height: 98px;
+    text-align: center;
+    color: #000000;
+    mix-blend-mode: normal;
+}
+
+.covid-title-card {
+    position: absolute;
+    width: 880px;
+    height: 116px;
+    left: 38px;
+    top: 198px;
+    background: #C4C4C4;
+    mix-blend-mode: soft-light;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.morocco-flag {
+    position: absolute;
+    width: 309px;
+    height: 167px;
+    left: 1200px;
+    top: 173px;
+    mix-blend-mode: hard-light;
+}
+
+.datetime-card {
+    position: absolute;
+    width: 390px;
+    height: 84px;
+    left: 73px;
+    top: 590px;
+    background: #C4C4C4;
+    mix-blend-mode: overlay;
+    opacity: 0.8;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.datetime {
+    position: absolute;
+    width: 396px;
+    height: 59px;
+    left: 86px;
+    top: 605px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 49px;
+    color: #000000;
+    mix-blend-mode: normal;
+}
+
+.total-cases-card {
+    position: absolute;
+    width: 806px;
+    height: 84px;
+    left: 723px;
+    top: 590px;
+    background: #C4C4C4;
+    mix-blend-mode: overlay;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.total-cases-title {
+    /* X Cases X Deaths X Recoveries X Tests */
+    position: absolute;
+    width: 774px;
+    height: 49px;
+    left: 739px;
+    top: 608px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 49px;
+    /* identical to box height */
+    color: #000000;
+}
+
+.plot1 {
+    position: absolute;
+    width: 1500px;
+    height: 700px;
+    left: 35px;
+    top: 895px;
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.top-provinces {
+    position: absolute;
+    width: 500px;
+    height: 873px;
+    left: 85px;
+    top: 1705px;
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.map-cases-region {
+    position: absolute;
+    width: 850px;
+    height: 873px;
+    left: 664px;
+    top: 1705px;
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.plot-vaccination {
+    /* plot vaccination */
+    position: absolute;
+    width: 970px;
+    height: 564px;
+    left: 85px;
+    top: 2748px;
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.pct-vaccination {
+    /* % vaxed */
+    position: absolute;
+    width: 356px;
+    height: 299px;
+    left: 1137px;
+    top: 2748px;
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.vaccines {
+    /* Vaccines with origin*/
+    position: absolute;
+    width: 359px;
+    height: 236px;
+    left: 1135px;
+    top: 3084px;
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.vaccines-title {
+    /* Vaccines in use : */
+    position: absolute;
+    width: 195px;
+    height: 29px;
+    left: 1221px;
+    top: 3094px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+}
+
+.vaccines-names {
+    /* Vaccines names */
+    position: absolute;
+    width: 195px;
+    height: 29px;
+    left: 1268px;
+    top: 3120px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+}
