@@ -38,7 +38,7 @@
         #evolution {
             position: absolute;
             text-align: left;
-            top: 180px;
+            top: 40px;
             background-color: rgba(255, 255, 255, .7);
             border-radius: 5px;
             border-color: #000;
@@ -59,8 +59,10 @@
         
         #map,
         #svgZoom {
+            position: absolute;
             max-width: 800px;
-            margin: auto;
+            left: 10px;
+            bottom: 40px;
             width: 100%;
             height: 100vh;
         }
@@ -118,7 +120,7 @@
             padding: 0;
             right: 0;
             left: 0;
-            bottom: 5px;
+            top: 820px;
             display: block;
             font-size: xx-large;
             max-width: 800px;
@@ -131,18 +133,6 @@
             margin: auto
         }
         
-        #watermark {
-            position: fixed;
-            right: 0;
-            top: 35%;
-            left: 0;
-            max-width: 600px;
-            margin: auto;
-            min-width: 150px;
-            opacity: .3;
-            z-index: 0
-        }
-        
         #svgZoom {
             transform-origin: 0% 0%
         }
@@ -150,12 +140,12 @@
         #scale {
             position: absolute;
             text-align: left;
-            right: 20%;
+            right: 22%;
             width: fit-content;
             background-color: rgba(255, 255, 255, .7);
             border-radius: 5px;
             font-size: 10px;
-            bottom: 200px;
+            bottom: 100px;
             left: 700px;
         }
         
