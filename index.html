@@ -22,13 +22,23 @@
     <div class="datetime">
         <p><span id="datetime2"></span></p>
         <script>
-            var dt = new Date();
-            document.getElementById("datetime2").innerHTML = dt.toLocaleString();
+            var d = new Date();
+            dformat = [
+                [d.getHours(),
+                    d.getMinutes(),
+                    d.getSeconds()
+                ].join(':') + ' ' + d.getDate(), d.getMonth() + 1,
+                d.getFullYear()
+            ].join('/');
+            document.getElementById("datetime2").innerHTML = dformat.toLocaleString();
         </script>
     </div>
     <div class="datetime-card"></div>
 
-    <div class="total-cases-title">X Cases X Deaths X Recoveries X Tests</div>
+    <div class="total-cases-title">X Cases X Deaths X Recoveries X Tests
+        <script>
+        </script>
+    </div>
     <div class="total-cases-card"></div>
 
 </head>
