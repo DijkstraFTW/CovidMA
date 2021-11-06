@@ -176,6 +176,14 @@
     color: #000000;
 }
 
+.vaccines-flags {
+    /* Vaccines countries of origin */
+    position: absolute;
+    width: auto;
+    left: 1150px;
+    top: 3126px;
+}
+
 .vaccines-names {
     /* Vaccines names */
     position: absolute;
