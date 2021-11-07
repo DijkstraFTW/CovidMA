@@ -22,14 +22,18 @@
     <div class="datetime">
         <p><span id="datetime"></span></p>
         <script>
-            var d = new Date();
-            dformat = [
-                [d.getHours(),
-                    d.getMinutes(),
-                    d.getSeconds()
-                ].join(':')
-            ];
-            document.getElementById("datetime").innerHTML = dformat.toLocaleString();
+            function updateClock() {
+                var d = new Date();
+                dformat = [
+                    [d.getHours(),
+                        d.getMinutes(),
+                        d.getSeconds()
+                    ].join(':')
+                ];
+                document.getElementById('datetime').innerHTML = dformat.toLocaleString();
+                setTimeout(updateClock, 1000);
+            }
+            updateClock();
         </script>
         <p><span class="datetime2" id="datetime1"></span></p>
         <script>
