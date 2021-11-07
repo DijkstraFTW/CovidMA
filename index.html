@@ -20,17 +20,26 @@
     </div>
 
     <div class="datetime">
-        <p><span id="datetime2"></span></p>
+        <p><span id="datetime"></span></p>
         <script>
             var d = new Date();
             dformat = [
                 [d.getHours(),
                     d.getMinutes(),
                     d.getSeconds()
-                ].join(':') + ' ' + d.getDate(), d.getMonth() + 1,
-                d.getFullYear()
-            ].join('/');
-            document.getElementById("datetime2").innerHTML = dformat.toLocaleString();
+                ].join(':')
+            ];
+            document.getElementById("datetime").innerHTML = dformat.toLocaleString();
+        </script>
+        <p><span class="datetime2" id="datetime1"></span></p>
+        <script>
+            var d = new Date();
+            dformat = [
+                [d.getDate(), d.getMonth() + 1,
+                    d.getFullYear()
+                ].join('/')
+            ];
+            document.getElementById("datetime1").innerHTML = dformat.toLocaleString();
         </script>
     </div>
     <div class="datetime-card"></div>

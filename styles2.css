@@ -71,6 +71,12 @@
     mix-blend-mode: normal;
 }
 
+.datetime2 {
+    position: absolute;
+    left: 195px;
+    bottom: -28px;
+}
+
 .total-cases-card {
     position: absolute;
     width: 806px;
