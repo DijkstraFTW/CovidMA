@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
 
 
+
     <div class="covid-img">
         <img src="/images/covid.jfif" alt="covid">
     </div>
@@ -54,11 +55,19 @@
     </div>
     <div class="total-cases-card"></div>
 
+
+
 </head>
 
 <body>
 
-    <div class="plot1"></div>
+    <div class="plot-card">
+        <div id="plots">
+            <script src="plot.js">
+                document.getElementById('plots').style.top = "600px";
+            </script>
+        </div>
+    </div>
 
     <div class="top-provinces"></div>
 
