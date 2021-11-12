@@ -53,6 +53,7 @@
 }
 
 .datetime {
+    /* time */
     position: absolute;
     width: 396px;
     height: 59px;
@@ -68,6 +69,7 @@
 }
 
 .datetime2 {
+    /* date */
     position: absolute;
     left: 185px;
     bottom: -28px;
@@ -85,7 +87,7 @@
 }
 
 .total-cases-title {
-    /* X Cases X Deaths X Recoveries X Tests */
+    /* Cumulative Cases Deaths Recoveries Tests */
     position: absolute;
     width: 774px;
     height: 49px;
@@ -111,6 +113,7 @@
 }
 
 .plots {
+    /* Cases Deaths Recoveries Tests plot */
     position: relative;
     width: 1500px;
     height: 700px;
@@ -119,6 +122,7 @@
 }
 
 .top-provinces {
+    /* cases by region rankings */
     position: absolute;
     width: 500px;
     height: 873px;
@@ -129,6 +133,7 @@
 }
 
 .map-cases-region {
+    /* map cases by region */
     position: absolute;
     width: 850px;
     height: 873px;
