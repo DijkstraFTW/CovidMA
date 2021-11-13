@@ -67,7 +67,21 @@
         </div>
     </div>
 
-    <div class="top-provinces"></div>
+    <div class="top-provinces">
+
+        <div class="rankings-title">Regions cases ranking :</div>
+
+        <p><span class="rank" id="rank"></span></p>
+
+        <p><span class="rankings" id="rankings"></span></p>
+        <p><span class="rankings-data" id="rankings-data"></span></p>
+        <script src="regionRankings.js">
+            window.onload = function() {
+                getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setRankings);
+            }
+        </script>
+
+    </div>
 
     <div class="map-cases-region">
         <div id="map">
@@ -372,7 +386,7 @@
             <div id="dateRange" style="left: 100px; bottom: 80px; position: absolute;">
             </div>
         </div>
-        <script src="script.js?v=0.0.8"></script>
+        <script src="script.js"></script>
         <script>
             window.onload = function() {
                 var d = new Date();
