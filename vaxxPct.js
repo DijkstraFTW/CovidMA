@@ -25,16 +25,14 @@ function setVaxPct(status, response) {
 
     pctvax1 = (100 * (response['vaccine'] / obj)).toFixed(2);
     pctvax2 = (100 * (response['fullyVaccined'] / obj)).toFixed(2);
-    pctvax3 = (100 * ((obj - response['vaccine']) / obj)).toFixed(2);
+    remainder = (100 * ((obj - response['vaccine']) / obj)).toFixed(2);
 
 
     document.getElementById("dose1-data").innerHTML = response['vaccine'].toLocaleString() + "<br></br>"; // dose 1
     document.getElementById("dose2-data").innerHTML = response['fullyVaccined'].toLocaleString() + "<br></br>"; // dose 2
-    document.getElementById("remainder-data").innerHTML = (obj - response['vaccine']).toLocaleString() + "<br></br>"; // remainder
 
     document.getElementById("dose1-pct").innerHTML = (100 * (response['vaccine'] / obj)).toFixed(2) + " %";
     document.getElementById("dose2-pct").innerHTML = (100 * (response['fullyVaccined'] / obj)).toFixed(2) + " %";
-    document.getElementById("remainder-pct").innerHTML = (100 * ((obj - response['vaccine']) / obj)).toFixed(2) + " %";
 
     //setVaxDonut();
 }

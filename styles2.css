@@ -251,11 +251,11 @@
     color: #000000;
 }
 
-.p-data {
+.recoveries-data {
     position: absolute;
     width: 774px;
     height: 49px;
-    left: 1370px;
+    left: 1390px;
     top: 688px;
     font-family: Montserrat;
     font-style: normal;
@@ -266,7 +266,7 @@
     color: #000000;
 }
 
-.p-title {
+.recoveries-title {
     position: absolute;
     width: 774px;
     height: 49px;
@@ -426,62 +426,88 @@
 .dose1-data {
     position: relative;
     top: 32px;
-    left: 150px;
+    left: 100px;
     font-size: 18px;
-    background-color: #00ff1562;
+    background-color: #a1f30a;
+}
+
+.new-dose1-data {
+    position: relative;
+    top: -70px;
+    left: 210px;
+    font-size: 18px;
+    background-color: #a1f30a;
 }
 
 .dose1-pct {
     position: relative;
     top: -32px;
-    left: 270px;
+    left: 290px;
     font-size: 18px;
-    background-color: #00ff1562;
+    background-color: #a1f30a;
 }
 
 .dose2 {
     position: relative;
     left: 10px;
+    top: -50px;
     font-size: 18px;
 }
 
 .dose2-data {
     position: relative;
-    top: -40px;
-    left: 150px;
+    top: -90px;
+    left: 100px;
     font-size: 18px;
-    background-color: #01cf5e;
+    background-color: #00ff15a8;
+}
+
+.new-dose2-data {
+    position: relative;
+    top: -192px;
+    left: 205px;
+    font-size: 18px;
+    background-color: #00ff15a8;
 }
 
 .dose2-pct {
     position: relative;
-    top: -104px;
-    left: 270px;
+    top: -154px;
+    left: 290px;
     font-size: 18px;
-    background-color: #01cf5e;
+    background-color: #00ff15a8;
 }
 
 .remainder {
     position: relative;
-    top: -80px;
+    top: -180px;
     left: 10px;
     font-size: 18px;
 }
 
 .remainder-data {
     position: relative;
-    top: -119px;
-    left: 150px;
+    top: -219px;
+    left: 100px;
     font-size: 18px;
-    background-color: #f51f1f;
+    background-color: #01cf5e;
+}
+
+.new-dose3-data {
+    position: relative;
+    top: -298px;
+    left: 200px;
+    font-size: 18px;
+    background-color: #01cf5e;
+    ;
 }
 
 .remainder-pct {
     position: relative;
-    top: -184px;
-    left: 270px;
+    top: -260px;
+    left: 290px;
     font-size: 18px;
-    background-color: #f51f1f;
+    background-color: #01cf5e;
 }
 
 .vaccines {
