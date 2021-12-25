@@ -398,7 +398,23 @@
 
     <div class="plot-vaccination"></div>
 
-    <div class="pct-vaccination"></div>
+    <div class="pct-vaccination">
+
+        <div class="pct-vaccination-title">Vaccination pct :</div>
+        <p><span class="dose"></span> Dose 1 : </p>
+        <p><span class="dose1" id="dose1"></span></p>
+        <p><span class="dose"></span> Dose 2 : </p>
+        <p><span class="dose2" id="dose2"></span></p>
+        <p><span class="dose"></span> Reste : </p>
+        <p><span class="reste" id="reste"></span></p>
+
+
+        <script src="vaxxPct.js">
+            window.onload = function() {
+                getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
+            }
+        </script>
+    </div>
 
     <div class="vaccines"></div>
     <div class="vaccines-title">Vaccines in use :</div>
