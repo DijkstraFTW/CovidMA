@@ -49,9 +49,41 @@
     </div>
     <div class="datetime-card"></div>
 
-    <div class="total-cases-title">X Cases X Deaths X Recoveries X Tests
-    </div>
+    <div class="new-cases-data" id="new-cases-data"></div>
+
+    <div class="new-tests-data" id="new-tests-data"></div>
+
+    <div class="new-deaths-data" id="new-deaths-data"></div>
+
+
+    <div class="total-cases-data" id="total-cases-data"></div>
+    <div class="total-cases-title"> Cases</div>
+
+
+    <div class="total-deaths-title"> Deaths</div>
+    <div class="total-deaths-data" id="total-deaths-data"></div>
+
+
+    <div class="total-tests-title"> Tests</div>
+    <div class="total-tests-data" id="total-tests-data"></div>
+
+    <div class="r0-title">R0 :</div>
+    <div class="r0-data" id="r0-data"></div>
+
+    <div class="p-title">Positivity rate :</div>
+    <div class="p-data" id="p-data"></div>
+
+
+
+
+
     <div class="total-cases-card"></div>
+
+    <script src="cumulData.js">
+        window.onload = function() {
+            getJSON("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json", setCumulData);
+        }
+    </script>
 
 
 
