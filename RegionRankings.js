@@ -36,7 +36,7 @@ function setRankings(status, response) {
             //console.log(data[index]["region"] + "  " + sum);
             document.getElementById("rank").innerHTML += rank + "." + "<br></br>";
             document.getElementById("rankings").innerHTML += data[index]["region"] + "<br></br>";
-            document.getElementById("rankings-data").innerHTML += sum + "<br></br>";
+            document.getElementById("rankings-data").innerHTML += sum.toLocaleString() + "<br></br>";
 
             sum = 0;
             index++;
@@ -52,7 +52,7 @@ function setRankings(status, response) {
             //console.log(data[index]["region"] + "  " + sum);
             document.getElementById("rank").innerHTML += rank + "." + "<br></br>";
             document.getElementById("rankings").innerHTML += data[index]["region"] + "<br></br>";
-            document.getElementById("rankings-data").innerHTML += sum + "<br></br>";
+            document.getElementById("rankings-data").innerHTML += sum.toLocaleString() + "<br></br>";
 
             sum = 0;
             rank++;

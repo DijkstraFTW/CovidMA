@@ -18,9 +18,26 @@ var getJSON = function(url, callback) {
 function setVaxPct(status, response) {
 
     obj = 30000000;
-    document.getElementById("dose1").innerHTML = response['vaccine'] + " " + (100 * (response['vaccine'] / obj)).toFixed(2) + "<br></br>"; // dose 1
-    document.getElementById("dose2").innerHTML = response['fullyVaccined'] + " " + (100 * (response['fullyVaccined'] / obj)).toFixed(2) + "<br></br>"; // dose 2
-    document.getElementById("reste").innerHTML = (obj - response['vaccine']) + " " + (100 * ((obj - response['vaccine']) / obj)).toFixed(2) + "<br></br>"; // dose 3
+
+    vax1 = response['vaccine'].toLocaleString();
+    vax2 = response['fullyVaccined'].toLocaleString();
+    vax3 = (obj - response['vaccine']).toLocaleString();
+
+    pctvax1 = (100 * (response['vaccine'] / obj)).toFixed(2);
+    pctvax2 = (100 * (response['fullyVaccined'] / obj)).toFixed(2);
+    pctvax3 = (100 * ((obj - response['vaccine']) / obj)).toFixed(2);
+
+
+    document.getElementById("dose1-data").innerHTML = response['vaccine'].toLocaleString() + "<br></br>"; // dose 1
+    document.getElementById("dose2-data").innerHTML = response['fullyVaccined'].toLocaleString() + "<br></br>"; // dose 2
+    document.getElementById("remainder-data").innerHTML = (obj - response['vaccine']).toLocaleString() + "<br></br>"; // remainder
+
+    document.getElementById("dose1-pct").innerHTML = (100 * (response['vaccine'] / obj)).toFixed(2) + " %";
+    document.getElementById("dose2-pct").innerHTML = (100 * (response['fullyVaccined'] / obj)).toFixed(2) + " %";
+    document.getElementById("remainder-pct").innerHTML = (100 * ((obj - response['vaccine']) / obj)).toFixed(2) + " %";
+
+    //setVaxDonut();
 }
+
 
 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);

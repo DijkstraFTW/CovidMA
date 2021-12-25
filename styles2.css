@@ -135,7 +135,7 @@
 .rankings-title {
     position: absolute;
     top: 50px;
-    left: 140px;
+    left: 130px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
@@ -213,11 +213,97 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.dose1 {}
+.pct-vaccination-title {
+    position: relative;
+    top: 10px;
+    left: 24px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+}
 
-.dose2 {}
+.target {
+    position: relative;
+    top: 40px;
+    left: 80px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+    color: #000000;
+}
 
-.dose2 {}
+.dose1 {
+    position: relative;
+    top: 70px;
+    left: 10px;
+    font-size: 18px;
+}
+
+.dose1-data {
+    position: relative;
+    top: 32px;
+    left: 150px;
+    font-size: 18px;
+    background-color: #00ff1562;
+}
+
+.dose1-pct {
+    position: relative;
+    top: -32px;
+    left: 270px;
+    font-size: 18px;
+    background-color: #00ff1562;
+}
+
+.dose2 {
+    position: relative;
+    left: 10px;
+    font-size: 18px;
+}
+
+.dose2-data {
+    position: relative;
+    top: -40px;
+    left: 150px;
+    font-size: 18px;
+    background-color: #01cf5e;
+}
+
+.dose2-pct {
+    position: relative;
+    top: -104px;
+    left: 270px;
+    font-size: 18px;
+    background-color: #01cf5e;
+}
+
+.remainder {
+    position: relative;
+    top: -80px;
+    left: 10px;
+    font-size: 18px;
+}
+
+.remainder-data {
+    position: relative;
+    top: -119px;
+    left: 150px;
+    font-size: 18px;
+    background-color: #f51f1f;
+}
+
+.remainder-pct {
+    position: relative;
+    top: -184px;
+    left: 270px;
+    font-size: 18px;
+    background-color: #f51f1f;
+}
 
 .vaccines {
     /* Vaccines with origin*/
