@@ -92,11 +92,110 @@
 <body>
 
     <div class="plot-card">
-        <div id="plots">
-            <script src="plot.js">
-                document.getElementById('plots').style.top = "600px";
-            </script>
+        <div class="container-data">
+            <div>
+                <canvas id="plot-data" width=1500 height=700> </canvas>
+            </div>
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js">
+        </script>
+
+        <script>
+            const plot = [];
+            const plot2 = [];
+            const plot3 = [];
+
+            let prev = 100;
+            let prev2 = 80;
+            let prev3 = 50
+
+            for (let i = 0; i < 1000; i++) {
+                prev += 5 - Math.random() * 10;
+                plot.push({
+                    x: i,
+                    y: prev
+                });
+                prev2 += 5 - Math.random() * 10;
+                plot2.push({
+                    x: i,
+                    y: prev2
+                });
+                prev3 += 5 - Math.random() * 10;
+                plot3.push({
+                    x: i,
+                    y: prev3
+                });
+            }
+
+            const totalDuration = 10000;
+            const delayBetweenPoints = totalDuration / plot.length;
+            const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+
+            var ctx = document.getElementById('plot-data').getContext('2d')
+            var graph_data = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: plot,
+                    }, {
+                        borderColor: 'blue',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: plot2,
+                    }, {
+                        borderColor: 'green',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: plot3,
+                    }]
+                },
+                options: {
+                    animation: {
+                        x: {
+                            type: 'number',
+                            easing: 'linear',
+                            duration: delayBetweenPoints,
+                            from: NaN, // the point is initially skipped
+                            delay(ctx) {
+                                if (ctx.type !== 'data' || ctx.xStarted) {
+                                    return 0;
+                                }
+                                ctx.xStarted = true;
+                                return ctx.index * delayBetweenPoints;
+                            }
+                        },
+                        y: {
+                            type: 'number',
+                            easing: 'linear',
+                            duration: delayBetweenPoints,
+                            from: previousY,
+                            delay(ctx) {
+                                if (ctx.type !== 'data' || ctx.yStarted) {
+                                    return 0;
+                                }
+                                ctx.yStarted = true;
+                                return ctx.index * delayBetweenPoints;
+                            }
+                        },
+                    },
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: false
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear'
+                        }
+                    }
+                }
+            })
+        </script>
     </div>
 
     <div class="top-provinces">
@@ -107,7 +206,7 @@
 
         <p><span class="rankings" id="rankings"></span></p>
         <p><span class="rankings-data" id="rankings-data"></span></p>
-        <script src="regionRankings.js">
+        <script src="RegionRankings.js">
             window.onload = function() {
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setRankings);
             }
@@ -428,7 +527,110 @@
         </script>
     </div>
 
-    <div class="plot-vaccination"></div>
+    <div class="plot-vaccination">
+        <div class="container-vax">
+            <div>
+                <canvas id="plot-vax" width=970 height=564> </canvas>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js">
+        </script>
+        <script>
+            const plot4 = [];
+            const plot5 = [];
+            const plot6 = [];
+
+            let prev4 = 100;
+            let prev5 = 80;
+            let prev6 = 50
+
+            for (let i = 0; i < 1000; i++) {
+                prev4 += 5 - Math.random() * 10;
+                plot4.push({
+                    x: i,
+                    y: prev4
+                });
+                prev5 += 5 - Math.random() * 10;
+                plot5.push({
+                    x: i,
+                    y: prev5
+                });
+                prev6 += 5 - Math.random() * 10;
+                plot6.push({
+                    x: i,
+                    y: prev6
+                });
+            }
+
+            const totalDuration2 = 10000;
+            const delayBetweenPoints2 = totalDuration2 / plot.length;
+            const previousY2 = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+
+            var ctx = document.getElementById('plot-vax').getContext('2d')
+            var graph_data2 = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: plot4,
+                    }, {
+                        borderColor: 'blue',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: plot5,
+                    }, {
+                        borderColor: 'green',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: plot6,
+                    }]
+                },
+                options: {
+                    animation: {
+                        x: {
+                            type: 'number',
+                            easing: 'linear',
+                            duration: delayBetweenPoints,
+                            from: NaN, // the point is initially skipped
+                            delay(ctx) {
+                                if (ctx.type !== 'data' || ctx.xStarted) {
+                                    return 0;
+                                }
+                                ctx.xStarted = true;
+                                return ctx.index * delayBetweenPoints;
+                            }
+                        },
+                        y: {
+                            type: 'number',
+                            easing: 'linear',
+                            duration: delayBetweenPoints,
+                            from: previousY,
+                            delay(ctx) {
+                                if (ctx.type !== 'data' || ctx.yStarted) {
+                                    return 0;
+                                }
+                                ctx.yStarted = true;
+                                return ctx.index * delayBetweenPoints;
+                            }
+                        },
+                    },
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: false
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear'
+                        }
+                    }
+                }
+            })
+        </script>
+    </div>
 
     <div class="pct-vaccination">
 
@@ -457,9 +659,6 @@
         <p><span class="remainder-data" id="remainder-data"></span></p>
         <p><span class="remainder-pct" id="remainder-pct"></span></p>
         <p><span class="new-dose3-data" id="new-dose3-data"></span></p>
-
-
-
 
         <script src="vaxxPct.js">
             window.onload = function() {

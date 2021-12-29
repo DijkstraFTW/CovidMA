@@ -33,23 +33,18 @@ function setRankings(status, response) {
         if (data[index]["id"] == 75) {
 
             rankings[data[index]["region"]] = sum;
-            //console.log(data[index]["region"] + "  " + sum);
             document.getElementById("rank").innerHTML += rank + "." + "<br></br>";
             document.getElementById("rankings").innerHTML += data[index]["region"] + "<br></br>";
             document.getElementById("rankings-data").innerHTML += sum.toLocaleString() + "<br></br>";
 
-            sum = 0;
             index++;
-            rank++;
-
-            break;
+            break
         }
 
 
         if (data[index]["region"] !== data[index + 1]["region"]) {
 
             rankings[data[index]["region"]] = sum;
-            //console.log(data[index]["region"] + "  " + sum);
             document.getElementById("rank").innerHTML += rank + "." + "<br></br>";
             document.getElementById("rankings").innerHTML += data[index]["region"] + "<br></br>";
             document.getElementById("rankings-data").innerHTML += sum.toLocaleString() + "<br></br>";
