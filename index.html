@@ -110,12 +110,6 @@
             let resultData = []
 
             const plot = [];
-            const plot2 = [];
-            const plot3 = [];
-
-            let prev = 100;
-            let prev2 = 80;
-            let prev3 = 50
 
             jQuery.ajax({
                 url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
@@ -149,7 +143,6 @@
                     //console.log(resultData);
 
                     for (let i = 4; i < resultData.length; i++) {
-                        prev += 5 - Math.random() * 10;
                         plot.push({
                             x: i,
                             y: resultData[i]
@@ -158,7 +151,7 @@
 
                     const totalDuration = 1000;
                     const delayBetweenPoints = totalDuration / plot.length;
-                    const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+                    //const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
 
                     var ctx = document.getElementById('plot-data').getContext('2d')
                     var graph_data = new Chart(ctx, {
@@ -190,7 +183,7 @@
                                     type: 'number',
                                     easing: 'linear',
                                     duration: delayBetweenPoints,
-                                    from: previousY,
+                                    //from: previousY,
                                     delay(ctx) {
                                         if (ctx.type !== 'data' || ctx.yStarted) {
                                             return 0;
