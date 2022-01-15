@@ -63,8 +63,6 @@ function setRankings(status, response) {
         return a[1] - b[1];
     });
 
-    console.log(result)
-
     for (let index = 11; index >= 0; index--) {
 
         document.getElementById("rankings").innerHTML += result[index][0] + "<br></br>";
