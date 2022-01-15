@@ -139,9 +139,6 @@
                     }
                     resultData[4] = casesData[4] - 0
 
-                    //console.log(dates);
-                    //console.log(resultData);
-
                     for (let i = 4; i < resultData.length; i++) {
                         plot.push({
                             x: i,
@@ -549,102 +546,142 @@
                 <canvas id="plot-vax" width=970 height=564> </canvas>
             </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js">
-        </script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
         <script>
-            const plot4 = [];
-            const plot5 = [];
-            const plot6 = [];
+            let datesP = []
+            let VaxData = []
+            let resultVaxData = []
 
-            let prev4 = 100;
-            let prev5 = 80;
-            let prev6 = 50
+            const plotTotalJabs = [];
+            const plotFirstJab = [];
+            const plotSecondJab = [];
+            const objective = [];
 
-            for (let i = 0; i < 1000; i++) {
-                prev4 += 5 - Math.random() * 10;
-                plot4.push({
-                    x: i,
-                    y: prev4
-                });
-                prev5 += 5 - Math.random() * 10;
-                plot5.push({
-                    x: i,
-                    y: prev5
-                });
-                prev6 += 5 - Math.random() * 10;
-                plot6.push({
-                    x: i,
-                    y: prev6
-                });
-            }
 
-            const totalDuration = 10000;
-            const delayBetweenPoints = totalDuration / plot.length;
-            const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+            jQuery.ajax({
+                url: "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Morocco.csv",
+                type: 'get',
+                dataType: 'text',
+                success: function(data) {
+                    let lines = data.split('\n');
+                    let fields = lines[0].split(',');
 
-            var ctx = document.getElementById('plot-vax').getContext('2d')
-            var graph_data2 = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    datasets: [{
-                        borderColor: 'red',
-                        borderWidth: 1,
-                        radius: 0,
-                        data: plot4,
-                    }, {
-                        borderColor: 'blue',
-                        borderWidth: 1,
-                        radius: 0,
-                        data: plot5,
-                    }, {
-                        borderColor: 'green',
-                        borderWidth: 1,
-                        radius: 0,
-                        data: plot6,
-                    }]
-                },
-                options: {
-                    animation: {
-                        x: {
-                            type: 'number',
-                            easing: 'linear',
-                            duration: delayBetweenPoints,
-                            from: NaN, // the point is initially skipped
-                            delay(ctx) {
-                                if (ctx.type !== 'data' || ctx.xStarted) {
-                                    return 0;
-                                }
-                                ctx.xStarted = true;
-                                return ctx.index * delayBetweenPoints;
+                    let output = [];
+
+                    for (let i = 1; i < lines.length; i++) {
+                        let current = lines[i].split(',');
+                        datesP.push(current[1]);
+                        output.push([current[current.length - 4], current[current.length - 2], current[current.length - 3]])
+                    }
+
+                    for (let index = 0; index < output.length; index++) {
+                        for (let temp = 0; temp < 3; temp++) {
+                            if (output[index][temp] == "") {
+                                output[index][temp] = "0";
                             }
-                        },
-                        y: {
-                            type: 'number',
-                            easing: 'linear',
-                            duration: delayBetweenPoints,
-                            from: previousY,
-                            delay(ctx) {
-                                if (ctx.type !== 'data' || ctx.yStarted) {
-                                    return 0;
-                                }
-                                ctx.yStarted = true;
-                                return ctx.index * delayBetweenPoints;
-                            }
-                        },
-                    },
-                    interaction: {
-                        intersect: false
-                    },
-                    plugins: {
-                        legend: false
-                    },
-                    scales: {
-                        x: {
-                            type: 'linear'
                         }
                     }
+                    resultVaxData = output;
+
+                    for (let i = 0; i < resultVaxData.length; i++) {
+                        plotTotalJabs.push({
+                            x: i,
+                            y: resultVaxData[i][0]
+                        });
+                        plotFirstJab.push({
+                            x: i,
+                            y: resultVaxData[i][1]
+                        });
+                        plotSecondJab.push({
+                            x: i,
+                            y: resultVaxData[i][2]
+                        });
+                        objective.push({
+                            x: i,
+                            y: 30000000
+                        });
+                    }
+
+                    const totalDuration = 1000;
+                    const delayBetweenPoints = totalDuration / plot.length;
+
+                    var ctx = document.getElementById('plot-vax').getContext('2d')
+                    var graph_data2 = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            datasets: [{
+                                borderColor: "red",
+                                borderWidth: 1,
+                                radius: 0,
+                                data: plotTotalJabs,
+                            }, {
+                                borderColor: '#99bdff',
+                                borderWidth: 2,
+                                radius: 0,
+                                data: plotFirstJab,
+                            }, {
+                                borderColor: "#005bff",
+                                borderWidth: 2,
+                                radius: 0,
+                                data: plotSecondJab,
+                            }, {
+                                borderColor: "#be25a9",
+                                borderWidth: 2,
+                                radius: 0,
+                                data: objective,
+                            }]
+                        },
+                        options: {
+                            animation: {
+                                x: {
+                                    type: 'number',
+                                    easing: 'linear',
+                                    duration: delayBetweenPoints,
+                                    from: NaN,
+                                    delay(ctx) {
+                                        if (ctx.type !== 'data' || ctx.xStarted) {
+                                            return 0;
+                                        }
+                                        ctx.xStarted = true;
+                                        return ctx.index * delayBetweenPoints;
+                                    }
+                                },
+                                y: {
+                                    type: 'number',
+                                    easing: 'linear',
+                                    duration: delayBetweenPoints,
+                                    //from: previousY,
+                                    delay(ctx) {
+                                        if (ctx.type !== 'data' || ctx.yStarted) {
+                                            return 0;
+                                        }
+                                        ctx.yStarted = true;
+                                        return ctx.index * delayBetweenPoints;
+                                    }
+                                },
+                            },
+                            interaction: {
+                                intersect: false
+                            },
+                            plugins: {
+                                legend: false
+                            },
+                            scales: {
+                                x: {
+                                    type: 'linear'
+                                }
+                            }
+                        }
+                    })
+                },
+                error: function(jqXHR, textStatus, errorThrow) {
+                    console.log(textStatus);
                 }
-            })
+            });
         </script>
     </div>
 

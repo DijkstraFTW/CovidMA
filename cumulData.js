@@ -46,7 +46,7 @@ function setNewData(status, response) {
 
     document.getElementById("new-cases-data").innerHTML = " +" + n_cases.toLocaleString() + " cases";
     document.getElementById("new-deaths-data").innerHTML = " +" + n_deaths.toLocaleString() + " deaths";
-    document.getElementById("recoveries-data").innerHTML = " +" + n_recoveries;
+    document.getElementById("recoveries-data").innerHTML = " +" + n_recoveries.toLocaleString();
     document.getElementById("new-dose1-data").innerHTML = " +" + n_dose1;
     document.getElementById("new-dose2-data").innerHTML = " +" + n_dose2;
     document.getElementById("new-dose3-data").innerHTML = " +" + n_dose3;
