@@ -193,7 +193,7 @@ function showBuble(x) {
     pos.style.left = (posx + 18) + "px";
     pos.style.top = (posy + 18) + "px";
     pos.style.display = 'block';
-    pos.style.position = 'fixed';
+    //pos.style.position = 'fixed';
 }
 
 function hideElement(id) {
