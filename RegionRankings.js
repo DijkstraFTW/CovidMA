@@ -4,6 +4,8 @@ var index = 0;
 var data = null;
 var rank = 1;
 
+let result = [];
+
 
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -34,8 +36,9 @@ function setRankings(status, response) {
 
             rankings[data[index]["region"]] = sum;
             document.getElementById("rank").innerHTML += rank + "." + "<br></br>";
-            document.getElementById("rankings").innerHTML += data[index]["region"] + "<br></br>";
-            document.getElementById("rankings-data").innerHTML += sum.toLocaleString() + "<br></br>";
+            result.push([data[index]["region"], sum]);
+            //document.getElementById("rankings").innerHTML += data[index]["region"] + "<br></br>";
+            //document.getElementById("rankings-data").innerHTML += sum.toLocaleString() + "<br></br>";
 
             index++;
             break
@@ -46,8 +49,7 @@ function setRankings(status, response) {
 
             rankings[data[index]["region"]] = sum;
             document.getElementById("rank").innerHTML += rank + "." + "<br></br>";
-            document.getElementById("rankings").innerHTML += data[index]["region"] + "<br></br>";
-            document.getElementById("rankings-data").innerHTML += sum.toLocaleString() + "<br></br>";
+            result.push([data[index]["region"], sum]);
 
             sum = 0;
             rank++;
@@ -56,6 +58,19 @@ function setRankings(status, response) {
         index++;
 
     }
+
+    result = result.sort(function(a, b) {
+        return a[1] - b[1];
+    });
+
+    console.log(result)
+
+    for (let index = 11; index >= 0; index--) {
+
+        document.getElementById("rankings").innerHTML += result[index][0] + "<br></br>";
+        document.getElementById("rankings-data").innerHTML += (result[index][1]).toLocaleString() + "<br></br>";
+    }
+
 
 }
 

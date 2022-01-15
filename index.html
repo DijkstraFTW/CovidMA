@@ -148,7 +148,7 @@
 
                     const totalDuration = 1000;
                     const delayBetweenPoints = totalDuration / plot.length;
-                    //const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+
 
                     var ctx = document.getElementById('plot-data').getContext('2d')
                     var graph_data = new Chart(ctx, {
@@ -180,7 +180,6 @@
                                     type: 'number',
                                     easing: 'linear',
                                     duration: delayBetweenPoints,
-                                    //from: previousY,
                                     delay(ctx) {
                                         if (ctx.type !== 'data' || ctx.yStarted) {
                                             return 0;
@@ -614,11 +613,6 @@
                         type: 'line',
                         data: {
                             datasets: [{
-                                borderColor: "red",
-                                borderWidth: 1,
-                                radius: 0,
-                                data: plotTotalJabs,
-                            }, {
                                 borderColor: '#99bdff',
                                 borderWidth: 2,
                                 radius: 0,
@@ -672,7 +666,10 @@
                             },
                             scales: {
                                 x: {
-                                    type: 'linear'
+                                    type: 'linear',
+                                },
+                                y: {
+                                    max: 35000000
                                 }
                             }
                         }
