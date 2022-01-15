@@ -53,7 +53,7 @@ jQuery.ajax({
         }
 
         const totalDuration = 1000;
-        const delayBetweenPoints = totalDuration / plot.length;
+        const delayBetweenPoints = totalDuration / plotTotalJabs.length;
 
         var ctx = document.getElementById('plot-vax').getContext('2d')
         var graph_data2 = new Chart(ctx, {

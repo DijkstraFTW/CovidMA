@@ -73,10 +73,6 @@
     <div class="recoveries-title">New recoveries :</div>
     <div class="recoveries-data" id="recoveries-data"></div>
 
-
-
-
-
     <div class="total-cases-card"></div>
 
     <script src="cumulData.js">
@@ -91,21 +87,24 @@
 
 <body>
 
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+    <script src="CasesPlot.js"></script>
+
+    <div class="plot-buttons">
+        <a href="#plot-card" class="button1" onclick="setCasesPlot()">Cases</a>
+        <a href="#plot-card" class="button1" onclick="setDeathsPlot()">Deaths</a>
+    </div>
+
     <div class="plot-card">
         <div class="container-data">
             <div>
                 <canvas id="plot-data" width=1500 height=700> </canvas>
             </div>
         </div>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js">
-        </script>
-
-
-        <script src="CasesPlot.js">
-        </script>
     </div>
 
     <div class="top-provinces">
