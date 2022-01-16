@@ -178,22 +178,23 @@ function showBuble(x) {
     let posy = 0;
     let id = x.id.replace("pr-", "");
     let info = data[id - 1];
-    let pos = document.getElementById('region-name');
+    let pos = document.getElementById("region-name");
 
     if (!e) var e = window.event;
-    if (e.pageX || e.pageY) {
-        posx = e.pageX;
-        posy = e.pageY;
-    } else if (e.clientX || e.clientY) {
+    if (e.clientX || e.clientY) {
         posx = e.clientX;
         posy = e.clientY;
     }
 
     pos.innerHTML = info.province + "<span class='nbCases'>" + info.cases[dateIndex] + "</span>";
-    pos.style.left = (posx + 18) + "px";
-    pos.style.top = (posy + 18) + "px";
+    pos.style.left = posx - 600 + "px";
+    pos.style.top = posy + "px";
     pos.style.display = 'block';
-    pos.style.position = 'fixed';
+    pos.style.position = 'relative';
+
+    console.log("left " + posx);
+    console.log("top " + posy);
+
 }
 
 function hideElement(id) {
