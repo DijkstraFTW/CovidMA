@@ -60,12 +60,12 @@ jQuery.ajax({
             type: 'line',
             data: {
                 datasets: [{
-                    borderColor: '#99bdff',
+                    borderColor: '#005bff',
                     borderWidth: 2,
                     radius: 0,
                     data: plotFirstJab,
                 }, {
-                    borderColor: "#005bff",
+                    borderColor: "#99bdff",
                     borderWidth: 2,
                     radius: 0,
                     data: plotSecondJab,
