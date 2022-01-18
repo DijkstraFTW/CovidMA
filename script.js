@@ -190,19 +190,14 @@ function showBuble(x) {
     pos.style.left = posx - 600 + "px";
     pos.style.top = posy + "px";
     pos.style.display = 'block';
-<<<<<<< HEAD
-    //pos.style.position = 'fixed';
-=======
     pos.style.position = 'relative';
 
     console.log("left " + posx);
     console.log("top " + posy);
-
->>>>>>> ccfea8cd770f3d42b4b38b7690a1d756929b3e84
 }
 
 function hideElement(id) {
     document.getElementById(id).style.display = "none";
 }
 
-function hideBuble() { document.getElementById('region-name').style.display = "none"; }
+function hideBuble() { document.getElementById('region-name').style.display = 'none'; }
