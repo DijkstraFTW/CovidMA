@@ -183,9 +183,14 @@
             padding: 5px 10px;
             border-radius: 5px;
             font-weight: 700;
+<<<<<<< HEAD
             z-index: 0;
             display: block!important;
             /*position: absolute;*/
+=======
+            z-index: 1;
+            display: none;
+>>>>>>> ccfea8cd770f3d42b4b38b7690a1d756929b3e84
         }
         
         #playBtn,
