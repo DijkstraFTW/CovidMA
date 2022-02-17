@@ -20,7 +20,7 @@ function setDeathsPlot() {
                 let doc = {};
                 for (let j = 0; j < fields.length; j++) {
                     doc[fields[j]] = current[j];
-                    if (i == 190 && j > 3) {
+                    if (i == 191 && j > 3) {
                         datesD[j] = fields[j]
                         DeathsData[j] = current[j]
                     }
@@ -28,10 +28,15 @@ function setDeathsPlot() {
                 }
                 output.push(doc);
             }
+
+            console.log(DeathsData)
             for (let index = 5; index < DeathsData.length; index++) {
-                resultDeaths[index] = DeathsData[index] - DeathsData[index - 1]
+                resultDeaths[index] = Math.floor(DeathsData[index] - DeathsData[index - 1])
             }
-            resultDeaths[4] = DeathsData[4] - 0
+
+
+
+            console.log(resultDeaths)
 
             for (let i = 4; i < resultDeaths.length; i++) {
                 plotD.push({
