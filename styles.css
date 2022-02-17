@@ -63,7 +63,7 @@
             max-width: 800px;
             left: 10px;
             bottom: 40px;
-            height: 100vh;
+            height: 900px;
         }
         
         .region {
@@ -118,8 +118,8 @@
             margin: 0 auto;
             padding: 0;
             right: 0;
-            left: 0;
-            top: 820px;
+            left: 40px;
+            top: 850px;
             display: block;
             font-size: xx-large;
             max-width: 800px;
