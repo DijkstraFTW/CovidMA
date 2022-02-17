@@ -103,7 +103,7 @@
 
 .new-tests-data {
     position: absolute;
-    width: 774px;
+    width: 474px;
     height: 49px;
     left: 1010px;
     top: 528px;
@@ -118,7 +118,7 @@
 
 .new-deaths-data {
     position: absolute;
-    width: 774px;
+    width: 220px;
     height: 49px;
     left: 1290px;
     top: 528px;
@@ -148,7 +148,7 @@
 
 .total-cases-title {
     position: absolute;
-    width: 774px;
+    width: 274px;
     height: 49px;
     left: 925px;
     top: 608px;
@@ -163,7 +163,7 @@
 
 .total-deaths-title {
     position: absolute;
-    width: 774px;
+    width: 274px;
     height: 49px;
     left: 1190px;
     top: 608px;
@@ -178,7 +178,7 @@
 
 .total-deaths-data {
     position: absolute;
-    width: 774px;
+    width: 474px;
     height: 49px;
     left: 1060px;
     top: 608px;
@@ -193,7 +193,7 @@
 
 .total-tests-title {
     position: absolute;
-    width: 774px;
+    width: 274px;
     height: 49px;
     left: 940px;
     top: 688px;
@@ -223,7 +223,7 @@
 
 .r0-data {
     position: absolute;
-    width: 774px;
+    width: 120px;
     height: 49px;
     left: 1440px;
     top: 608px;
@@ -238,7 +238,7 @@
 
 .r0-title {
     position: absolute;
-    width: 774px;
+    width: 120px;
     height: 49px;
     left: 1350px;
     top: 608px;
@@ -253,7 +253,7 @@
 
 .recoveries-data {
     position: absolute;
-    width: 774px;
+    width: 120px;
     height: 49px;
     left: 1390px;
     top: 688px;
@@ -268,7 +268,7 @@
 
 .recoveries-title {
     position: absolute;
-    width: 774px;
+    width: 474px;
     height: 49px;
     left: 1060px;
     top: 688px;
