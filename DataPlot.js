@@ -8,6 +8,7 @@ function setCasesPlot() {
     }
 
     let dates = []
+    let resultDates = []
     let casesData = []
     let resultData = []
 
@@ -18,6 +19,7 @@ function setCasesPlot() {
         type: 'get',
         dataType: 'text',
         success: function(data) {
+
             let lines = data.split('\n');
             let fields = lines[0].split(',');
 
@@ -36,17 +38,20 @@ function setCasesPlot() {
                 }
                 output.push(doc);
             }
+
             for (let index = 5; index < casesData.length; index++) {
                 resultData[index] = casesData[index] - casesData[index - 1]
             }
             resultData[4] = casesData[4] - 0
 
-            for (let i = 4; i < resultData.length; i++) {
-                plot.push({
-                    x: i,
-                    y: resultData[i]
-                });
+            for (let index = 5; index < dates.length; index++) {
+                resultDates[index] = resultDates[index] + "";
             }
+
+
+            console.log(dates.length)
+            console.log(resultData.length)
+
 
             const totalDuration = 1000;
             const delayBetweenPoints = totalDuration / plot.length;
@@ -56,52 +61,42 @@ function setCasesPlot() {
             var graph_data = new Chart(ctx, {
                 type: 'line',
                 data: {
+                    labels: dates,
                     datasets: [{
                         borderColor: 'red',
                         borderWidth: 1,
                         radius: 0,
-                        data: plot,
-                    }]
+                        data: resultData,
+                    }],
                 },
                 options: {
-                    animation: {
-                        x: {
-                            type: 'number',
-                            easing: 'linear',
-                            duration: delayBetweenPoints,
-                            from: NaN, // the point is initially skipped
-                            delay(ctx) {
-                                if (ctx.type !== 'data' || ctx.xStarted) {
-                                    return 0;
-                                }
-                                ctx.xStarted = true;
-                                return ctx.index * delayBetweenPoints;
-                            }
-                        },
-                        y: {
-                            type: 'number',
-                            easing: 'linear',
-                            duration: delayBetweenPoints,
-                            delay(ctx) {
-                                if (ctx.type !== 'data' || ctx.yStarted) {
-                                    return 0;
-                                }
-                                ctx.yStarted = true;
-                                return ctx.index * delayBetweenPoints;
-                            }
-                        },
-                    },
                     interaction: {
                         intersect: false
                     },
                     plugins: {
-                        legend: false
+                        legend: {
+                            display: false
+                        }
                     },
                     scales: {
                         x: {
-                            type: 'linear'
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 40,
+                                beginAtZero: true,
+                                callback: function(value, index, values) {
+                                    return dates[value];
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            }
                         }
-                    }
+                    },
                 }
             })
         },
