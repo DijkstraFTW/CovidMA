@@ -92,12 +92,14 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
-    <script type="text/javascript" src="DeathsPlot.js"></script>
-
     <div class="plot-buttons">
-        <button class="button1" onclick="setCasesPlot()">Cases</button>
-        <button class="button1" onclick="setDeathsPlot()">Deaths</button>
+        <a id="cases" type="button" class="button1" onclick="setCasesPlot()">Cases</a>
+        <a id="deaths" type="button" class="button1" onclick="setDeathsPlot()">Deaths</a>
     </div>
+
+    <script type="text/javascript" src="DataPlot.js">
+        setCasesPlot();
+    </script>
 
 
     <div class="plot-card">

@@ -29,15 +29,9 @@ function setDeathsPlot() {
                 output.push(doc);
             }
 
-            console.log(DeathsData)
             for (let index = 5; index < DeathsData.length; index++) {
                 resultDeaths[index] = Math.floor(DeathsData[index] - DeathsData[index - 1])
             }
-
-
-
-            console.log(resultDeaths)
-
             for (let i = 4; i < resultDeaths.length; i++) {
                 plotD.push({
                     x: i,
@@ -108,5 +102,3 @@ function setDeathsPlot() {
     });
 
 }
-
-setDeathsPlot();
