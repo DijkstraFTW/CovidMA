@@ -9,8 +9,9 @@ function setCasesPlot() {
     let resultDates = []
     let casesData = []
     let resultData = []
-
-    const plot = [];
+    let resultDataSmooth = []
+    let m = 0
+    let plot = null;
 
     jQuery.ajax({
         url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
@@ -46,8 +47,21 @@ function setCasesPlot() {
                 resultDates[index] = resultDates[index] + "";
             }
 
-            const totalDuration = 1000;
-            const delayBetweenPoints = totalDuration / plot.length;
+            for (let k = 5; k < resultData.length; k++) {
+                m += resultData[k];
+                if ((k % 7) == 0) {
+                    for (let index = 0; index < 7; index++) {
+                        resultDataSmooth.push(Math.ceil(m / 7))
+                    }
+                    m = 0;
+                }
+            }
+
+            if (document.getElementById('smooth').checked) {
+                plot = resultDataSmooth;
+            } else {
+                plot = resultData;
+            }
 
 
             var ctx = document.getElementById('plot-data').getContext('2d')
@@ -59,7 +73,7 @@ function setCasesPlot() {
                         borderColor: 'blue',
                         borderWidth: 1,
                         radius: 3,
-                        data: resultData,
+                        data: plot,
                     }],
                 },
                 options: {
@@ -104,6 +118,7 @@ function setDeathsPlot() {
 
 
     let chartStatus = Chart.getChart("plot-data");
+
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
@@ -111,8 +126,9 @@ function setDeathsPlot() {
     let datesD = []
     let DeathsData = []
     let resultDeaths = []
-
-    const plotD = [];
+    let resultDeathsSmooth = []
+    let plot = null
+    let m = 0
 
     jQuery.ajax({
         url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv",
@@ -138,14 +154,27 @@ function setDeathsPlot() {
                 output.push(doc);
             }
 
+
+
             for (let index = 5; index < DeathsData.length; index++) {
                 resultDeaths[index] = Math.floor(DeathsData[index] - DeathsData[index - 1])
             }
 
+            for (let k = 5; k < resultDeaths.length; k++) {
+                m += resultDeaths[k];
+                if ((k % 7) == 0) {
+                    for (let index = 0; index < 7; index++) {
+                        resultDeathsSmooth.push(Math.ceil(m / 7))
+                    }
+                    m = 0;
+                }
+            }
 
-            const totalDuration = 1000;
-            const delayBetweenPoints = totalDuration / plotD.length;
-
+            if (document.getElementById('smooth').checked) {
+                plot = resultDeathsSmooth;
+            } else {
+                plot = resultDeaths;
+            }
 
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
@@ -156,7 +185,7 @@ function setDeathsPlot() {
                         borderColor: 'red',
                         borderWidth: 1,
                         radius: 3,
-                        data: resultDeaths,
+                        data: plot,
                     }]
                 },
                 options: {
