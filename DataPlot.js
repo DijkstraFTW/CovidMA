@@ -158,7 +158,7 @@ function setDeathsPlot() {
 
 
             var ctx = document.getElementById('plot-data').getContext('2d')
-            var graph_data3 = new Chart(ctx, {
+            var graph_data = new Chart(ctx, {
                 type: 'line',
                 data: {
                     datasets: [{
@@ -215,6 +215,434 @@ function setDeathsPlot() {
                             }
                         }
                     }
+                }
+            })
+        },
+        error: function(jqXHR, textStatus, errorThrow) {
+            console.log(textStatus);
+        }
+    });
+
+}
+
+function setTestsPlot() {
+
+    let chartStatus = Chart.getChart("plot-data");
+    if (chartStatus != undefined) {
+        chartStatus.destroy();
+    }
+
+    let dates = []
+    let resultDates = []
+    let casesData = []
+    let resultData = []
+
+    const plot = [];
+
+    jQuery.ajax({
+        url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+        type: 'get',
+        dataType: 'text',
+        success: function(data) {
+
+            let lines = data.split('\n');
+            let fields = lines[0].split(',');
+
+            let output = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                let current = lines[i].split(',');
+                let doc = {};
+                for (let j = 0; j < fields.length; j++) {
+                    doc[fields[j]] = current[j];
+                    if (i == 191 && j > 3) {
+                        dates[j] = fields[j]
+                        casesData[j] = current[j]
+                    }
+
+                }
+                output.push(doc);
+            }
+
+            for (let index = 5; index < casesData.length; index++) {
+                resultData[index] = casesData[index] - casesData[index - 1]
+            }
+            resultData[4] = casesData[4] - 0
+
+            for (let index = 5; index < dates.length; index++) {
+                resultDates[index] = resultDates[index] + "";
+            }
+
+
+            console.log(casesData)
+            console.log(resultData)
+
+
+            const totalDuration = 1000;
+            const delayBetweenPoints = totalDuration / plot.length;
+
+
+            var ctx = document.getElementById('plot-data').getContext('2d')
+            var graph_data = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: resultData,
+                    }],
+                },
+                options: {
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 9,
+                                beginAtZero: true,
+                                callback: function(value, index, values) {
+                                    return dates[value];
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: true
+                            }
+                        }
+                    },
+                }
+            })
+        },
+        error: function(jqXHR, textStatus, errorThrow) {
+            console.log(textStatus);
+        }
+    });
+
+}
+
+function setLethalityPlot() {
+
+    let chartStatus = Chart.getChart("plot-data");
+    if (chartStatus != undefined) {
+        chartStatus.destroy();
+    }
+
+    let dates = []
+    let resultDates = []
+    let casesData = []
+    let resultData = []
+
+    const plot = [];
+
+    jQuery.ajax({
+        url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+        type: 'get',
+        dataType: 'text',
+        success: function(data) {
+
+            let lines = data.split('\n');
+            let fields = lines[0].split(',');
+
+            let output = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                let current = lines[i].split(',');
+                let doc = {};
+                for (let j = 0; j < fields.length; j++) {
+                    doc[fields[j]] = current[j];
+                    if (i == 191 && j > 3) {
+                        dates[j] = fields[j]
+                        casesData[j] = current[j]
+                    }
+
+                }
+                output.push(doc);
+            }
+
+            for (let index = 5; index < casesData.length; index++) {
+                resultData[index] = casesData[index] - casesData[index - 1]
+            }
+            resultData[4] = casesData[4] - 0
+
+            for (let index = 5; index < dates.length; index++) {
+                resultDates[index] = resultDates[index] + "";
+            }
+
+
+            console.log(casesData)
+            console.log(resultData)
+
+
+            const totalDuration = 1000;
+            const delayBetweenPoints = totalDuration / plot.length;
+
+
+            var ctx = document.getElementById('plot-data').getContext('2d')
+            var graph_data = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: resultData,
+                    }],
+                },
+                options: {
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 9,
+                                beginAtZero: true,
+                                callback: function(value, index, values) {
+                                    return dates[value];
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: true
+                            }
+                        }
+                    },
+                }
+            })
+        },
+        error: function(jqXHR, textStatus, errorThrow) {
+            console.log(textStatus);
+        }
+    });
+
+}
+
+function setR0Plot() {
+
+    let chartStatus = Chart.getChart("plot-data");
+    if (chartStatus != undefined) {
+        chartStatus.destroy();
+    }
+
+    let dates = []
+    let resultDates = []
+    let casesData = []
+    let resultData = []
+
+    const plot = [];
+
+    jQuery.ajax({
+        url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+        type: 'get',
+        dataType: 'text',
+        success: function(data) {
+
+            let lines = data.split('\n');
+            let fields = lines[0].split(',');
+
+            let output = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                let current = lines[i].split(',');
+                let doc = {};
+                for (let j = 0; j < fields.length; j++) {
+                    doc[fields[j]] = current[j];
+                    if (i == 191 && j > 3) {
+                        dates[j] = fields[j]
+                        casesData[j] = current[j]
+                    }
+
+                }
+                output.push(doc);
+            }
+
+            for (let index = 5; index < casesData.length; index++) {
+                resultData[index] = casesData[index] - casesData[index - 1]
+            }
+            resultData[4] = casesData[4] - 0
+
+            for (let index = 5; index < dates.length; index++) {
+                resultDates[index] = resultDates[index] + "";
+            }
+
+
+            console.log(casesData)
+            console.log(resultData)
+
+
+            const totalDuration = 1000;
+            const delayBetweenPoints = totalDuration / plot.length;
+
+
+            var ctx = document.getElementById('plot-data').getContext('2d')
+            var graph_data = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: resultData,
+                    }],
+                },
+                options: {
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 9,
+                                beginAtZero: true,
+                                callback: function(value, index, values) {
+                                    return dates[value];
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: true
+                            }
+                        }
+                    },
+                }
+            })
+        },
+        error: function(jqXHR, textStatus, errorThrow) {
+            console.log(textStatus);
+        }
+    });
+
+}
+
+function setPosRatePlot() {
+
+    let chartStatus = Chart.getChart("plot-data");
+    if (chartStatus != undefined) {
+        chartStatus.destroy();
+    }
+
+    let dates = []
+    let resultDates = []
+    let casesData = []
+    let resultData = []
+
+    const plot = [];
+
+    jQuery.ajax({
+        url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+        type: 'get',
+        dataType: 'text',
+        success: function(data) {
+
+            let lines = data.split('\n');
+            let fields = lines[0].split(',');
+
+            let output = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                let current = lines[i].split(',');
+                let doc = {};
+                for (let j = 0; j < fields.length; j++) {
+                    doc[fields[j]] = current[j];
+                    if (i == 191 && j > 3) {
+                        dates[j] = fields[j]
+                        casesData[j] = current[j]
+                    }
+
+                }
+                output.push(doc);
+            }
+
+            for (let index = 5; index < casesData.length; index++) {
+                resultData[index] = casesData[index] - casesData[index - 1]
+            }
+            resultData[4] = casesData[4] - 0
+
+            for (let index = 5; index < dates.length; index++) {
+                resultDates[index] = resultDates[index] + "";
+            }
+
+
+            console.log(casesData)
+            console.log(resultData)
+
+
+            const totalDuration = 1000;
+            const delayBetweenPoints = totalDuration / plot.length;
+
+
+            var ctx = document.getElementById('plot-data').getContext('2d')
+            var graph_data = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        radius: 0,
+                        data: resultData,
+                    }],
+                },
+                options: {
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 9,
+                                beginAtZero: true,
+                                callback: function(value, index, values) {
+                                    return dates[value];
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: true
+                            }
+                        }
+                    },
                 }
             })
         },
