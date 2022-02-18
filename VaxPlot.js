@@ -52,6 +52,8 @@ jQuery.ajax({
             });
         }
 
+        console.log(resultVaxData)
+
         const totalDuration = 1000;
         const delayBetweenPoints = totalDuration / plotTotalJabs.length;
 
@@ -95,7 +97,6 @@ jQuery.ajax({
                         type: 'number',
                         easing: 'linear',
                         duration: delayBetweenPoints,
-                        //from: previousY,
                         delay(ctx) {
                             if (ctx.type !== 'data' || ctx.yStarted) {
                                 return 0;

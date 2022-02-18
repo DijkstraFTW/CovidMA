@@ -10,6 +10,7 @@ function setCasesPlot() {
     let casesData = []
     let resultData = []
     let resultDataSmooth = []
+    let datesSmooth = []
     let m = 0
     let plot = null;
 
@@ -50,17 +51,18 @@ function setCasesPlot() {
             for (let k = 5; k < resultData.length; k++) {
                 m += resultData[k];
                 if ((k % 7) == 0) {
-                    for (let index = 0; index < 7; index++) {
-                        resultDataSmooth.push(Math.ceil(m / 7))
-                    }
+                    resultDataSmooth.push(Math.ceil(m / 7))
+                    datesSmooth.push(dates[k])
                     m = 0;
                 }
             }
 
             if (document.getElementById('smooth').checked) {
                 plot = resultDataSmooth;
+                datesFormat = datesSmooth
             } else {
                 plot = resultData;
+                datesFormat = dates
             }
 
 
@@ -68,7 +70,7 @@ function setCasesPlot() {
             var graph_data = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: dates,
+                    labels: datesFormat,
                     datasets: [{
                         borderColor: 'blue',
                         borderWidth: 1,
@@ -124,6 +126,7 @@ function setDeathsPlot() {
     }
 
     let datesD = []
+    let datesDSmooth = []
     let DeathsData = []
     let resultDeaths = []
     let resultDeathsSmooth = []
@@ -163,24 +166,25 @@ function setDeathsPlot() {
             for (let k = 5; k < resultDeaths.length; k++) {
                 m += resultDeaths[k];
                 if ((k % 7) == 0) {
-                    for (let index = 0; index < 7; index++) {
-                        resultDeathsSmooth.push(Math.ceil(m / 7))
-                    }
+                    resultDeathsSmooth.push(Math.ceil(m / 7))
+                    datesDSmooth.push(datesD[k])
                     m = 0;
                 }
             }
 
             if (document.getElementById('smooth').checked) {
                 plot = resultDeathsSmooth;
+                datesDFormat = datesDSmooth;
             } else {
                 plot = resultDeaths;
+                datesDFormat = datesD;
             }
 
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: datesD,
+                    labels: datesDFormat,
                     datasets: [{
                         borderColor: 'red',
                         borderWidth: 1,
