@@ -46,11 +46,6 @@ function setCasesPlot() {
                 resultDates[index] = resultDates[index] + "";
             }
 
-
-            console.log(casesData)
-            console.log(resultData)
-
-
             const totalDuration = 1000;
             const delayBetweenPoints = totalDuration / plot.length;
 
@@ -146,12 +141,7 @@ function setDeathsPlot() {
             for (let index = 5; index < DeathsData.length; index++) {
                 resultDeaths[index] = Math.floor(DeathsData[index] - DeathsData[index - 1])
             }
-            for (let i = 4; i < resultDeaths.length; i++) {
-                plotD.push({
-                    x: i,
-                    y: resultDeaths[i]
-                });
-            }
+
 
             const totalDuration = 1000;
             const delayBetweenPoints = totalDuration / plotD.length;
@@ -161,52 +151,34 @@ function setDeathsPlot() {
             var graph_data = new Chart(ctx, {
                 type: 'line',
                 data: {
+                    labels: datesD,
                     datasets: [{
                         borderColor: 'orange',
                         borderWidth: 1,
                         radius: 0,
-                        data: plotD,
+                        data: resultDeaths,
                     }]
                 },
                 options: {
-                    animation: {
-                        x: {
-                            type: 'number',
-                            easing: 'linear',
-                            duration: delayBetweenPoints,
-                            from: NaN,
-                            delay(ctx) {
-                                if (ctx.type !== 'data' || ctx.xStarted) {
-                                    return 0;
-                                }
-                                ctx.xStarted = true;
-                                return ctx.index * delayBetweenPoints;
-                            }
-                        },
-                        y: {
-                            type: 'number',
-                            easing: 'linear',
-                            duration: delayBetweenPoints,
-                            delay(ctx) {
-                                if (ctx.type !== 'data' || ctx.yStarted) {
-                                    return 0;
-                                }
-                                ctx.yStarted = true;
-                                return ctx.index * delayBetweenPoints;
-                            }
-                        },
-                    },
                     interaction: {
                         intersect: false
                     },
                     plugins: {
-                        legend: false
+                        legend: {
+                            display: false
+                        }
                     },
                     scales: {
                         x: {
-                            type: 'linear',
                             grid: {
                                 display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 9,
+                                beginAtZero: true,
+                                callback: function(value, index, values) {
+                                    return datesD[value];
+                                }
                             }
                         },
                         y: {
@@ -214,7 +186,7 @@ function setDeathsPlot() {
                                 display: true
                             }
                         }
-                    }
+                    },
                 }
             })
         },
