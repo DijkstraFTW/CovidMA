@@ -227,6 +227,8 @@ function setDeathsPlot() {
 
 function setTestsPlot() {
 
+    // https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/covid-testing-all-observations.csv
+
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
@@ -333,6 +335,8 @@ function setTestsPlot() {
 }
 
 function setLethalityPlot() {
+
+    // num deaths/Number cases
 
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
@@ -441,6 +445,9 @@ function setLethalityPlot() {
 
 function setR0Plot() {
 
+    // https://raw.githubusercontent.com/crondonm/TrackingR/main/Estimates-Database/database.csv
+
+
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
@@ -547,6 +554,9 @@ function setR0Plot() {
 }
 
 function setPosRatePlot() {
+
+    // https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/covid-testing-all-observations.csv
+
 
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
