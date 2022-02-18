@@ -74,7 +74,7 @@ function setCasesPlot() {
                     datasets: [{
                         borderColor: 'blue',
                         borderWidth: 1,
-                        radius: 3,
+                        radius: 4,
                         data: plot,
                     }],
                 },
@@ -188,7 +188,7 @@ function setDeathsPlot() {
                     datasets: [{
                         borderColor: 'red',
                         borderWidth: 1,
-                        radius: 3,
+                        radius: 4,
                         data: plot,
                     }]
                 },
