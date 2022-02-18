@@ -1,5 +1,3 @@
-var graph_data, graph_data3;
-
 function setCasesPlot() {
 
     let chartStatus = Chart.getChart("plot-data");
@@ -49,8 +47,8 @@ function setCasesPlot() {
             }
 
 
-            console.log(dates.length)
-            console.log(resultData.length)
+            console.log(casesData)
+            console.log(resultData)
 
 
             const totalDuration = 1000;
@@ -84,7 +82,7 @@ function setCasesPlot() {
                                 display: false
                             },
                             ticks: {
-                                maxTicksLimit: 40,
+                                maxTicksLimit: 9,
                                 beginAtZero: true,
                                 callback: function(value, index, values) {
                                     return dates[value];
@@ -93,7 +91,7 @@ function setCasesPlot() {
                         },
                         y: {
                             grid: {
-                                display: false
+                                display: true
                             }
                         }
                     },
@@ -206,7 +204,15 @@ function setDeathsPlot() {
                     },
                     scales: {
                         x: {
-                            type: 'linear'
+                            type: 'linear',
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: true
+                            }
                         }
                     }
                 }
