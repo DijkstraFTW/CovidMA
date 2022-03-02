@@ -43,14 +43,12 @@ function setNewData(status, response) {
 
     n_cases = data["cases"];
     n_deaths = data["deaths"];
-    //n_recoveries = data["recoveries"];
     n_dose1 = data["dose_1_last_day"];
     n_dose2 = data["dose_2_last_day"];
     n_dose3 = data["dose_3_last_day"];
     total_dose3 = data["dose_3_total"];
 
 
-    //document.getElementById("recoveries-data").innerHTML = " +" + n_recoveries.toLocaleString();
     document.getElementById("new-dose1-data").innerHTML = " +" + n_dose1;
     document.getElementById("new-dose2-data").innerHTML = " +" + n_dose2;
     document.getElementById("new-dose3-data").innerHTML = " +" + n_dose3;

@@ -24,14 +24,17 @@ jQuery.ajax({
             output.push([current[current.length - 4], current[current.length - 2], current[current.length - 3]])
         }
 
+        resultVaxData = output
+
         for (let index = 0; index < output.length; index++) {
             for (let temp = 0; temp < 3; temp++) {
-                if (output[index][temp] == "") {
-                    output[index][temp] = "0";
+                if (output[index][temp] == '' && index > 19) {
+                    resultVaxData.splice(index, 1)
                 }
+                resultVaxData[index][temp] = output[index][temp]
+
             }
         }
-        resultVaxData = output;
 
         for (let i = 0; i < resultVaxData.length; i++) {
             plotTotalJabs.push({
@@ -51,8 +54,6 @@ jQuery.ajax({
                 y: 30000000
             });
         }
-
-        console.log(resultVaxData)
 
         const totalDuration = 1000;
         const delayBetweenPoints = totalDuration / plotTotalJabs.length;
