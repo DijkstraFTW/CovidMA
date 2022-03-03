@@ -587,6 +587,8 @@ function setPosRatePlot() {
     // https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/covid-testing-all-observations.csv
 
 
+    // new cases / new tests 
+
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
