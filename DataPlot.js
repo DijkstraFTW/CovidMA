@@ -74,7 +74,7 @@ function setCasesPlot() {
                     datasets: [{
                         borderColor: 'blue',
                         borderWidth: 1,
-                        radius: 4,
+                        radius: 3,
                         data: plot,
                     }],
                 },
@@ -188,7 +188,7 @@ function setDeathsPlot() {
                     datasets: [{
                         borderColor: 'red',
                         borderWidth: 1,
-                        radius: 4,
+                        radius: 3,
                         data: plot,
                     }]
                 },
@@ -232,22 +232,13 @@ function setDeathsPlot() {
 
 function setTestsPlot() {
 
-    // https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/covid-testing-all-observations.csv
-
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
 
-    let dates = []
-    let resultDates = []
-    let casesData = []
-    let resultData = []
-
-    const plot = [];
-
     jQuery.ajax({
-        url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+        url: "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/covid-testing-all-observations.csv",
         type: 'get',
         dataType: 'text',
         success: function(data) {
@@ -255,39 +246,65 @@ function setTestsPlot() {
             let lines = data.split('\n');
             let fields = lines[0].split(',');
 
-            let output = [];
+            let testsDates = []
+            let testsData = []
 
-            for (let i = 1; i < lines.length; i++) {
-                let current = lines[i].split(',');
-                let doc = {};
-                for (let j = 0; j < fields.length; j++) {
-                    doc[fields[j]] = current[j];
-                    if (i == 191 && j > 3) {
-                        dates[j] = fields[j]
-                        casesData[j] = current[j]
+            let testsDataSmooth = []
+            let testDatesSmooth = []
+
+            let plot;
+            let m = 0;
+
+
+            let idf, temp;
+
+            for (idf = 0; idf < data.length; idf++) {
+
+                let temp = lines[idf].split(',');
+
+                if (temp[1] == "MAR") {
+                    while (temp[1] == "MAR") {
+                        idf++
+
+                        if (lines[idf].split(',')[1] != "MAR") {
+                            break
+                        }
+
+                        temp = lines[idf].split(',');
+
+                        if (temp[6] == '') {
+                            continue
+                        } else {
+                            testsData.push(temp[6])
+                            testsDates.push(temp[2])
+                        }
+
                     }
 
+                    break
                 }
-                output.push(doc);
+
             }
 
-            for (let index = 5; index < casesData.length; index++) {
-                resultData[index] = casesData[index] - casesData[index - 1]
+            for (let k = 0; k < testsData.length; k++) {
+                m += parseInt(testsData[k])
+                if ((k % 7) == 0) {
+                    testsDataSmooth.push(Math.ceil(m / 7))
+                    testDatesSmooth.push(testsDates[k])
+                    m = 0
+                }
             }
-            resultData[4] = casesData[4] - 0
 
-            for (let index = 5; index < dates.length; index++) {
-                resultDates[index] = resultDates[index] + "";
+            console.log(testsData)
+            console.log(testsDataSmooth)
+
+            if (document.getElementById('smooth').checked) {
+                plot = testsDataSmooth;
+                dates = testDatesSmooth
+            } else {
+                plot = testsData
+                dates = testsDates
             }
-
-
-            console.log(casesData)
-            console.log(resultData)
-
-
-            const totalDuration = 1000;
-            const delayBetweenPoints = totalDuration / plot.length;
-
 
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
@@ -295,11 +312,11 @@ function setTestsPlot() {
                 data: {
                     labels: dates,
                     datasets: [{
-                        borderColor: 'red',
+                        borderColor: 'green',
                         borderWidth: 1,
-                        radius: 0,
-                        data: resultData,
-                    }],
+                        radius: 3,
+                        data: plot,
+                    }]
                 },
                 options: {
                     interaction: {
@@ -669,4 +686,4 @@ function setPosRatePlot() {
 }
 
 
-setCasesPlot(); // default plot
+setTestsPlot(); // default plot
