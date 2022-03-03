@@ -1,3 +1,14 @@
+var resultData
+var datesD
+var resultDataSmooth
+var datesSmooth
+
+var datesD
+var datesDSmooth
+var resultDeaths
+var resultDeathsSmooth
+
+
 function setCasesPlot() {
 
     let chartStatus = Chart.getChart("plot-data");
@@ -5,12 +16,15 @@ function setCasesPlot() {
         chartStatus.destroy();
     }
 
-    let dates = []
+    dates = []
     let resultDates = []
-    let casesData = []
-    let resultData = []
-    let resultDataSmooth = []
-    let datesSmooth = []
+
+    casesData = []
+    resultData = []
+
+    resultDataSmooth = []
+    datesSmooth = []
+
     let m = 0
     let plot = null;
 
@@ -125,11 +139,11 @@ function setDeathsPlot() {
         chartStatus.destroy();
     }
 
-    let datesD = []
-    let datesDSmooth = []
-    let DeathsData = []
-    let resultDeaths = []
-    let resultDeathsSmooth = []
+    datesD = []
+    datesDSmooth = []
+    DeathsData = []
+    resultDeaths = []
+    resultDeathsSmooth = []
     let plot = null
     let m = 0
 
@@ -295,8 +309,6 @@ function setTestsPlot() {
                 }
             }
 
-            console.log(testsData)
-            console.log(testsDataSmooth)
 
             if (document.getElementById('smooth').checked) {
                 plot = testsDataSmooth;
@@ -358,111 +370,91 @@ function setTestsPlot() {
 
 function setLethalityPlot() {
 
-    // num deaths/Number cases
-
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
 
-    let dates = []
-    let resultDates = []
-    let casesData = []
-    let resultData = []
+    let lethality = []
+    let lethalitySmooth = []
+    let lethalityDatesSmooth = []
 
-    const plot = [];
+    let plot = [];
+    let dates = [];
+    let m = 0
 
-    jQuery.ajax({
-        url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
-        type: 'get',
-        dataType: 'text',
-        success: function(data) {
-
-            let lines = data.split('\n');
-            let fields = lines[0].split(',');
-
-            let output = [];
-
-            for (let i = 1; i < lines.length; i++) {
-                let current = lines[i].split(',');
-                let doc = {};
-                for (let j = 0; j < fields.length; j++) {
-                    doc[fields[j]] = current[j];
-                    if (i == 191 && j > 3) {
-                        dates[j] = fields[j]
-                        casesData[j] = current[j]
-                    }
-
-                }
-                output.push(doc);
-            }
-
-            for (let index = 5; index < casesData.length; index++) {
-                resultData[index] = casesData[index] - casesData[index - 1]
-            }
-            resultData[4] = casesData[4] - 0
-
-            for (let index = 5; index < dates.length; index++) {
-                resultDates[index] = resultDates[index] + "";
-            }
-
-
-            console.log(casesData)
-            console.log(resultData)
-
-
-            const totalDuration = 1000;
-            const delayBetweenPoints = totalDuration / plot.length;
-
-
-            var ctx = document.getElementById('plot-data').getContext('2d')
-            var graph_data = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [{
-                        borderColor: 'red',
-                        borderWidth: 1,
-                        radius: 0,
-                        data: resultData,
-                    }],
-                },
-                options: {
-                    interaction: {
-                        intersect: false
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                maxTicksLimit: 9,
-                                beginAtZero: true,
-                                callback: function(value, index, values) {
-                                    return dates[value];
-                                }
-                            }
-                        },
-                        y: {
-                            grid: {
-                                display: true
-                            }
-                        }
-                    },
-                }
-            })
-        },
-        error: function(jqXHR, textStatus, errorThrow) {
-            console.log(textStatus);
+    for (let index = 5; index < resultData.length; index++) {
+        if (resultDeaths[index] == resultData[index]) {
+            lethality[index - 5] = 0
+        } else {
+            lethality[index - 5] = (resultDeaths[index] / resultData[index]).toFixed(2) * 100
         }
-    });
+    }
 
+    for (let k = 0; k < lethality.length; k++) {
+        m += parseInt(lethality[k]);
+        if ((k % 7) == 0) {
+            lethalitySmooth.push((m / 7).toFixed(2))
+            lethalityDatesSmooth.push(datesD[k + 5])
+            m = 0;
+        }
+    }
+
+    if (document.getElementById('smooth').checked) {
+        plot = lethalitySmooth;
+        dates = lethalityDatesSmooth
+    } else {
+        plot = lethality
+        dates = datesD
+    }
+
+    var ctx = document.getElementById('plot-data').getContext('2d')
+    var graph_data = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                borderColor: 'black',
+                borderWidth: 1,
+                radius: 3,
+                data: plot,
+            }]
+        },
+        options: {
+            interaction: {
+                intersect: false
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 9,
+                        beginAtZero: true,
+                        callback: function(value, index, values) {
+                            return dates[value];
+                        }
+                    }
+                },
+                y: {
+                    grid: {
+                        display: true
+                    },
+                    ticks: {
+                        callback: function(label, index, labels) {
+                            return label + " %"
+                        }
+                    }
+                }
+            },
+        }
+    })
 }
 
 function setR0Plot() {
@@ -686,4 +678,4 @@ function setPosRatePlot() {
 }
 
 
-setTestsPlot(); // default plot
+setCasesPlot(); // default plot
