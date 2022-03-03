@@ -375,6 +375,21 @@ function setLethalityPlot() {
         chartStatus.destroy();
     }
 
+
+    if (resultData == undefined) {
+        setCasesPlot()
+    }
+
+    if (resultDeaths == undefined) {
+        setDeathsPlot()
+        setTimeout(() => {
+            setLethalityPlot()
+            return;
+        }, 100);
+    }
+
+
+
     let lethality = []
     let lethalitySmooth = []
     let lethalityDatesSmooth = []
