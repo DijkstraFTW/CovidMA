@@ -429,7 +429,7 @@ function setLethalityPlot() {
         data: {
             labels: dates,
             datasets: [{
-                borderColor: 'black',
+                borderColor: 'red',
                 borderWidth: 1,
                 radius: 3,
                 data: plot,
@@ -474,23 +474,13 @@ function setLethalityPlot() {
 
 function setR0Plot() {
 
-    // https://raw.githubusercontent.com/crondonm/TrackingR/main/Estimates-Database/database.csv
-
-
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
 
-    let dates = []
-    let resultDates = []
-    let casesData = []
-    let resultData = []
-
-    const plot = [];
-
     jQuery.ajax({
-        url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+        url: "https://raw.githubusercontent.com/crondonm/TrackingR/main/Estimates-Database/database.csv",
         type: 'get',
         dataType: 'text',
         success: function(data) {
@@ -498,38 +488,62 @@ function setR0Plot() {
             let lines = data.split('\n');
             let fields = lines[0].split(',');
 
-            let output = [];
+            let R0Dates = []
+            let R0Data = []
 
-            for (let i = 1; i < lines.length; i++) {
-                let current = lines[i].split(',');
-                let doc = {};
-                for (let j = 0; j < fields.length; j++) {
-                    doc[fields[j]] = current[j];
-                    if (i == 191 && j > 3) {
-                        dates[j] = fields[j]
-                        casesData[j] = current[j]
+            let R0DataSmooth = []
+            let R0DatesSmooth = []
+
+            let plot;
+            let m = 0;
+
+
+            let idf, temp;
+
+            for (idf = 0; idf < data.length; idf++) {
+
+                let temp = lines[idf].split(',');
+
+                if (temp[0] == "Morocco") {
+                    while (temp[0] == "Morocco") {
+                        idf++
+
+                        if (lines[idf].split(',')[0] != "Morocco") {
+                            break
+                        }
+
+                        temp = lines[idf].split(',');
+
+                        if (temp[2] == '') {
+                            continue
+                        } else {
+                            R0Data.push(temp[2])
+                            R0Dates.push(temp[1])
+                        }
+
                     }
 
+                    break
                 }
-                output.push(doc);
+
             }
 
-            for (let index = 5; index < casesData.length; index++) {
-                resultData[index] = casesData[index] - casesData[index - 1]
+            for (let k = 0; k < R0Data.length; k++) {
+                m += parseInt(R0Data[k])
+                if ((k % 7) == 0) {
+                    R0DataSmooth.push((m / 7).toFixed(2))
+                    R0DatesSmooth.push(R0Dates[k])
+                    m = 0
+                }
             }
-            resultData[4] = casesData[4] - 0
 
-            for (let index = 5; index < dates.length; index++) {
-                resultDates[index] = resultDates[index] + "";
+            if (document.getElementById('smooth').checked) {
+                plot = R0DataSmooth;
+                dates = R0DatesSmooth
+            } else {
+                plot = R0Data
+                dates = R0Dates
             }
-
-
-            console.log(casesData)
-            console.log(resultData)
-
-
-            const totalDuration = 1000;
-            const delayBetweenPoints = totalDuration / plot.length;
 
 
             var ctx = document.getElementById('plot-data').getContext('2d')
@@ -538,10 +552,10 @@ function setR0Plot() {
                 data: {
                     labels: dates,
                     datasets: [{
-                        borderColor: 'red',
+                        borderColor: 'green',
                         borderWidth: 1,
-                        radius: 0,
-                        data: resultData,
+                        radius: 3,
+                        data: plot,
                     }],
                 },
                 options: {
