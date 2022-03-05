@@ -1,5 +1,5 @@
 var resultData
-var datesD
+var resultDates
 var resultDataSmooth
 var datesSmooth
 
@@ -9,6 +9,12 @@ var resultDeaths
 var resultDeathsSmooth
 
 
+var testsDates
+var testsData
+var testsDataSmooth
+var testDatesSmooth
+
+
 function setCasesPlot() {
 
     let chartStatus = Chart.getChart("plot-data");
@@ -16,8 +22,8 @@ function setCasesPlot() {
         chartStatus.destroy();
     }
 
-    dates = []
-    let resultDates = []
+    resultDates = []
+    let dates = []
 
     casesData = []
     resultData = []
@@ -260,11 +266,11 @@ function setTestsPlot() {
             let lines = data.split('\n');
             let fields = lines[0].split(',');
 
-            let testsDates = []
-            let testsData = []
+            testsDates = []
+            testsData = []
 
-            let testsDataSmooth = []
-            let testDatesSmooth = []
+            testsDataSmooth = []
+            testDatesSmooth = []
 
             let plot;
             let m = 0;
@@ -287,11 +293,17 @@ function setTestsPlot() {
                         temp = lines[idf].split(',');
 
                         if (temp[6] == '') {
-                            continue
-                        } else {
-                            testsData.push(temp[6])
-                            testsDates.push(temp[2])
+                            temp[6] == 0
                         }
+
+                        if (temp[6] == '641') {
+                            temp[6] = 14118
+                        }
+
+
+                        testsData.push(temp[6])
+                        testsDates.push(temp[2])
+
 
                     }
 
@@ -387,8 +399,6 @@ function setLethalityPlot() {
             return;
         }, 100);
     }
-
-
 
     let lethality = []
     let lethalitySmooth = []
@@ -598,9 +608,6 @@ function setR0Plot() {
 
 function setPosRatePlot() {
 
-    // https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/covid-testing-all-observations.csv
-
-
     // new cases / new tests 
 
     let chartStatus = Chart.getChart("plot-data");
@@ -608,103 +615,97 @@ function setPosRatePlot() {
         chartStatus.destroy();
     }
 
+    if (testsData == undefined) {
+        setTestsPlot()
+        setTimeout(() => {
+            setPosRatePlot()
+            return;
+        }, 100);
+    }
+
+    let posRate = []
+    let posRateSmooth = []
+    let posRateDatesSmooth = []
+
+
+    let plot = []
     let dates = []
-    let resultDates = []
-    let casesData = []
-    let resultData = []
-
-    const plot = [];
-
-    jQuery.ajax({
-        url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
-        type: 'get',
-        dataType: 'text',
-        success: function(data) {
-
-            let lines = data.split('\n');
-            let fields = lines[0].split(',');
-
-            let output = [];
-
-            for (let i = 1; i < lines.length; i++) {
-                let current = lines[i].split(',');
-                let doc = {};
-                for (let j = 0; j < fields.length; j++) {
-                    doc[fields[j]] = current[j];
-                    if (i == 191 && j > 3) {
-                        dates[j] = fields[j]
-                        casesData[j] = current[j]
-                    }
-
-                }
-                output.push(doc);
-            }
-
-            for (let index = 5; index < casesData.length; index++) {
-                resultData[index] = casesData[index] - casesData[index - 1]
-            }
-            resultData[4] = casesData[4] - 0
-
-            for (let index = 5; index < dates.length; index++) {
-                resultDates[index] = resultDates[index] + "";
-            }
+    let m = 0
 
 
-            console.log(casesData)
-            console.log(resultData)
 
+    for (let index = 0; index < testsData.length; index++) {
+        posRate[index] = (((parseInt(resultData[index + 21]) / parseInt(testsData[index]))) * 100).toFixed(2)
+    }
 
-            const totalDuration = 1000;
-            const delayBetweenPoints = totalDuration / plot.length;
-
-
-            var ctx = document.getElementById('plot-data').getContext('2d')
-            var graph_data = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [{
-                        borderColor: 'red',
-                        borderWidth: 1,
-                        radius: 0,
-                        data: resultData,
-                    }],
-                },
-                options: {
-                    interaction: {
-                        intersect: false
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                maxTicksLimit: 9,
-                                beginAtZero: true,
-                                callback: function(value, index, values) {
-                                    return dates[value];
-                                }
-                            }
-                        },
-                        y: {
-                            grid: {
-                                display: true
-                            }
-                        }
-                    },
-                }
-            })
-        },
-        error: function(jqXHR, textStatus, errorThrow) {
-            console.log(textStatus);
+    for (let k = 0; k < posRate.length; k++) {
+        m += parseInt(posRate[k]);
+        if ((k % 7) == 0) {
+            posRateSmooth.push((m / 7).toFixed(2))
+            posRateDatesSmooth.push(testsDates[k])
+            m = 0;
         }
-    });
+    }
+
+    // for (let index = 0; index < posRate.length; index++) {
+    //     console.log(resultData[index + 21] + " " + testsData[index] + " : " + posRate[index])
+    // }
+
+    if (document.getElementById('smooth').checked) {
+        plot = posRateSmooth;
+        dates = posRateDatesSmooth
+    } else {
+        plot = posRate
+        dates = testsDates
+    }
+
+    var ctx = document.getElementById('plot-data').getContext('2d')
+    var graph_data = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                borderColor: 'blue',
+                borderWidth: 1,
+                radius: 3,
+                data: plot,
+            }],
+        },
+        options: {
+            interaction: {
+                intersect: false
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 9,
+                        beginAtZero: true,
+                        callback: function(value, index, values) {
+                            return dates[value];
+                        }
+                    }
+                },
+                y: {
+                    grid: {
+                        display: true
+                    },
+                    ticks: {
+                        callback: function(label, index, labels) {
+                            return label + " %"
+                        }
+                    }
+                }
+            },
+        }
+    })
 
 }
 
