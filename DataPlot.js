@@ -408,11 +408,11 @@ function setLethalityPlot() {
     let dates = [];
     let m = 0
 
-    for (let index = 5; index < resultData.length; index++) {
-        if (resultDeaths[index] == resultData[index]) {
-            lethality[index - 5] = 0
+    for (let index = 0; index < resultData.length; index++) {
+        if (resultDeaths[index + 5] == resultData[index + 5]) {
+            lethality[index] = 0
         } else {
-            lethality[index - 5] = (resultDeaths[index] / resultData[index]).toFixed(2) * 100
+            lethality[index] = ((parseInt(resultDeaths[index + 5]) / parseInt(resultData[index + 5])) * 100).toFixed(2)
         }
     }
 
