@@ -461,10 +461,10 @@
         <div class="pct-vaccination-title" id="pct-vaccination-title">
             Vaccination percentage :</div>
 
-        <div class="target" id="target"> Target : &nbsp 30 000 000 </div>
+        <!-- <div class="target" id="target"> Target : &nbsp 30 000 000 </div>  -->
 
 
-        <div class="dose1" id="dose1">
+        <!-- <div class="dose1" id="dose1">
             </span>1<sup>st</sup> dose : </div>
         <p><span class="dose1-data" id="dose1-data"></span></p>
         <p><span class="dose1-pct" id="dose1-pct"></span></p>
@@ -482,62 +482,74 @@
             Booster : </div>
         <p><span class="remainder-data" id="remainder-data"></span></p>
         <p><span class="remainder-pct" id="remainder-pct"></span></p>
-        <p><span class="new-dose3-data" id="new-dose3-data"></span></p>
-
-        <script src="vaxxPct.js">
-            window.onload = function() {
-                getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
-            }
-        </script>
-    </div>
-
-    <div class="vaccines"></div>
-    <div class="vaccines-title">Vaccines in use :</div>
-
-    <div class="vaccines-flags">
-        <img style="position: absolute;width: 38px;height: 21px;top: 17px;" src="/images/usa.png" alt="us flag">
-        <img style="position: absolute; width: 38px; height: 21px; top: 17px;left: 45px;" src="/images/ger.png " alt="germany flag ">
-        <img style="position: absolute;width: 38px;height: 21px;top: 64px;" src="/images/usa.png" alt="us flag">
-        <img style="position: absolute;width: 38px;height: 21px;top: 110px;" src="/images/uk.png" alt="uk flag">
-        <img style="position: absolute; width: 38px; height: 21px; top: 110px;left: 45px;" src="/images/swe.png " alt="sweden flag ">
-        <img style="position: absolute;width: 38px;height: 21px;top: 157px;" src="/images/cn.png" alt="china flag">
-
-    </div>
-
-    <div class="vaccines-names ">
-        <p>Pfizer-BioNTech</p>
-        <p>Johnson&Johnson</p>
-        <p>Oxford-AstraZeneca</p>
-        <p>Sinopharm-Beijing</p>
-    </div>
+        <p><span class="new-dose3-data" id="new-dose3-data"></span></p> -->
 
 
-    <div class="footer4">
-        <div>
-            <div class="footer4018-footer4018">
+        <div class="waffle-chart-container">
 
-                <div class="footer4018-image"></div>
-                <div class="footer4018-image1"></div>
+            <div id="title">
+            </div>
+            <div id="waffle-charts">
+            </div>
+            <div id="legend">
+            </div>
 
-                <span class="footer4018-text">
+            <script src="http://d3js.org/d3.v3.min.js"></script>
+
+            <script src="vaxxPct.js">
+                window.onload = function() {
+                    getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
+                }
+            </script>
+        </div>
+
+        <div class="vaccines"></div>
+        <div class="vaccines-title">Vaccines in use :</div>
+
+        <div class="vaccines-flags">
+            <img style="position: absolute;width: 38px;height: 21px;top: 17px;" src="/images/usa.png" alt="us flag">
+            <img style="position: absolute; width: 38px; height: 21px; top: 17px;left: 45px;" src="/images/ger.png " alt="germany flag ">
+            <img style="position: absolute;width: 38px;height: 21px;top: 64px;" src="/images/usa.png" alt="us flag">
+            <img style="position: absolute;width: 38px;height: 21px;top: 110px;" src="/images/uk.png" alt="uk flag">
+            <img style="position: absolute; width: 38px; height: 21px; top: 110px;left: 45px;" src="/images/swe.png " alt="sweden flag ">
+            <img style="position: absolute;width: 38px;height: 21px;top: 157px;" src="/images/cn.png" alt="china flag">
+
+        </div>
+
+        <div class="vaccines-names ">
+            <p>Pfizer-BioNTech</p>
+            <p>Johnson&Johnson</p>
+            <p>Oxford-AstraZeneca</p>
+            <p>Sinopharm-Beijing</p>
+        </div>
+
+
+        <div class="footer4">
+            <div>
+                <div class="footer4018-footer4018">
+
+                    <div class="footer4018-image"></div>
+                    <div class="footer4018-image1"></div>
+
+                    <span class="footer4018-text">
                     <span class="footer4018-text1">Download :</span>
-                </span>
-                <span class="footer4018-text2">
+                    </span>
+                    <span class="footer4018-text2">
                     <span class="footer4018-text3">Sources :</span>
-                </span>
+                    </span>
 
-                <img alt="33794640113" src="/playground_assets/33794640113-sh8s-200w.png" class="footer4018-image2" />
-                <img alt="excelsheeticon740112" src="/playground_assets/excelsheeticon740112-i1cs-200h.png" class="footer4018-image3" />
+                    <img alt="33794640113" src="/playground_assets/33794640113-sh8s-200w.png" class="footer4018-image2" />
+                    <img alt="excelsheeticon740112" src="/playground_assets/excelsheeticon740112-i1cs-200h.png" class="footer4018-image3" />
 
 
-                <img alt="6067429514022" src="/playground_assets/6067429514022-x7ie-200h.png" class="footer4018-image5" />
-                <img alt="1418713514033" src="/playground_assets/1418713514033-u9nk-200w.png" class="footer4018-image6" />
-                <img alt="medias2414034" src="/playground_assets/medias2414034-kpy-200h.png" class="footer4018-image7" />
+                    <img alt="6067429514022" src="/playground_assets/6067429514022-x7ie-200h.png" class="footer4018-image5" />
+                    <img alt="1418713514033" src="/playground_assets/1418713514033-u9nk-200w.png" class="footer4018-image6" />
+                    <img alt="medias2414034" src="/playground_assets/medias2414034-kpy-200h.png" class="footer4018-image7" />
 
-                <a alt="githublogo" img="/playground_assets/25231140114-7crb-200h.png" href="https://github.com/DijkstraFTW/CovidMA" class="footer4018-image4"></a>
+                    <a alt="githublogo" img="/playground_assets/25231140114-7crb-200h.png" href="https://github.com/DijkstraFTW/CovidMA" class="footer4018-image4"></a>
+                </div>
             </div>
         </div>
-    </div>
 
 </body>
 

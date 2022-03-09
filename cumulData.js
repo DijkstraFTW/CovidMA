@@ -43,17 +43,20 @@ function setNewData(status, response) {
 
     n_cases = data["cases"];
     n_deaths = data["deaths"];
-    n_dose1 = data["dose_1_last_day"];
-    n_dose2 = data["dose_2_last_day"];
-    n_dose3 = data["dose_3_last_day"];
-    total_dose3 = data["dose_3_total"];
+
+    //n_dose1 = data["dose_1_last_day"];
+    //n_dose2 = data["dose_2_last_day"];
+    //n_dose3 = data["dose_3_last_day"];
+    //total_dose3 = data["dose_3_total"];
 
 
-    document.getElementById("new-dose1-data").innerHTML = " +" + n_dose1;
-    document.getElementById("new-dose2-data").innerHTML = " +" + n_dose2;
-    document.getElementById("new-dose3-data").innerHTML = " +" + n_dose3;
-    document.getElementById("remainder-data").innerHTML = total_dose3.toLocaleString();
-    document.getElementById("remainder-pct").innerHTML = (total_dose3 / 30000000).toFixed(2) + " %";
+    //document.getElementById("new-dose1-data").innerHTML = " +" + n_dose1;
+    // document.getElementById("new-dose2-data").innerHTML = " +" + n_dose2;
+    // document.getElementById("new-dose3-data").innerHTML = " +" + n_dose3;
+
+
+    //document.getElementById("remainder-data").innerHTML = total_dose3.toLocaleString();
+    //document.getElementById("remainder-pct").innerHTML = (total_dose3 / 30000000).toFixed(2) + " %";
 
 }
 
