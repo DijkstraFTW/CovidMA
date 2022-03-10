@@ -485,84 +485,81 @@
         <p><span class="new-dose3-data" id="new-dose3-data"></span></p> -->
 
 
-        <div class="waffle-chart-container">
 
-            <div id="title">
-            </div>
-            <div id="waffle-charts">
-            </div>
-            <div id="legend">
-            </div>
 
-            <script src="http://d3js.org/d3.v3.min.js"></script>
-
-            <script src="vaxxPct.js">
-                window.onload = function() {
-                    getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
-                }
-            </script>
+        <div class="waffle-pct-vaccination">
+            <iframe width="100%" height="629.140625" frameborder="0" src="https://observablehq.com/embed/@analyzer2004/waffle-chart?cells=chart"></iframe>
         </div>
 
-        <div class="vaccines"></div>
-        <div class="vaccines-title">Vaccines in use :</div>
+        <script src="VaxPctChart.js">
+            window.onload = function() {
+                getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
+            }
+        </script>
+    </div>
 
-        <div class="vaccines-flags">
-            <img style="position: absolute;width: 38px;height: 21px;top: 17px;" src="/images/usa.png" alt="us flag">
-            <img style="position: absolute; width: 38px; height: 21px; top: 17px;left: 45px;" src="/images/ger.png " alt="germany flag ">
-            <img style="position: absolute;width: 38px;height: 21px;top: 64px;" src="/images/usa.png" alt="us flag">
-            <img style="position: absolute;width: 38px;height: 21px;top: 110px;" src="/images/uk.png" alt="uk flag">
-            <img style="position: absolute; width: 38px; height: 21px; top: 110px;left: 45px;" src="/images/swe.png " alt="sweden flag ">
-            <img style="position: absolute;width: 38px;height: 21px;top: 157px;" src="/images/cn.png" alt="china flag">
+    <div class="vaccines"></div>
+    <div class="vaccines-title">Vaccines in use :</div>
 
-        </div>
+    <div class="vaccines-flags">
+        <img style="position: absolute;width: 38px;height: 21px;top: 17px;" src="/images/usa.png" alt="us flag">
+        <img style="position: absolute; width: 38px; height: 21px; top: 17px;left: 45px;" src="/images/ger.png " alt="germany flag ">
+        <img style="position: absolute;width: 38px;height: 21px;top: 64px;" src="/images/usa.png" alt="us flag">
+        <img style="position: absolute;width: 38px;height: 21px;top: 110px;" src="/images/uk.png" alt="uk flag">
+        <img style="position: absolute; width: 38px; height: 21px; top: 110px;left: 45px;" src="/images/swe.png " alt="sweden flag ">
+        <img style="position: absolute;width: 38px;height: 21px;top: 157px;" src="/images/cn.png" alt="china flag">
 
-        <div class="vaccines-names ">
-            <p>Pfizer-BioNTech</p>
-            <p>Johnson&Johnson</p>
-            <p>Oxford-AstraZeneca</p>
-            <p>Sinopharm-Beijing</p>
-        </div>
+    </div>
+
+    <div class="vaccines-names ">
+        <p>Pfizer-BioNTech</p>
+        <p>Johnson&Johnson</p>
+        <p>Oxford-AstraZeneca</p>
+        <p>Sinopharm-Beijing</p>
+    </div>
 
 
-        <div class="footer4">
-            <div>
-                <div class="footer4018-footer4018">
+    <div class="footer4">
+        <div>
+            <div class="footer4018-footer4018">
 
-                    <div class="footer4018-image"></div>
-                    <div class="footer4018-image1"></div>
+                <div class="footer4018-image"></div>
+                <div class="footer4018-image1"></div>
 
-                    <span class="footer4018-text">
+                <span class="footer4018-text">
                     <span class="footer4018-text1">Download :</span>
-                    </span>
-                    <span class="footer4018-text2">
+                </span>
+                <span class="footer4018-text2">
                     <span class="footer4018-text3">Sources :</span>
-                    </span>
+                </span>
 
 
-                    <img alt="33794640113" src="images/337946.png" class="footer4018-image2" />
-                    <a href="dwl pdf" class="footer4018-image2"></a>
+                <!-->TODO </-->
 
-                    <img alt="excelsheeticon740112" src="images/excel-sheet-icon-7.jpg" class="footer4018-image3" />
-                    <a href="dwl excel" class="footer4018-image3"></a>
+                <img alt="33794640113" src="images/337946.png" class="footer4018-image2" />
+                <a href="dwl pdf" class="footer4018-image2"></a>
 
-
-
-                    <img alt="6067429514022" src="images/60674295.jfif" class="footer4018-image5" />
-                    <a href="john hopkins site" class="footer4018-image5"></a>
-
-                    <img alt="1418713514033" src="images/14187135.png" class="footer4018-image6" />
-                    <a href="medias24 site" class="footer4018-image6"></a>
-
-                    <img alt="medias2414034" src="images/medias24.png" class="footer4018-image7" />
-                    <a href="owid site" class="footer4018-image7"></a>
-
-                    <img src="images/25231.png" alt="" srcset="" class="footer4018-image4">
-                    <a alt="githublogo" src="images/25231.png" href="https://github.com/DijkstraFTW/CovidMA" class="footer4018-image4"></a>
+                <img alt="excelsheeticon740112" src="images/excel-sheet-icon-7.jpg" class="footer4018-image3" />
+                <a href="dwl excel" class="footer4018-image3"></a>
 
 
-                </div>
+
+                <img alt="6067429514022" src="images/60674295.jfif" class="footer4018-image5" />
+                <a href="john hopkins site" class="footer4018-image5"></a>
+
+                <img alt="1418713514033" src="images/14187135.png" class="footer4018-image6" />
+                <a href="medias24 site" class="footer4018-image6"></a>
+
+                <img alt="medias2414034" src="images/medias24.png" class="footer4018-image7" />
+                <a href="owid site" class="footer4018-image7"></a>
+
+                <img src="images/25231.png" alt="" srcset="" class="footer4018-image4">
+                <a alt="githublogo" src="images/25231.png" href="https://github.com/DijkstraFTW/CovidMA" class="footer4018-image4"></a>
+
+
             </div>
         </div>
+    </div>
 
 </body>
 
