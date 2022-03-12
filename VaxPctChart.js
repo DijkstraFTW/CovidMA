@@ -24,9 +24,9 @@ function setVaxPct(status, response) {
     vax2 = response['fullyVaccined'];
     remainder = (obj - vax1);
 
-    console.log(vax1)
-    console.log(vax2)
-    console.log(remainder)
+    // console.log(vax1)
+    // console.log(vax2)
+    // console.log(remainder)
 
     // const rows = [
     //     ["at least 1 doses", vax1],

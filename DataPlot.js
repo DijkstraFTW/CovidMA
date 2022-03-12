@@ -396,8 +396,6 @@ function setRecoveriesPlot(status, response) {
         chartStatus.destroy();
     }
 
-    console.log(response)
-
     let lines = data;
 
     recovData = []
@@ -597,7 +595,7 @@ function setR0Plot() {
             let lines = data.split('\n');
             let fields = lines[0].split(',');
 
-            let RecovRDates = []
+            let R0Dates = []
             let R0Data = []
 
             let R0DataSmooth = []
@@ -848,8 +846,6 @@ function setRecoveryPlot() {
         dates = recovRDates
     }
 
-    console.log(plot)
-
     var ctx = document.getElementById('plot-data').getContext('2d')
     var graph_data = new Chart(ctx, {
         type: 'line',
@@ -910,4 +906,4 @@ var getJSON = function(url, callback) {
 };
 
 
-getJSON("https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=Date,Cas_confirm%C3%A9s_par_jour,Cas_d%C3%A9c%C3%A9d%C3%A9s_par_jour,R%C3%A9tablis_par_jour,Tests_pas_jour,Retablis&returnGeometry=false&outSR=4326&f=json", setRecoveriesPlot); // default plot
+setCasesPlot(); // default plot
