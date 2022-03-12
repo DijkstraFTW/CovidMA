@@ -292,16 +292,16 @@ function setTestsPlot() {
 
                         temp = lines[idf].split(',');
 
-                        if (temp[6] == '') {
-                            temp[6] == 0
+                        if (temp[7] == '') {
+                            temp[7] == 0
                         }
 
-                        if (temp[6] == '641') {
-                            temp[6] = 14118
+                        if (temp[7] == '641') {
+                            temp[7] = 14118
                         }
 
 
-                        testsData.push(temp[6])
+                        testsData.push(temp[7])
                         testsDates.push(temp[2])
 
 
@@ -329,6 +329,8 @@ function setTestsPlot() {
                 plot = testsData
                 dates = testsDates
             }
+
+            console.log(plot)
 
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
@@ -377,7 +379,6 @@ function setTestsPlot() {
             console.log(textStatus);
         }
     });
-
 }
 
 function setLethalityPlot() {
