@@ -93,7 +93,7 @@
         <a id="cases" type="button" class="button1" onclick="setCasesPlot()">Cases</a>
         <a id="deaths" type="button" class="button1" onclick="setDeathsPlot()">Deaths</a>
         <a id="tests" type="button" class="button1" onclick="setTestsPlot()">Tests</a>
-        <a id="recoveries" type="button" class="button1" onclick="setRecoveriesPlot()">Recoveries</a>
+        <a id="recoveries" type="button" class="button1" onclick="getJSON('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=Date,Cas_confirm%C3%A9s_par_jour,Cas_d%C3%A9c%C3%A9d%C3%A9s_par_jour,R%C3%A9tablis_par_jour,Tests_pas_jour,Retablis&returnGeometry=false&outSR=4326&f=json', setRecoveriesPlot)">Recoveries</a>
         <a id="pos-rate" type="button" class="button1" onclick="setPosRatePlot()">Positivity Rate</a>
         <a id="lethality" type="button" class="button1" onclick="setLethalityPlot()">Lethality Rate</a>
         <a id="tests" type="button" class="button1" onclick="setRecoveryPlot()">Recovery Rate</a>

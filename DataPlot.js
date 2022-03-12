@@ -15,6 +15,13 @@ var testsDataSmooth
 var testDatesSmooth
 
 
+var recovData
+var recovDates
+var recovDataSmooth
+var recovDatesSmooth
+
+
+
 function setCasesPlot() {
 
     let chartStatus = Chart.getChart("plot-data");
@@ -381,8 +388,95 @@ function setTestsPlot() {
     });
 }
 
-function setRecoveriesPlot() {
 
+function setRecoveriesPlot(status, response) {
+
+    let chartStatus = Chart.getChart("plot-data");
+    if (chartStatus != undefined) {
+        chartStatus.destroy();
+    }
+
+    console.log(response)
+
+    let lines = data;
+
+    recovData = []
+    recovDates = []
+    recovDataSmooth = []
+    recovDatesSmooth = []
+
+    let plot;
+    let m = 0;
+
+    let idf, temp;
+
+    for (idf = 0; idf < response["features"].length; idf++) {
+        recovData.push(response["features"][idf]["attributes"]["Rétablis_par_jour"])
+        recovDates.push(datesD[idf + 14])
+    }
+
+
+    for (let k = 0; k < response["features"].length; k++) {
+        m += parseInt(recovData[k])
+        if ((k % 7) == 0) {
+            recovDataSmooth.push(Math.ceil(m / 7))
+            recovDatesSmooth.push(recovDates[k])
+            m = 0
+        }
+    }
+
+    if (document.getElementById('smooth').checked) {
+        plot = recovDataSmooth;
+        dates = recovDatesSmooth
+    } else {
+        plot = recovData
+        dates = recovDates
+    }
+
+    console.log(plot)
+
+    var ctx = document.getElementById('plot-data').getContext('2d')
+    var graph_data = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                borderColor: 'purple',
+                borderWidth: 1,
+                radius: 3,
+                data: plot,
+            }]
+        },
+        options: {
+            interaction: {
+                intersect: false
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 9,
+                        beginAtZero: true,
+                        callback: function(value, index, values) {
+                            return dates[value];
+                        }
+                    }
+                },
+                y: {
+                    grid: {
+                        display: true
+                    }
+                }
+            },
+        }
+    })
 }
 
 function setLethalityPlot() {
@@ -503,7 +597,7 @@ function setR0Plot() {
             let lines = data.split('\n');
             let fields = lines[0].split(',');
 
-            let R0Dates = []
+            let RecovRDates = []
             let R0Data = []
 
             let R0DataSmooth = []
@@ -716,7 +810,104 @@ function setPosRatePlot() {
 
 function setRecoveryPlot() {
 
+    let chartStatus = Chart.getChart("plot-data");
+    if (chartStatus != undefined) {
+        chartStatus.destroy();
+    }
+
+    recovRData = []
+    recovRDates = []
+    recovRDataSmooth = []
+    recovRDatesSmooth = []
+
+    let plot;
+    let m = 0;
+
+    let idf, temp;
+
+    for (idf = 0; idf < recovData.length; idf++) {
+        recovRData.push(((parseInt(resultData[idf + 14]) / parseInt(recovData[idf]))).toFixed(2))
+        recovRDates.push(datesD[idf + 14])
+    }
+
+
+    for (let k = 0; k < recovRData.length; k++) {
+        m += parseInt(recovRData[k])
+        if ((k % 7) == 0) {
+            recovRDataSmooth.push((m / 7).toFixed(2))
+            recovRDatesSmooth.push(recovRDates[k])
+            m = 0
+        }
+    }
+
+    if (document.getElementById('smooth').checked) {
+        plot = recovRDataSmooth;
+        dates = recovRDatesSmooth
+    } else {
+        plot = recovRData
+        dates = recovRDates
+    }
+
+    console.log(plot)
+
+    var ctx = document.getElementById('plot-data').getContext('2d')
+    var graph_data = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                borderColor: 'purple',
+                borderWidth: 1,
+                radius: 3,
+                data: plot,
+            }]
+        },
+        options: {
+            interaction: {
+                intersect: false
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 9,
+                        beginAtZero: true,
+                        callback: function(value, index, values) {
+                            return dates[value];
+                        }
+                    }
+                },
+                y: {
+                    grid: {
+                        display: true
+                    }
+                }
+            },
+        }
+    })
 }
 
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+        var status = xhr.status;
+        if (status === 200) {
+            callback(null, xhr.response);
+        } else {
+            callback(status, xhr.response);
+        }
+    };
+    xhr.send();
+};
 
-setCasesPlot(); // default plot
+
+getJSON("https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=Date,Cas_confirm%C3%A9s_par_jour,Cas_d%C3%A9c%C3%A9d%C3%A9s_par_jour,R%C3%A9tablis_par_jour,Tests_pas_jour,Retablis&returnGeometry=false&outSR=4326&f=json", setRecoveriesPlot); // default plot
