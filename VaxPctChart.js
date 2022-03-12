@@ -1,4 +1,4 @@
-var vax1, vax2, remainder
+var vax1, vax2, remainder, obj
 
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -22,7 +22,6 @@ function setVaxPct(status, response) {
 
     vax1 = response['vaccine'];
     vax2 = response['fullyVaccined'];
-    vax3 = 0
     remainder = (obj - vax1);
 
     console.log(vax1)
@@ -65,8 +64,6 @@ function setWaffleChart() {
         gap = 2,
         theData = [];
 
-    //var color = d3.scale.category10();
-
     var color = ["#005bff", "#99bdff", "#E8070c"]
 
     d3.csv("data.csv", function(error, dataV) {
@@ -76,7 +73,6 @@ function setWaffleChart() {
 
         //value of a square
         squareValue = total / (widthSquares * heightSquares);
-
 
         //remap data
         dataV.forEach(function(d, i) {
@@ -112,6 +108,7 @@ function setWaffleChart() {
                 return color[d.groupIndex];
             })
             .attr("x", function(d, i) {
+
                 //group n squares for column
                 col = Math.floor(i / heightSquares);
                 return (col * squareSize) + (col * gap);
@@ -122,11 +119,11 @@ function setWaffleChart() {
             })
             .append("title")
             .text(function(d, i) {
+                if (dataV[d.groupIndex].type == "1st Jab") {
+                    return dataV[d.groupIndex].type + " | " + (vax1).toLocaleString() + " , " + ((vax1 / total) * 100).toFixed(2) + "%"
+                }
                 return dataV[d.groupIndex].type + " | " + (d.population).toLocaleString() + " , " + (d.units).toFixed(2) + "%"
             });
-
-        console.log(dataV)
-
     });
 }
 
