@@ -322,12 +322,12 @@ a.button1:active {
 
 .choiceSmooth {
     position: relative;
-    left: 500px;
+    left: 200px;
 }
 
 .choiceSmoothLabel {
     position: relative;
-    left: 510px;
+    left: 210px;
     display: inline-block;
     padding: 0.35em 1.2em;
     border: 0.1em solid #FFFFFF;

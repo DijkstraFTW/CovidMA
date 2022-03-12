@@ -381,6 +381,10 @@ function setTestsPlot() {
     });
 }
 
+function setRecoveriesPlot() {
+
+}
+
 function setLethalityPlot() {
 
     let chartStatus = Chart.getChart("plot-data");
@@ -707,6 +711,10 @@ function setPosRatePlot() {
             },
         }
     })
+
+}
+
+function setRecoveryPlot() {
 
 }
 
