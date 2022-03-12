@@ -458,39 +458,13 @@
 
     <div class="pct-vaccination">
 
-        <div class="pct-vaccination-title" id="pct-vaccination-title">
-            Vaccination percentage :</div>
-
-        <!-- <div class="target" id="target"> Target : &nbsp 30 000 000 </div>  -->
-
-
-        <!-- <div class="dose1" id="dose1">
-            </span>1<sup>st</sup> dose : </div>
-        <p><span class="dose1-data" id="dose1-data"></span></p>
-        <p><span class="dose1-pct" id="dose1-pct"></span></p>
-        <p><span class="new-dose1-data" id="new-dose1-data"></span></p>
-
-
-        <div class="dose2" id="dose2">
-            2<sup>nd</sup> dose : </div>
-        <p><span class="dose2-data" id="dose2-data"></span></p>
-        <p><span class="dose2-pct" id="dose2-pct"></span></p>
-        <p><span class="new-dose2-data" id="new-dose2-data"></span></p>
-
-
-        <div class="remainder" id="remainder">
-            Booster : </div>
-        <p><span class="remainder-data" id="remainder-data"></span></p>
-        <p><span class="remainder-pct" id="remainder-pct"></span></p>
-        <p><span class="new-dose3-data" id="new-dose3-data"></span></p> -->
-
-
 
 
         <div class="waffle-pct-vaccination">
-            <iframe width="100%" height="629.140625" frameborder="0" src="https://observablehq.com/embed/@analyzer2004/waffle-chart?cells=chart"></iframe>
+            <div id="waffle"></div>
         </div>
 
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script src="VaxPctChart.js">
             window.onload = function() {
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
