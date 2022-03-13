@@ -659,7 +659,7 @@ function setR0Plot() {
                 data: {
                     labels: dates,
                     datasets: [{
-                        borderColor: 'green',
+                        borderColor: 'purple',
                         borderWidth: 1,
                         radius: 3,
                         data: plot,
@@ -852,7 +852,7 @@ function setRecoveryPlot() {
         data: {
             labels: dates,
             datasets: [{
-                borderColor: 'purple',
+                borderColor: 'green',
                 borderWidth: 1,
                 radius: 3,
                 data: plot,
