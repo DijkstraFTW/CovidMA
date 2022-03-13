@@ -628,6 +628,7 @@ function setR0Plot() {
 
             }
 
+
             for (let k = 0; k < R0Data.length; k++) {
                 m += parseInt(R0Data[k])
                 if ((k % 7) == 0) {
