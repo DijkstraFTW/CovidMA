@@ -1,12 +1,12 @@
-var resultData
-var resultDates
-var resultDataSmooth
-var datesSmooth
+var casesData
+var casesDates
+var casesDataSmooth
+var casesDatesSmooth
 
-var datesD
-var datesDSmooth
-var resultDeaths
-var resultDeathsSmooth
+var deathsData
+var deathsDates
+var deathsDataSmooth
+var deathsDatesSmooth
 
 
 var testsDates
@@ -29,14 +29,13 @@ function setCasesPlot() {
         chartStatus.destroy();
     }
 
-    resultDates = []
-    let dates = []
+    let resultData = []
+    let resultDates = []
 
     casesData = []
-    resultData = []
-
-    resultDataSmooth = []
-    datesSmooth = []
+    casesDates = []
+    casesDataSmooth = []
+    casesDatesSmooth = []
 
     let m = 0
     let plot = null;
@@ -58,46 +57,45 @@ function setCasesPlot() {
                 for (let j = 0; j < fields.length; j++) {
                     doc[fields[j]] = current[j];
                     if (i == 191 && j > 3) {
-                        dates[j] = fields[j]
-                        casesData[j] = current[j]
+                        resultDates[j] = fields[j]
+                        resultData[j] = current[j]
                     }
 
                 }
                 output.push(doc);
             }
 
-            for (let index = 5; index < casesData.length; index++) {
-                resultData[index] = casesData[index] - casesData[index - 1]
+            for (let index = 5; index < resultData.length; index++) {
+                casesData[index] = resultData[index] - resultData[index - 1]
             }
-            resultData[4] = casesData[4] - 0
+            casesData[4] = resultData[4] - 0
 
-            for (let index = 5; index < dates.length; index++) {
-                resultDates[index] = resultDates[index] + "";
+            for (let index = 5; index < resultDates.length; index++) {
+                casesDates[index] = resultDates[index] + "";
             }
 
-            for (let k = 5; k < resultData.length; k++) {
-                m += resultData[k];
+            for (let k = 5; k < casesData.length; k++) {
+                m += casesData[k];
                 if ((k % 7) == 0) {
-                    resultDataSmooth.push(Math.ceil(m / 7))
-                    datesSmooth.push(dates[k])
+                    casesDataSmooth.push(Math.ceil(m / 7))
+                    casesDatesSmooth.push(casesDates[k])
                     m = 0;
                 }
             }
 
             if (document.getElementById('smooth').checked) {
-                plot = resultDataSmooth;
-                datesFormat = datesSmooth
+                plot = casesDataSmooth;
+                dates = casesDatesSmooth
             } else {
-                plot = resultData;
-                datesFormat = dates
+                plot = casesData;
+                dates = casesDates
             }
-
 
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: datesFormat,
+                    labels: dates,
                     datasets: [{
                         borderColor: 'blue',
                         borderWidth: 1,
@@ -152,12 +150,15 @@ function setDeathsPlot() {
         chartStatus.destroy();
     }
 
-    datesD = []
-    datesDSmooth = []
-    DeathsData = []
-    resultDeaths = []
-    resultDeathsSmooth = []
-    let plot = null
+    let resultDeathsDates = []
+    let resultDeaths = []
+
+    deathsData = []
+    deathsDates = []
+    deathsDataSmooth = []
+    deathsDatesSmooth = []
+
+    let plot, dates
     let m = 0
 
     jQuery.ajax({
@@ -176,42 +177,41 @@ function setDeathsPlot() {
                 for (let j = 0; j < fields.length; j++) {
                     doc[fields[j]] = current[j];
                     if (i == 191 && j > 3) {
-                        datesD[j] = fields[j]
-                        DeathsData[j] = current[j]
+                        resultDeathsDates[j] = fields[j]
+                        resultDeaths[j] = current[j]
                     }
 
                 }
                 output.push(doc);
             }
 
-
-
-            for (let index = 5; index < DeathsData.length; index++) {
-                resultDeaths[index] = Math.floor(DeathsData[index] - DeathsData[index - 1])
+            for (let index = 5; index < resultDeaths.length; index++) {
+                deathsData[index] = Math.floor(resultDeaths[index] - resultDeaths[index - 1])
+                deathsDates[index] = resultDeathsDates[index]
             }
 
-            for (let k = 5; k < resultDeaths.length; k++) {
-                m += resultDeaths[k];
+            for (let k = 5; k < deathsData.length; k++) {
+                m += deathsData[k];
                 if ((k % 7) == 0) {
-                    resultDeathsSmooth.push(Math.ceil(m / 7))
-                    datesDSmooth.push(datesD[k])
+                    deathsDataSmooth.push(Math.ceil(m / 7))
+                    deathsDatesSmooth.push(deathsDates[k])
                     m = 0;
                 }
             }
 
             if (document.getElementById('smooth').checked) {
-                plot = resultDeathsSmooth;
-                datesDFormat = datesDSmooth;
+                plot = deathsDataSmooth;
+                dates = deathsDatesSmooth;
             } else {
-                plot = resultDeaths;
-                datesDFormat = datesD;
+                plot = deathsData;
+                dates = deathsDates;
             }
 
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: datesDFormat,
+                    labels: dates,
                     datasets: [{
                         borderColor: 'red',
                         borderWidth: 1,
@@ -237,7 +237,7 @@ function setDeathsPlot() {
                                 maxTicksLimit: 9,
                                 beginAtZero: true,
                                 callback: function(value, index, values) {
-                                    return datesD[value];
+                                    return dates[value];
                                 }
                             }
                         },
@@ -337,8 +337,6 @@ function setTestsPlot() {
                 dates = testsDates
             }
 
-            console.log(plot)
-
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
                 type: 'line',
@@ -388,15 +386,12 @@ function setTestsPlot() {
     });
 }
 
-
 function setRecoveriesPlot(status, response) {
 
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
-
-    let lines = data;
 
     recovData = []
     recovDates = []
@@ -406,11 +401,11 @@ function setRecoveriesPlot(status, response) {
     let plot;
     let m = 0;
 
-    let idf, temp;
+    let idf;
 
     for (idf = 0; idf < response["features"].length; idf++) {
         recovData.push(response["features"][idf]["attributes"]["Rétablis_par_jour"])
-        recovDates.push(datesD[idf + 14])
+        recovDates.push(casesDates[idf + 14])
     }
 
 
@@ -430,8 +425,6 @@ function setRecoveriesPlot(status, response) {
         plot = recovData
         dates = recovDates
     }
-
-    console.log(plot)
 
     var ctx = document.getElementById('plot-data').getContext('2d')
     var graph_data = new Chart(ctx, {
@@ -485,11 +478,11 @@ function setLethalityPlot() {
     }
 
 
-    if (resultData == undefined) {
+    if (casesData == undefined) {
         setCasesPlot()
     }
 
-    if (resultDeaths == undefined) {
+    if (deathsData == undefined) {
         setDeathsPlot()
         setTimeout(() => {
             setLethalityPlot()
@@ -505,11 +498,11 @@ function setLethalityPlot() {
     let dates = [];
     let m = 0
 
-    for (let index = 0; index < resultData.length; index++) {
-        if (resultDeaths[index + 5] == resultData[index + 5]) {
+    for (let index = 0; index < casesData.length; index++) {
+        if (deathsData[index + 5] == casesData[index + 5]) {
             lethality[index] = 0
         } else {
-            lethality[index] = ((parseInt(resultDeaths[index + 5]) / parseInt(resultData[index + 5])) * 100).toFixed(2)
+            lethality[index] = ((parseInt(deathsData[index + 5]) / parseInt(casesData[index + 5])) * 100).toFixed(2)
         }
     }
 
@@ -517,7 +510,7 @@ function setLethalityPlot() {
         m += parseInt(lethality[k]);
         if ((k % 7) == 0) {
             lethalitySmooth.push((m / 7).toFixed(2))
-            lethalityDatesSmooth.push(datesD[k + 5])
+            lethalityDatesSmooth.push(casesDates[k + 5])
             m = 0;
         }
     }
@@ -527,7 +520,7 @@ function setLethalityPlot() {
         dates = lethalityDatesSmooth
     } else {
         plot = lethality
-        dates = datesD
+        dates = casesData
     }
 
     var ctx = document.getElementById('plot-data').getContext('2d')
@@ -730,9 +723,8 @@ function setPosRatePlot() {
     let m = 0
 
 
-
     for (let index = 0; index < testsData.length; index++) {
-        posRate[index] = (((parseInt(resultData[index + 21]) / parseInt(testsData[index]))) * 100).toFixed(2)
+        posRate[index] = (((parseInt(casesData[index + 21]) / parseInt(testsData[index]))) * 100).toFixed(2)
     }
 
     for (let k = 0; k < posRate.length; k++) {
@@ -809,6 +801,7 @@ function setPosRatePlot() {
 function setRecoveryPlot() {
 
     let chartStatus = Chart.getChart("plot-data");
+
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
@@ -824,8 +817,8 @@ function setRecoveryPlot() {
     let idf, temp;
 
     for (idf = 0; idf < recovData.length; idf++) {
-        recovRData.push(((parseInt(resultData[idf + 14]) / parseInt(recovData[idf]))).toFixed(2))
-        recovRDates.push(datesD[idf + 14])
+        recovRData.push(((parseInt(casesData[idf + 14]) / parseInt(recovData[idf]))).toFixed(2))
+        recovRDates.push(casesDates[idf + 14])
     }
 
 

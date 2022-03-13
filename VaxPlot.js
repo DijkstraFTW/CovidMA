@@ -17,8 +17,6 @@ jQuery.ajax({
         let lines = data.split('\n');
         let output = [];
 
-        console.log(data)
-
         for (let i = 1; i < lines.length; i++) {
             let current = lines[i].split(',');
             datesP.push(current[1]);
