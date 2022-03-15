@@ -429,16 +429,11 @@
         
                     </svg>
             </div>
-            <p style="font-family :-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif; font-size : 22px; left: 400px; bottom: 40px; position: absolute;">
-                Date : <span id="dateLabel"></span></p>
-            <div id="dateRange">
-            </div>
+            <p style="font-family :-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif; font-size : 22px; left: 400px; bottom: 40px; position: absolute;"><span id="dateLabel"></span></p>
         </div>
         <script src="script.js"></script>
         <script>
             window.onload = function() {
-                var d = new Date();
-                var currentTime = d.getUTCFullYear() + "-" + (d.getUTCMonth() + 1) + "-" + d.getUTCDate() + "-" + d.getUTCHours() + ":" + d.getUTCMinutes();
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setMap);
             }
         </script>

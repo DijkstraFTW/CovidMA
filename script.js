@@ -144,7 +144,18 @@ function setDateRange() {
     let dateLabel = document.getElementById("dateLabel");
     let btn = document.createElement("button");
     let range = document.createElement("input");
-    dateLabel.innerText = formatDate(date[dateIndex]);
+
+
+    var today = new Date();
+    var Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var Days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    var day = new Date(today.getFullYear(), Months[today.getMonth()], 1);
+
+    var Day = Days[today.getDay()];
+
+    dateLabel.innerText = Day + ', ' + Months[today.getMonth()] + ' ' + today.getMonth() + ', ' + today.getFullYear();
+
     range.setAttribute("type", "range");
     range.setAttribute("min", 0);
     range.setAttribute("max", dateIndex);
@@ -155,9 +166,6 @@ function setDateRange() {
     btn.onclick = function() { rePlayTime(this) };
     btn.innerHTML = '<img src="https://img.icons8.com/fluency-systems-filled/20/000000/play.png"/>';
     btn.id = "playBtn";
-
-    container.appendChild(btn);
-    container.appendChild(range);
 }
 
 function resetMap() {
@@ -192,8 +200,8 @@ function showBuble(x) {
     pos.style.display = 'block';
     pos.style.position = 'relative';
 
-    console.log("left " + posx);
-    console.log("top " + posy);
+    //console.log("left " + posx);
+    //console.log("top " + posy);
 }
 
 function hideElement(id) {
