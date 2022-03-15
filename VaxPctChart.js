@@ -161,6 +161,7 @@ function drawRect(theData, dataV, w, h, pctY, colorNB) {
         .attr("fill", function(d) {
             return color[colorNB];
         })
+        .attr("rx", 3).attr("ry", 3)
         .attr("x", function(d, i) {
             return w
         })
