@@ -4,6 +4,21 @@ var valueXPrecedent = 0,
     valueYPrecedent = 0,
     index = 0;
 
+
+var total = 0;
+var widthSquares = 10,
+    heightSquares = 10,
+    squareSize = 28,
+    squareValue = 0,
+    gap = 4,
+    theData = []
+
+var color = ["#005bff", "#99bdff", "#E8070c"]
+var dataType = ["1st Jab", "2nd Jab", "Not Yet Vaccinated"]
+
+
+
+
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -57,19 +72,8 @@ function setVaxPct(status, response) {
 
 function setWaffleChart() {
 
-
-    var total = 0;
-    var width,
-        height,
-        widthSquares = 10,
-        heightSquares = 10,
-        squareSize = 25,
-        squareValue = 0,
-        gap = 2,
-        theData = [],
-        index = 0;
-
-    var color = ["#005bff", "#99bdff", "#E8070c"]
+    let w = 0,
+        h = 0;
 
     d3.csv("data.csv", function(error, dataV) {
 
@@ -97,85 +101,79 @@ function setWaffleChart() {
 
         theData.splice(theData.length - 1)
 
-        width = (squareSize * widthSquares) + widthSquares * gap + 25;
-        height = (squareSize * heightSquares) + heightSquares * gap + 25;
-
         console.log(theData);
+        console.log(dataV);
 
-        var waffle = d3.select("#waffle")
+
+        w = (squareSize * widthSquares) + widthSquares * gap + 25;
+        h = (squareSize * heightSquares) + heightSquares * gap + 25;
+
+        svg = d3.select("#waffle")
             .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .selectAll("div")
-            .data(theData)
-            .enter()
-            .append("rect")
-            .attr("width", squareSize)
-            .attr("height", function(d, i) {
+            .attr("width", w)
+            .attr("height", h)
 
-                let result = squareSize
+        let index = 0,
+            colorNB = 0;
 
-                // if (valueXPrecedent != 0) {
+        for (let indexY = 0; indexY < 10; indexY++) {
+            for (let indexX = 0; indexX < 10; indexX++) {
 
-                //     temp = valueXPrecedent
-                //     valueXPrecedent = 0
-                //     result = (squareSize - temp)
-
-                //     return result
-                // }
-
-                console.log(theData[i]["groupIndex"] + " " + (theData[i]["units"] - index));
+                let pctY = squareSize
 
 
+                if ((theData[indexY * 10 + indexX]["units"] - index) < 1) {
 
-                if (((theData[i]["units"] - index) < 2) && (theData[i]["groupIndex"] == 2)) {
-                    temp2 = ((theData[i]["units"] - Math.floor(theData[i]["units"])))
-                    result = (temp2 * squareSize)
-                }
+                    pctY = ((theData[indexY * 10 + indexX]["units"] - index) * squareSize)
+                    index = 0;
 
-
-                if ((theData[i]["units"] - index) < 1) {
-
-                    if (theData[i]["groupIndex"] == 1) {
-                        temp2 = vax1 / total
-                    } else {
-                        temp2 = (d.units - Math.floor(d.units))
+                    if ((theData[indexY * 10 + indexX]["groupIndex"] == 1)) {
+                        pctY = (((((vax1 / total) * 100) - Math.floor((vax1 / total) * 100))) * squareSize)
                     }
 
-                    valueXPrecedent = (temp2 * squareSize)
+                    drawRect(theData, dataV, (indexX * (squareSize + gap)), indexY * (squareSize + gap), pctY, colorNB)
 
-                    result = (temp2 * squareSize)
+                    if (colorNB < 2) {
+                        colorNB++;
+                    }
 
-                    index = 0
+                    drawRect(theData, dataV, (indexX * (squareSize + gap)), indexY * (squareSize + gap) + pctY, squareSize - pctY, colorNB)
 
-                    return result
 
+
+                    continue
                 }
-                index++;
 
-                return result
-            })
-            .attr("fill", function(d) {
-                return color[d.groupIndex];
-            })
-            .attr("x", function(d, i) {
-                row = i % heightSquares;
-                return (heightSquares * squareSize) - ((row * squareSize) + (row * gap))
-            })
-            .attr("y", function(d, i) {
-                //group n squares for column
-                col = Math.floor(i / heightSquares);
-                return (col * squareSize) + (col * gap);
-            })
-            .append("title")
-            .text(function(d, i) {
-                if (dataV[d.groupIndex].type == "1st Jab") {
-                    return dataV[d.groupIndex].type + " | " + (vax1).toLocaleString() + " , " + ((vax1 / total) * 100).toFixed(2) + "%"
-                }
-                return dataV[d.groupIndex].type + " | " + (d.population).toLocaleString() + " , " + (d.units).toFixed(2) + "%"
-            });
+                drawRect(theData, dataV, (indexX * (squareSize + gap)), indexY * (squareSize + gap), pctY, colorNB)
+                index++
+            }
+        }
     });
+}
+
+
+function drawRect(theData, dataV, w, h, pctY, colorNB) {
+
+    var waffle = svg.append("rect")
+        .data(theData)
+        .attr("width", squareSize)
+        .attr("height", pctY)
+        .attr("fill", function(d) {
+            return color[colorNB];
+        })
+        .attr("x", function(d, i) {
+            return w
+        })
+        .attr("y", function(d, i) {
+            return h
+        })
+        .append("title")
+        .text(function(d, i) {
+            if (colorNB == 1) {
+                return dataV[colorNB].type + " | " + (vax1).toLocaleString() + " , " + ((vax1 / total) * 100).toFixed(2) + "%"
+            }
+            return dataV[colorNB].type + " | " + (dataV[colorNB].population).toLocaleString() + " , " + (dataV[colorNB].units).toFixed(2) + "%"
+        });
 }
 
 
