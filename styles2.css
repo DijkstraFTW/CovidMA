@@ -435,23 +435,27 @@ a.button1:active {
     /* plot vaccination */
     position: absolute;
     width: 970px;
-    height: 564px;
+    height: 634px;
     left: 85px;
     top: 2748px;
     background: #E5E5E5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.container-vax {
+    position: relative;
+    top: 30px;
+}
+
 .plot-vax {
     position: absolute;
-    top: 10px;
 }
 
 .pct-vaccination {
     /* % vaxed */
     position: absolute;
     width: 356px;
-    height: 330px;
+    height: 390px;
     left: 1137px;
     top: 2748px;
     background: #E5E5E5;
@@ -461,7 +465,7 @@ a.button1:active {
 .pct-vaccination-title {
     position: relative;
     top: 10px;
-    left: 24px;
+    left: 50px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
@@ -472,7 +476,7 @@ a.button1:active {
 
 .waffle-pct-vaccination {
     position: relative;
-    top: 8px;
+    top: 30px;
     left: 24px;
 }
 
@@ -482,7 +486,7 @@ a.button1:active {
     width: 359px;
     height: 236px;
     left: 1135px;
-    top: 3084px;
+    top: 3150px;
     background: #E5E5E5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -493,7 +497,7 @@ a.button1:active {
     width: 195px;
     height: 29px;
     left: 1221px;
-    top: 3094px;
+    top: 3154px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
@@ -507,7 +511,7 @@ a.button1:active {
     position: absolute;
     width: auto;
     left: 1154px;
-    top: 3126px;
+    top: 3186px;
 }
 
 .vaccines-names {
@@ -516,7 +520,7 @@ a.button1:active {
     width: 195px;
     height: 29px;
     left: 1268px;
-    top: 3120px;
+    top: 3180px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
