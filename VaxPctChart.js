@@ -1,5 +1,7 @@
 var vax1, vax2, remainder, obj
 
+var vax3
+
 var valueXPrecedent = 0,
     valueYPrecedent = 0,
     index = 0;
@@ -15,10 +17,9 @@ var widthSquares = 10,
     gap = 4,
     theData = []
 
-var color = ["#005bff", "#99bdff", "#E8070c"]
-var dataType = ["2nd Jab", "1st Jab", "Not Yet Vaccinated"]
+var color = ["#25be4b", "#005bff", "#99bdff", "#E8070c"]
+var dataType = ["3rd Jab", "2nd Jab", "1st Jab", "Not Yet Vaccinated"]
 var dataPopulation = []
-
 
 
 
@@ -38,6 +39,12 @@ var getJSON = function(url, callback) {
 };
 
 
+function setLastVaxData(status, response) {
+    vax3 = response["dose_3_total"]
+
+}
+
+
 function setVaxPct(status, response) {
 
     obj = 30000000;
@@ -46,12 +53,14 @@ function setVaxPct(status, response) {
     vax2 = response['fullyVaccined'];
     remainder = (obj - vax1);
 
+    //console.log(vax1 - vax3)
 
+    dataPopulation.push(vax3)
     dataPopulation.push(vax2)
     dataPopulation.push(vax1 - vax2)
     dataPopulation.push(remainder)
 
-    for (let index = 0; index < 3; index++) {
+    for (let index = 0; index < 4; index++) {
         dataV.push({ type: dataType[index], population: dataPopulation[index], units: ((dataPopulation[index]) / (total / (widthSquares * heightSquares))) })
     }
 
@@ -117,7 +126,7 @@ function setWaffleChart() {
 
                 drawRect(theData, dataV, (indexX * (squareSize + gap)), indexY * (squareSize + gap), pctY, colorNB)
 
-                if (colorNB < 2) {
+                if (colorNB < 3) {
                     colorNB++;
                 }
 
@@ -153,12 +162,20 @@ function drawRect(theData, dataV, w, h, pctY, colorNB) {
         })
         .append("title")
         .text(function(d, i) {
-            if (colorNB == 1) {
-                return dataV[colorNB].type + " | " + (vax1).toLocaleString() + " , " + ((vax1 / total) * 100).toFixed(2) + "%"
+            if (colorNB == 2) {
+                return dataV[colorNB].type + " | " + (vax1).toLocaleString() + " , " + ((vax1 / 30000000) * 100).toFixed(2) + "%"
             }
-            return dataV[colorNB].type + " | " + (dataV[colorNB].population).toLocaleString() + " , " + (dataV[colorNB].units).toFixed(2) + "%"
+            if (colorNB == 1) {
+                return dataV[colorNB].type + " | " + (vax2).toLocaleString() + " , " + ((vax2 / 30000000) * 100).toFixed(2) + "%"
+            }
+            if (colorNB == 0) {
+                return dataV[colorNB].type + " | " + (vax3).toLocaleString() + " , " + ((vax3 / 30000000) * 100).toFixed(2) + "%"
+            }
+            return dataV[colorNB].type + " | " + (remainder).toLocaleString() + " , " + ((remainder / 30000000) * 100).toFixed(2) + "%"
         });
 }
 
 
+
+getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/resume.json", setLastVaxData);
 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
