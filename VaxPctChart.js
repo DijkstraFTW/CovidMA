@@ -17,7 +17,7 @@ var widthSquares = 10,
     gap = 4,
     theData = []
 
-var color = ["#25be4b", "#005bff", "#99bdff", "#E8070c"]
+var color = ["#070ECE", "#005bff", "#99bdff", "#E8070c"]
 var dataType = ["3rd Jab", "2nd Jab", "1st Jab", "Not Yet Vaccinated"]
 var dataPopulation = []
 
