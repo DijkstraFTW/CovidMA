@@ -30,8 +30,6 @@ d3.csv("vax2.csv", function(d) {
             objective.push(30000000);
         }
 
-        console.log(plotThirdJab);
-
         var ctx = document.getElementById('plot-vax').getContext('2d')
 
 
