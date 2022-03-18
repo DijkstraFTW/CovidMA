@@ -150,11 +150,7 @@ function setDateRange() {
     var Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var Days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    var day = new Date(today.getFullYear(), Months[today.getMonth()], 1);
-
-    var Day = Days[today.getDay()];
-
-    dateLabel.innerText = Day + ', ' + Months[today.getMonth()] + ' ' + today.getMonth() + ', ' + today.getFullYear();
+    dateLabel.innerText = Days[today.getDay()] + ', ' + Months[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
 
     range.setAttribute("type", "range");
     range.setAttribute("min", 0);
