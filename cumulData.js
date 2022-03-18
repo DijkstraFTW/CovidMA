@@ -32,33 +32,21 @@ function setCumulData(status, response) {
     document.getElementById("total-deaths-data").innerHTML = deaths.toLocaleString();
     document.getElementById("total-tests-data").innerHTML = tests.toLocaleString();
     document.getElementById("r0-data").innerHTML = r0;
-    document.getElementById("new-tests-data").innerHTML = " +" + n_tests.toLocaleString() + " tests";
-    document.getElementById("new-cases-data").innerHTML = " +" + n_cases.toLocaleString() + " cases";
-    document.getElementById("new-deaths-data").innerHTML = " +" + n_deaths.toLocaleString() + " deaths";
+    document.getElementById("new-tests-data").innerHTML = " +" + n_tests.toLocaleString() + " Tests";
+    document.getElementById("new-cases-data").innerHTML = " +" + n_cases.toLocaleString() + " Cases";
+    document.getElementById("new-deaths-data").innerHTML = " +" + n_deaths.toLocaleString() + " Deaths";
 }
 
 function setNewData(status, response) {
 
-    data = response;
 
-    n_cases = data["cases"];
-    n_deaths = data["deaths"];
+    n_recoveries = response["features"][(response["features"].length - 1)]["attributes"]["Rétablis_par_jour"]
+    total_recoveries = response["features"][(response["features"].length - 1)]["attributes"]["Retablis"]
 
-    //n_dose1 = data["dose_1_last_day"];
-    //n_dose2 = data["dose_2_last_day"];
-    //n_dose3 = data["dose_3_last_day"];
-    //total_dose3 = data["dose_3_total"];
-
-
-    //document.getElementById("new-dose1-data").innerHTML = " +" + n_dose1;
-    // document.getElementById("new-dose2-data").innerHTML = " +" + n_dose2;
-    // document.getElementById("new-dose3-data").innerHTML = " +" + n_dose3;
-
-
-    //document.getElementById("remainder-data").innerHTML = total_dose3.toLocaleString();
-    //document.getElementById("remainder-pct").innerHTML = (total_dose3 / 30000000).toFixed(2) + " %";
+    document.getElementById("new-recoveries-data").innerHTML = " +" + n_recoveries.toLocaleString() + " Recoveries";
+    document.getElementById("total-recoveries-data").innerHTML = total_recoveries.toLocaleString();
 
 }
 
 getJSON("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json", setCumulData);
-getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/resume.json", setNewData);
+getJSON("https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=Date,Cas_confirm%C3%A9s_par_jour,Cas_d%C3%A9c%C3%A9d%C3%A9s_par_jour,R%C3%A9tablis_par_jour,Tests_pas_jour,Retablis&returnGeometry=false&outSR=4326&f=json", setNewData);
