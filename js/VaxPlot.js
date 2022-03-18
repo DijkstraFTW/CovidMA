@@ -7,7 +7,7 @@ let plotSecondJab = [];
 let objective = [];
 
 
-d3.csv("vax2.csv", function(d) {
+d3.csv("data/VaxDosesRaw.csv", function(d) {
         resultVaxData.push(d)
         return {
             Date: d.date,
