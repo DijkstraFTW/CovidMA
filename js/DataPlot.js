@@ -625,12 +625,13 @@ function setR0Plot() {
             let R0Dates = []
             let R0Data = []
 
-            let R0DataSmooth = []
-            let R0DatesSmooth = []
+            let R0Data_U_95 = []
+            let R0Data_U_65 = []
+
+            let R0Data_L_95 = []
+            let R0Data_L_65 = []
 
             let plot;
-            let m = 0;
-
 
             let idf, temp;
 
@@ -650,9 +651,16 @@ function setR0Plot() {
 
                         if (temp[2] == '') {
                             continue
+
                         } else {
                             R0Data.push(temp[2])
                             R0Dates.push(temp[1])
+
+                            R0Data_U_95.push(temp[3])
+                            R0Data_L_95.push(temp[4])
+
+                            R0Data_U_65.push(temp[5])
+                            R0Data_L_65.push(temp[6])
                         }
 
                     }
@@ -674,11 +682,42 @@ function setR0Plot() {
                 data: {
                     labels: dates,
                     datasets: [{
-                        borderColor: 'purple',
-                        borderWidth: 1,
-                        radius: 3,
-                        data: plot,
-                    }],
+                            borderColor: 'purple',
+                            borderWidth: 1,
+                            radius: 3,
+                            data: plot,
+                        },
+                        {
+                            borderColor: 'purple',
+                            borderColor: "transparent",
+                            backgroundColor: "rgb(75, 192, 255, 0.5)",
+                            radius: 1,
+                            data: R0Data_U_95,
+                            fill: 0
+                        }, {
+                            borderColor: 'purple',
+                            borderColor: "transparent",
+                            backgroundColor: "rgb(75, 192, 255, 0.5)",
+                            radius: 1,
+                            data: R0Data_L_95,
+                            fill: 0
+                        },
+                        {
+                            borderColor: 'purple',
+                            borderColor: "transparent",
+                            backgroundColor: "rgba(7, 14, 206, 0.5)",
+                            radius: 1,
+                            data: R0Data_U_65,
+                            fill: 0
+                        }, {
+                            borderColor: 'purple',
+                            borderColor: "transparent",
+                            backgroundColor: "rgba(7, 14, 206, 0.5)",
+                            radius: 1,
+                            data: R0Data_L_65,
+                            fill: 0
+                        }
+                    ],
                 },
                 options: {
                     interaction: {
