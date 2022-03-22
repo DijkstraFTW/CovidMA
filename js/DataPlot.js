@@ -21,8 +21,11 @@ var recovDataSmooth
 var recovDatesSmooth
 
 
+var x = document.getElementById('loading')
 
 function setCasesPlot() {
+
+    x.style.display = "block"
 
     document.getElementById("smooth").disabled = false;
 
@@ -93,6 +96,8 @@ function setCasesPlot() {
                 dates = casesDates
             }
 
+            x.style.display = "none"
+
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
                 type: 'line',
@@ -144,6 +149,8 @@ function setCasesPlot() {
 }
 
 function setDeathsPlot() {
+
+    x.style.display = "block"
 
     document.getElementById("smooth").disabled = false;
 
@@ -210,6 +217,8 @@ function setDeathsPlot() {
                 dates = deathsDates;
             }
 
+            x.style.display = "none"
+
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
                 type: 'line',
@@ -261,6 +270,8 @@ function setDeathsPlot() {
 }
 
 function setTestsPlot() {
+
+    x.style.display = "block"
 
     document.getElementById("smooth").disabled = false;
 
@@ -352,6 +363,8 @@ function setTestsPlot() {
                 dates = testsDates
             }
 
+            x.style.display = "none"
+
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
                 type: 'line',
@@ -403,7 +416,7 @@ function setTestsPlot() {
 
 function setRecoveriesPlot(status, response) {
 
-
+    x.style.display = "block"
     document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
@@ -457,6 +470,8 @@ function setRecoveriesPlot(status, response) {
         dates = recovDates
     }
 
+    x.style.display = "none"
+
     var ctx = document.getElementById('plot-data').getContext('2d')
     var graph_data = new Chart(ctx, {
         type: 'line',
@@ -504,6 +519,7 @@ function setRecoveriesPlot(status, response) {
 function setLethalityPlot() {
 
     document.getElementById("smooth").disabled = false;
+    x.style.display = "block"
 
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
@@ -556,6 +572,8 @@ function setLethalityPlot() {
         dates = casesData
     }
 
+    x.style.display = "none"
+
     var ctx = document.getElementById('plot-data').getContext('2d')
     var graph_data = new Chart(ctx, {
         type: 'line',
@@ -606,6 +624,8 @@ function setLethalityPlot() {
 }
 
 function setR0Plot() {
+
+    x.style.display = "block"
 
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
@@ -672,6 +692,8 @@ function setR0Plot() {
 
             document.getElementById("smooth").checked = false;
             document.getElementById("smooth").disabled = true;
+
+            x.style.display = "none"
 
             plot = R0Data
             dates = R0Dates
@@ -766,7 +788,7 @@ function setPosRatePlot() {
 
     // new cases / new tests 
 
-
+    x.style.display = "blck"
     document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
@@ -816,6 +838,8 @@ function setPosRatePlot() {
         plot = posRate
         dates = testsDates
     }
+
+    x.style.display = "none"
 
     var ctx = document.getElementById('plot-data').getContext('2d')
     var graph_data = new Chart(ctx, {
@@ -869,6 +893,7 @@ function setPosRatePlot() {
 
 function setRecoveryPlot() {
 
+    x.style.display = "block"
     document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
@@ -909,6 +934,8 @@ function setRecoveryPlot() {
         plot = recovRData
         dates = recovRDates
     }
+
+    x.style.display = "none"
 
     var ctx = document.getElementById('plot-data').getContext('2d')
     var graph_data = new Chart(ctx, {
