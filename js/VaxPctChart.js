@@ -22,6 +22,9 @@ var dataType = ["3rd Jab", "2nd Jab", "1st Jab", "Not Yet Vaccinated"]
 var dataPopulation = []
 
 
+var pct = document.getElementById('error-vax')
+
+
 
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -80,23 +83,27 @@ function setWaffleChart() {
     //value of a square
     squareValue = total / (widthSquares * heightSquares);
 
-    //remap data
-    dataV.forEach(function(d, i) {
-        d.population = +d.population;
-        d.units = (d.population / squareValue);
-        theData = theData.concat(
-            Array(Math.floor(d.units + 2)).join(1).split('').map(function() {
-                return {
-                    squareValue: squareValue,
-                    units: d.units,
-                    population: d.population,
-                    groupIndex: i
-                };
-            })
-        );
-    });
-    theData.splice(theData.length - 1)
 
+    try {
+        //remap data
+        dataV.forEach(function(d, i) {
+            d.population = +d.population;
+            d.units = (d.population / squareValue);
+            theData = theData.concat(
+                Array(Math.floor(d.units + 2)).join(1).split('').map(function() {
+                    return {
+                        squareValue: squareValue,
+                        units: d.units,
+                        population: d.population,
+                        groupIndex: i
+                    };
+                })
+            );
+        });
+        theData.splice(theData.length - 1)
+    } catch (error) {
+        pct.style.display = "block"
+    }
 
     w = (squareSize * widthSquares) + widthSquares * gap + 25;
     h = (squareSize * heightSquares) + heightSquares * gap + 25;
