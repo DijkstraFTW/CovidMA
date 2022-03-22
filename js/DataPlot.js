@@ -403,11 +403,24 @@ function setRecoveriesPlot(status, response) {
 
     let idf;
 
+
+    let corr = [1746, 2218, 1441, 1877, 2785, 2462, 1421, 2747, 2643, 2349, 2300, 2018, 2788, 2133, 2747, 1823, 2553, 2091, 1964, 2497, 2077, 2953, 2392, 2591, 2847, 4247, 3690, 1416, 532, 619, 808, 299, 426, 5021, 7799, 9522, 9188, 7163, 2548, 211, 266, 283, 239, 1147, 4229, 2197, 86]
+
+    let IndCorr = 0
+
     for (idf = 0; idf < response["features"].length; idf++) {
+
+        if (response["features"][idf]["attributes"]["Rétablis_par_jour"] == undefined) {
+            recovData.push(corr[IndCorr])
+            recovDates.push(casesDates[idf + 14])
+            IndCorr++
+
+            continue
+        }
+
         recovData.push(response["features"][idf]["attributes"]["Rétablis_par_jour"])
         recovDates.push(casesDates[idf + 14])
     }
-
 
     for (let k = 0; k < response["features"].length; k++) {
         m += parseInt(recovData[k])
