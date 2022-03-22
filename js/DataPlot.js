@@ -686,35 +686,40 @@ function setR0Plot() {
                             borderWidth: 1,
                             radius: 3,
                             data: plot,
+                            label: "R ",
                         },
                         {
                             borderColor: 'purple',
                             borderColor: "transparent",
-                            backgroundColor: "rgb(75, 192, 255, 0.5)",
+                            backgroundColor: "rgb(75, 192, 255, 0.4)",
                             radius: 1,
                             data: R0Data_U_95,
+                            label: "CI at 95% ",
                             fill: 0
                         }, {
                             borderColor: 'purple',
                             borderColor: "transparent",
-                            backgroundColor: "rgb(75, 192, 255, 0.5)",
+                            backgroundColor: "rgb(75, 192, 255, 0.4)",
                             radius: 1,
                             data: R0Data_L_95,
+                            label: "CI at 95% ",
                             fill: 0
                         },
                         {
                             borderColor: 'purple',
                             borderColor: "transparent",
-                            backgroundColor: "rgba(7, 14, 206, 0.5)",
+                            backgroundColor: "rgba(7, 14, 206, 0.3)",
                             radius: 1,
                             data: R0Data_U_65,
+                            label: "CI at 65% ",
                             fill: 0
                         }, {
                             borderColor: 'purple',
                             borderColor: "transparent",
-                            backgroundColor: "rgba(7, 14, 206, 0.5)",
+                            backgroundColor: "rgba(7, 14, 206, 0.3)",
                             radius: 1,
                             data: R0Data_L_65,
+                            label: "CI at 65% ",
                             fill: 0
                         }
                     ],
