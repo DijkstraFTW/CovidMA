@@ -38,18 +38,20 @@ d3.csv("data/VaxDosesRaw.csv", function(d) {
             data: {
                 labels: datesVax,
                 datasets: [{
-                    borderColor: '#005bff',
-                    backgroundColor: "rgba(0, 91, 255, 0.6)",
-                    borderWidth: 2,
-                    radius: 0,
-                    data: plotFirstJab,
-                    fill: true
-                }, {
                     borderColor: "#99bdff",
                     backgroundColor: "rgba(153, 189, 255, 0.3)",
                     borderWidth: 2,
                     radius: 0,
                     data: plotSecondJab,
+                    label: "1st Jab",
+                    fill: true
+                }, {
+                    borderColor: '#005bff',
+                    backgroundColor: "rgba(0, 91, 255, 0.6)",
+                    borderWidth: 2,
+                    radius: 0,
+                    data: plotFirstJab,
+                    label: "2nd Jab",
                     fill: true
                 }, {
                     borderColor: "#070ECE",
@@ -57,6 +59,7 @@ d3.csv("data/VaxDosesRaw.csv", function(d) {
                     borderWidth: 2,
                     radius: 0,
                     data: plotThirdJab,
+                    label: "3rd Jab",
                     fill: true
                 }, {
                     borderColor: "#E8070c",
@@ -64,6 +67,7 @@ d3.csv("data/VaxDosesRaw.csv", function(d) {
                     borderWidth: 2,
                     radius: 0,
                     data: objective,
+                    label: "Objective",
                     fill: false
                 }],
             },
@@ -73,7 +77,7 @@ d3.csv("data/VaxDosesRaw.csv", function(d) {
                 },
                 plugins: {
                     legend: {
-                        display: false
+                        display: true
                     }
                 },
                 scales: {
