@@ -24,6 +24,8 @@ var recovDatesSmooth
 
 function setCasesPlot() {
 
+    document.getElementById("smooth").disabled = false;
+
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
@@ -143,6 +145,7 @@ function setCasesPlot() {
 
 function setDeathsPlot() {
 
+    document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
 
@@ -259,6 +262,8 @@ function setDeathsPlot() {
 
 function setTestsPlot() {
 
+    document.getElementById("smooth").disabled = false;
+
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
         chartStatus.destroy();
@@ -282,6 +287,13 @@ function setTestsPlot() {
             let plot;
             let m = 0;
 
+            let test = []
+
+            let corr = []
+
+            let IndCorr = 0
+
+
 
             let idf, temp;
 
@@ -301,6 +313,7 @@ function setTestsPlot() {
 
                         if (temp[7] == '') {
                             temp[7] == 0
+                            test.push(temp[2])
                         }
 
                         if (temp[7] == '641') {
@@ -318,6 +331,8 @@ function setTestsPlot() {
                 }
 
             }
+
+            console.log(test);
 
             for (let k = 0; k < testsData.length; k++) {
                 m += parseInt(testsData[k])
@@ -387,6 +402,9 @@ function setTestsPlot() {
 }
 
 function setRecoveriesPlot(status, response) {
+
+
+    document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
@@ -484,6 +502,8 @@ function setRecoveriesPlot(status, response) {
 }
 
 function setLethalityPlot() {
+
+    document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
@@ -598,6 +618,7 @@ function setR0Plot() {
         dataType: 'text',
         success: function(data) {
 
+
             let lines = data.split('\n');
             let fields = lines[0].split(',');
 
@@ -641,24 +662,11 @@ function setR0Plot() {
 
             }
 
+            document.getElementById("smooth").checked = false;
+            document.getElementById("smooth").disabled = true;
 
-            for (let k = 0; k < R0Data.length; k++) {
-                m += parseInt(R0Data[k])
-                if ((k % 7) == 0) {
-                    R0DataSmooth.push((m / 7).toFixed(2))
-                    R0DatesSmooth.push(R0Dates[k])
-                    m = 0
-                }
-            }
-
-            if (document.getElementById('smooth').checked) {
-                plot = R0DataSmooth;
-                dates = R0DatesSmooth
-            } else {
-                plot = R0Data
-                dates = R0Dates
-            }
-
+            plot = R0Data
+            dates = R0Dates
 
             var ctx = document.getElementById('plot-data').getContext('2d')
             var graph_data = new Chart(ctx, {
@@ -713,6 +721,9 @@ function setR0Plot() {
 function setPosRatePlot() {
 
     // new cases / new tests 
+
+
+    document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
     if (chartStatus != undefined) {
@@ -813,6 +824,8 @@ function setPosRatePlot() {
 }
 
 function setRecoveryPlot() {
+
+    document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
 
