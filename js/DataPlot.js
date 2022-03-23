@@ -591,6 +591,7 @@ function setLethalityPlot() {
                 borderWidth: 1,
                 radius: 3,
                 data: plot,
+                label: "Cumulative"
             }]
         },
         options: {
@@ -988,6 +989,7 @@ function setRecoveryPlot() {
                 borderWidth: 1,
                 radius: 3,
                 data: plot,
+                label: "Cumulative"
             }]
         },
         options: {
