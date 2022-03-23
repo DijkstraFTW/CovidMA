@@ -420,6 +420,7 @@ function setRecoveriesPlot(status, response) {
     document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
+
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
@@ -560,11 +561,6 @@ function setLethalityPlot() {
         lethality.push(((tempDeaths / tempCases) * 100).toFixed(2))
         lethalityDates.push(casesDates[index + 5])
     }
-
-
-    console.log(lethalityDates);
-    console.log(lethality);
-
 
     for (let k = 0; k < lethality.length; k++) {
         m += parseFloat(lethality[k]);
@@ -799,7 +795,7 @@ function setPosRatePlot() {
 
     // new cases / new tests 
 
-    x.style.display = "blck"
+    x.style.display = "block"
     document.getElementById("smooth").disabled = false;
 
     let chartStatus = Chart.getChart("plot-data");
@@ -913,6 +909,18 @@ function setRecoveryPlot() {
         chartStatus.destroy();
     }
 
+    if (casesData == undefined) {
+        setCasesPlot()
+    }
+
+    if (recovData == undefined) {
+        getJSON('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=Date,Cas_confirm%C3%A9s_par_jour,Cas_d%C3%A9c%C3%A9d%C3%A9s_par_jour,R%C3%A9tablis_par_jour,Tests_pas_jour,Retablis&returnGeometry=false&outSR=4326&f=json', setRecoveriesPlot)
+        setTimeout(() => {
+            setRecoveryPlot()
+            return;
+        }, 170);
+    }
+
     recovRData = []
     recovRDates = []
     recovRDataSmooth = []
@@ -923,14 +931,36 @@ function setRecoveryPlot() {
 
     let idf, temp;
 
-    for (idf = 0; idf < recovData.length; idf++) {
-        recovRData.push(((parseInt(casesData[idf + 14]) / parseInt(recovData[idf]))).toFixed(2))
-        recovRDates.push(casesDates[idf + 14])
+
+    let tempCases = 0,
+        tempRecoveries = 0;
+
+
+    for (let index = 5; index < casesData.length; index++) {
+
+        tempCases += parseInt(casesData[index - 1 + 5 + 9]) + parseInt(casesData[index + 5 + 9])
+        tempRecoveries += parseInt(recovData[index - 1]) + parseInt(recovData[index])
+
+        if (tempCases == 0) {
+            recovRData.push(0)
+            continue
+        }
+
+        recovRData.push((100 - (tempRecoveries / tempCases)).toFixed(2))
+        recovRDates.push(recovDates[index + 8])
     }
+
+    //console.log(recovRData);
+
+    // console.log(recovRDates);
+
+    // console.log(recovData);
+
+    // console.log(casesData[18]);
 
 
     for (let k = 0; k < recovRData.length; k++) {
-        m += parseInt(recovRData[k])
+        m += parseFloat(recovRData[k])
         if ((k % 7) == 0) {
             recovRDataSmooth.push((m / 7).toFixed(2))
             recovRDatesSmooth.push(recovRDates[k])
@@ -985,6 +1015,11 @@ function setRecoveryPlot() {
                 y: {
                     grid: {
                         display: true
+                    },
+                    ticks: {
+                        callback: function(label, index, labels) {
+                            return label + " %"
+                        }
                     }
                 }
             },
