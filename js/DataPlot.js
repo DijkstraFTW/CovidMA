@@ -933,8 +933,8 @@ function setRecoveryPlot() {
 
     recovRData = []
     recovRDates = []
-    recovRDataSmooth = []
-    recovRDatesSmooth = []
+    recovRDaily = []
+    recovRDailyDates = []
 
     let plot;
     let m = 0;
@@ -946,7 +946,7 @@ function setRecoveryPlot() {
         tempRecoveries = 0;
 
 
-    for (let index = 5; index < casesData.length; index++) {
+    for (let index = 5; index < recovData.length; index++) {
 
         tempCases += parseInt(casesData[index - 1 + 5 + 9]) + parseInt(casesData[index + 5 + 9])
         tempRecoveries += parseInt(recovData[index - 1]) + parseInt(recovData[index])
@@ -969,22 +969,14 @@ function setRecoveryPlot() {
     // console.log(casesData[18]);
 
 
-    for (let k = 0; k < recovRData.length; k++) {
-        m += parseFloat(recovRData[k])
-        if ((k % 7) == 0) {
-            recovRDataSmooth.push((m / 7).toFixed(2))
-            recovRDatesSmooth.push(recovRDates[k])
-            m = 0
-        }
+
+    for (idf = 0; idf < recovData.length; idf++) {
+        recovRDaily.push(10 * ((parseInt(casesData[idf + 14]) / parseInt(recovData[idf]))).toFixed(2))
     }
 
-    if (document.getElementById('smooth').checked) {
-        plot = recovRDataSmooth;
-        dates = recovRDatesSmooth
-    } else {
-        plot = recovRData
-        dates = recovRDates
-    }
+    console.log(recovRDates);
+
+
 
     document.getElementById("smooth").checked = false;
     document.getElementById("smooth").disabled = true;
@@ -995,13 +987,20 @@ function setRecoveryPlot() {
     var graph_data = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: dates,
+            labels: recovRDates,
             datasets: [{
                 borderColor: 'green',
                 borderWidth: 1,
                 radius: 3,
-                data: plot,
+                data: recovRData,
                 label: "Cumulative"
+            }, {
+                borderColor: 'grey',
+                borderWidth: 1,
+                radius: 3,
+                data: recovRDaily,
+                label: "Daily divided by 10",
+                fill: true
             }]
         },
         options: {
@@ -1010,7 +1009,7 @@ function setRecoveryPlot() {
             },
             plugins: {
                 legend: {
-                    display: false
+                    display: true
                 }
             },
             scales: {
@@ -1022,7 +1021,7 @@ function setRecoveryPlot() {
                         maxTicksLimit: 9,
                         beginAtZero: true,
                         callback: function(value, index, values) {
-                            return dates[value];
+                            return recovRDates[value];
                         }
                     }
                 },
