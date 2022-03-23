@@ -540,6 +540,7 @@ function setLethalityPlot() {
     }
 
     let lethality = []
+    let lethalityDates = []
     let lethalitySmooth = []
     let lethalityDatesSmooth = []
 
@@ -547,13 +548,23 @@ function setLethalityPlot() {
     let dates = [];
     let m = 0
 
-    for (let index = 0; index < casesData.length; index++) {
-        if (deathsData[index + 5] == casesData[index + 5]) {
-            lethality[index] = 0
-        } else {
-            lethality[index] = ((parseInt(deathsData[index + 5]) / parseInt(casesData[index + 5])) * 100).toFixed(2)
-        }
+    let tempCases = 0,
+        tempDeaths = 0;
+
+
+    for (let index = 38; index < casesData.length; index++) {
+
+        tempCases += parseInt(casesData[index - 1 + 5]) + parseInt(casesData[index + 5])
+        tempDeaths += parseInt(deathsData[index - 1 + 5]) + parseInt(deathsData[index + 5])
+
+        lethality.push(((tempDeaths / tempCases) * 100).toFixed(2))
+        lethalityDates.push(casesDates[index + 5])
     }
+
+
+    console.log(lethalityDates);
+    console.log(lethality);
+
 
     for (let k = 0; k < lethality.length; k++) {
         m += parseInt(lethality[k]);
@@ -569,7 +580,7 @@ function setLethalityPlot() {
         dates = lethalityDatesSmooth
     } else {
         plot = lethality
-        dates = casesData
+        dates = lethalityDates
     }
 
     x.style.display = "none"
