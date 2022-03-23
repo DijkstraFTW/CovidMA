@@ -542,11 +542,10 @@ function setLethalityPlot() {
 
     let lethality = []
     let lethalityDates = []
-    let lethalitySmooth = []
-    let lethalityDatesSmooth = []
+    let lethalityDaily = []
+    let lethalityDailyDates = []
 
-    let plot = [];
-    let dates = [];
+
     let m = 0
 
     let tempCases = 0,
@@ -558,26 +557,26 @@ function setLethalityPlot() {
         tempCases += parseInt(casesData[index - 1 + 5]) + parseInt(casesData[index + 5])
         tempDeaths += parseInt(deathsData[index - 1 + 5]) + parseInt(deathsData[index + 5])
 
+        if (((tempDeaths / tempCases) * 100) > 8) {
+            lethality.push(0)
+            continue
+        }
+
         lethality.push(((tempDeaths / tempCases) * 100).toFixed(2))
         lethalityDates.push(casesDates[index + 5])
     }
 
-    for (let k = 0; k < lethality.length; k++) {
-        m += parseFloat(lethality[k]);
-        if ((k % 7) == 0) {
-            lethalitySmooth.push((m / 7).toFixed(2))
-            lethalityDatesSmooth.push(lethalityDates[k + 5])
-            m = 0;
+    for (let index = 0; index < casesData.length; index++) {
+        if (deathsData[index + 5] == casesData[index + 5]) {
+            lethalityDaily[index] = 0
+        } else {
+            lethalityDaily[index] = ((parseInt(deathsData[index + 5]) / parseInt(casesData[index + 5])) * 100).toFixed(2)
         }
     }
 
-    if (document.getElementById('smooth').checked) {
-        plot = lethalitySmooth;
-        dates = lethalityDatesSmooth
-    } else {
-        plot = lethality
-        dates = lethalityDates
-    }
+
+    document.getElementById("smooth").checked = false;
+    document.getElementById("smooth").disabled = true;
 
     x.style.display = "none"
 
@@ -585,14 +584,24 @@ function setLethalityPlot() {
     var graph_data = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: dates,
+            labels: lethalityDates,
             datasets: [{
-                borderColor: 'red',
-                borderWidth: 1,
-                radius: 3,
-                data: plot,
-                label: "Cumulative"
-            }]
+                    borderColor: 'red',
+                    borderWidth: 1,
+                    radius: 3,
+                    data: lethality,
+                    label: "Cumulative",
+                    fill: false
+                },
+                {
+                    borderColor: 'grey',
+                    borderWidth: 1,
+                    radius: 3,
+                    data: lethalityDaily,
+                    label: "Daily",
+                    fill: true
+                }
+            ]
         },
         options: {
             interaction: {
@@ -600,7 +609,7 @@ function setLethalityPlot() {
             },
             plugins: {
                 legend: {
-                    display: false
+                    display: true
                 }
             },
             scales: {
@@ -612,7 +621,7 @@ function setLethalityPlot() {
                         maxTicksLimit: 9,
                         beginAtZero: true,
                         callback: function(value, index, values) {
-                            return dates[value];
+                            return lethalityDates[value];
                         }
                     }
                 },
@@ -976,6 +985,9 @@ function setRecoveryPlot() {
         plot = recovRData
         dates = recovRDates
     }
+
+    document.getElementById("smooth").checked = false;
+    document.getElementById("smooth").disabled = true;
 
     x.style.display = "none"
 
