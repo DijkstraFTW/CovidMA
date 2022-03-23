@@ -567,10 +567,10 @@ function setLethalityPlot() {
 
 
     for (let k = 0; k < lethality.length; k++) {
-        m += parseInt(lethality[k]);
+        m += parseFloat(lethality[k]);
         if ((k % 7) == 0) {
             lethalitySmooth.push((m / 7).toFixed(2))
-            lethalityDatesSmooth.push(casesDates[k + 5])
+            lethalityDatesSmooth.push(lethalityDates[k + 5])
             m = 0;
         }
     }
