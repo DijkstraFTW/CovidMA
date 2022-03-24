@@ -39,9 +39,16 @@ function setCumulData(status, response) {
 
 function setNewData(status, response) {
 
-
     n_recoveries = response["features"][(response["features"].length - 1)]["attributes"]["Rétablis_par_jour"]
     total_recoveries = response["features"][(response["features"].length - 1)]["attributes"]["Retablis"]
+
+    if (n_recoveries == null) {
+        n_recoveries = response["features"][(response["features"].length - 2)]["attributes"]["Rétablis_par_jour"]
+    }
+
+    if (total_recoveries == null) {
+        total_recoveries = response["features"][(response["features"].length - 2)]["attributes"]["Retablis"]
+    }
 
     document.getElementById("new-recoveries-data").innerHTML = " +" + n_recoveries.toLocaleString() + " Recoveries";
     document.getElementById("total-recoveries-data").innerHTML = total_recoveries.toLocaleString();
