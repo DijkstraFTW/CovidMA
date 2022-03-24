@@ -640,7 +640,7 @@ function setLethalityPlot() {
     })
 }
 
-function setR0Plot() {
+function setRtPlot() {
 
     x.style.display = "block"
 
