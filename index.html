@@ -125,12 +125,10 @@
 
     <div class="top-provinces">
 
-        <div class="rankings-title">Regions cases ranking :</div>
+        <div class="rankings-title">Region cases ranking :</div>
 
-        <p><span class="rank" id="rank"></span></p>
+        <canvas class="rankings-chart" id="rankings-chart" width="500" height="700"></canvas>
 
-        <p><span class="rankings" id="rankings"></span></p>
-        <p><span class="rankings-data" id="rankings-data"></span></p>
         <script src="js/RegionRankings.js">
             window.onload = function() {
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setRankings);

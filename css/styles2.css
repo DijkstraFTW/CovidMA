@@ -422,7 +422,7 @@ a.button1:active {
 .top-provinces {
     /* cases by region rankings */
     position: absolute;
-    width: 500px;
+    width: 550px;
     height: 873px;
     left: 85px;
     top: 1705px;
@@ -432,7 +432,7 @@ a.button1:active {
 
 .rankings-title {
     position: absolute;
-    top: 50px;
+    top: 30px;
     left: 130px;
     font-family: Montserrat;
     font-style: normal;
@@ -442,40 +442,9 @@ a.button1:active {
     color: #000000;
 }
 
-.rank {
+.rankings-chart {
     position: absolute;
-    width: 500px;
-    height: 873px;
-    left: 20px;
-    top: 170px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-}
-
-.rankings {
-    position: absolute;
-    width: 500px;
-    height: 873px;
-    left: 50px;
-    top: 170px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-}
-
-.rankings-data {
-    position: absolute;
-    width: 500px;
-    height: 873px;
-    left: 400px;
-    top: 170px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
+    top: 90px;
 }
 
 .map-cases-region {
