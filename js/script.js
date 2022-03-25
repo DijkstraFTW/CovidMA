@@ -61,14 +61,36 @@ function formatDate(x) {
 }
 
 function regionData(x) {
+
+    let pointsValues = ''
+
     let id = x.id.replace("pr-", "");
     let info = data[id - 1];
+
+    for (let index = 0; index < x.points.length; index++) {
+        pointsValues += " " + (x.points[index]["x"]).toFixed(2)
+        pointsValues += " " + (x.points[index]["y"]).toFixed(2)
+
+        if (index + 1 < x.points.length) {
+            pointsValues += " ,"
+        }
+    }
+
+
+    //document.getElementById("region-selected-map").setAttribute("points", pointsValues)
+    document.getElementById("region-selected-map").setAttribute("fill", x.getAttribute("fill") + "")
+
+    document.getElementById("nbCases").style.backgroundColor = x.getAttribute("fill") + ""
+
+    console.log(x);
+
+
     document.getElementById("province").innerText = info.province;
     document.getElementById("region").innerText = info.region;
     document.getElementById("nbCases").innerText = info.cases[dateIndex];
     document.getElementById("evolution").setAttribute("province", id);
     document.getElementById("evolution").style.display = 'block';
-    document.getElementById("chart").innerHTML = drawLine(info.cases);
+    //document.getElementById("chart").innerHTML = drawLine(info.cases);
 }
 
 function updateData(x) {
