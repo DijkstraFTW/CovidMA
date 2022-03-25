@@ -241,11 +241,14 @@ function provinceHover(x) {
     pos.innerHTML = "<span class='region-info'>" + "<pre>" + "   Region information : " + provinceID + "<br></br>" + "Size : " + "<br></br>" +
         "Population : " + "<br></br>" +
         "Density : " + "<br></br>" +
-        "Rural/Urban : " + "<br></br>" + "</span>";
-    pos.style.left = posx - 700 + "px";
-    pos.style.top = posy - 10 + "px";
+        "Rural/Urban : " + "</span>";
+    pos.style.left = 180 + "px";
+    pos.style.top = 240 + "px";
     pos.style.display = 'block';
     pos.style.position = 'relative';
+
+    console.log("left " + posx);
+    console.log("top " + posy);
 
 }
 
