@@ -92,9 +92,7 @@
             border-radius: 5px;
             font-size: larger;
             width: intrinsic;
-            width: -moz-max-content;
-            width: -webkit-max-content;
-            width: max-content
+            width: 30px;
         }
         
         .nbCases::before {
@@ -102,7 +100,27 @@
         }
         
         .nbCases {
-            display: block
+            display: block;
+            position: relative;
+            top: 5px;
+        }
+        
+        .region-info {
+            position: absolute;
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 15px;
+            line-height: 15px;
+            text-align: left;
+            width: -moz-max-content;
+            width: -webkit-max-content;
+            width: max-content;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, .7);
+            border-radius: 5px;
+            border-color: #000;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
         
         #province {
@@ -111,6 +129,21 @@
         
         #region {
             font-size: large
+        }
+        
+        .region-selected {
+            position: relative;
+            position: relative;
+            top: 20px;
+        }
+        
+        .region-selected-map {
+            position: relative;
+            top: 10px;
+            stroke-width: 1;
+            border-radius: 5px;
+            border-color: #000;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
         
         #dateRange {
@@ -257,20 +290,4 @@
             #evolution {
                 left: 30px
             }
-        }
-        
-        #casa-zoom {
-            zoom: 1
-        }
-        
-        .region-selected {
-            position: relative;
-        }
-        
-        .region-selected-map {
-            position: relative;
-            stroke-width: 1;
-            border-radius: 5px;
-            border-color: #000;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }

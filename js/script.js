@@ -7,6 +7,8 @@ const slider = document.getElementById("zoomRange");
 const zvgZoom = document.getElementById("svgZoom");
 const zoomValue = document.getElementById("zoomValue");
 
+var provinceID = null;
+
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -65,6 +67,7 @@ function regionData(x) {
     let pointsValues = ''
 
     let id = x.id.replace("pr-", "");
+    provinceID = id
     let info = data[id - 1];
 
     for (let index = 0; index < x.points.length; index++) {
@@ -75,7 +78,6 @@ function regionData(x) {
             pointsValues += " ,"
         }
     }
-
 
     //document.getElementById("region-selected-map").setAttribute("points", pointsValues)
     document.getElementById("region-selected-map").setAttribute("fill", x.getAttribute("fill") + "")
@@ -220,6 +222,35 @@ function showBuble(x) {
 
     //console.log("left " + posx);
     //console.log("top " + posy);
+}
+
+
+function provinceHover(x) {
+    let posx = 0;
+    let posy = 0;
+    let id = x.id.replace("pr-", "");
+    let info = data[id - 1];
+    let pos = document.getElementById("region-name");
+
+    if (!e) var e = window.event;
+    if (e.clientX || e.clientY) {
+        posx = e.clientX;
+        posy = e.clientY;
+    }
+
+    pos.innerHTML = "<span class='region-info'>" + "<pre>" + "   Region information : " + provinceID + "<br></br>" + "Size : " + "<br></br>" +
+        "Population : " + "<br></br>" +
+        "Density : " + "<br></br>" +
+        "Rural/Urban : " + "<br></br>" + "</span>";
+    pos.style.left = posx - 700 + "px";
+    pos.style.top = posy - 10 + "px";
+    pos.style.display = 'block';
+    pos.style.position = 'relative';
+
+}
+
+function hideProvince(id) {
+    document.getElementById(id).style.display = "none";
 }
 
 function hideElement(id) {
