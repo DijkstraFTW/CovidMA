@@ -93,6 +93,7 @@
             font-size: larger;
             width: intrinsic;
             width: 30px;
+            text-align: center;
         }
         
         .nbCases::before {
@@ -188,12 +189,12 @@
         
         .color_range div {
             display: inline-block;
-            vertical-align: middle
+            vertical-align: middle;
         }
         
         .color_range div:first-child {
             width: 15px;
-            height: 15px
+            height: 15px;
         }
         
         #chart {
