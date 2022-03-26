@@ -7,8 +7,6 @@ const slider = document.getElementById("zoomRange");
 const zvgZoom = document.getElementById("svgZoom");
 const zoomValue = document.getElementById("zoomValue");
 
-var provinceID = null;
-
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -64,27 +62,16 @@ function formatDate(x) {
 
 function regionData(x) {
 
-    let pointsValues = ''
-
     let id = x.id.replace("pr-", "");
-    provinceID = id
+    let provinceID = id
     let info = data[id - 1];
 
-    for (let index = 0; index < x.points.length; index++) {
-        pointsValues += " " + (x.points[index]["x"]).toFixed(2)
-        pointsValues += " " + (x.points[index]["y"]).toFixed(2)
+    document.getElementById("nbCases").style.backgroundColor = x.getAttribute("fill") + "";
 
-        if (index + 1 < x.points.length) {
-            pointsValues += " ,"
-        }
-    }
-
-    //document.getElementById("region-selected-map").setAttribute("points", pointsValues)
-    document.getElementById("region-selected-map").setAttribute("fill", x.getAttribute("fill") + "")
-
-    document.getElementById("nbCases").style.backgroundColor = x.getAttribute("fill") + ""
-
-    console.log(x);
+    document.getElementById("region-selected").innerText = "Size : " + "\n" +
+        "Population : " + "\n" +
+        "Density : " + "\n" +
+        "Rural/Urban : ";
 
 
     document.getElementById("province").innerText = info.province;
@@ -230,7 +217,6 @@ function provinceHover(x) {
     let posy = 0;
     let id = x.id.replace("pr-", "");
     let info = data[id - 1];
-    let pos = document.getElementById("region-name");
 
     if (!e) var e = window.event;
     if (e.clientX || e.clientY) {
@@ -238,10 +224,13 @@ function provinceHover(x) {
         posy = e.clientY;
     }
 
-    pos.innerHTML = "<span class='region-info'>" + "<pre>" + "   Region information : " + provinceID + "<br></br>" + "Size : " + "<br></br>" +
+
+    let pos = document.getElementById("region-selected");
+
+    pos.innerText = "<pre>" + "   Region information : " + provinceID + "<br></br>" + "Size : " + "<br></br>" +
         "Population : " + "<br></br>" +
         "Density : " + "<br></br>" +
-        "Rural/Urban : " + "</span>";
+        "Rural/Urban : ";
     pos.style.left = 180 + "px";
     pos.style.top = 240 + "px";
     pos.style.display = 'block';
@@ -252,9 +241,6 @@ function provinceHover(x) {
 
 }
 
-function hideProvince(id) {
-    document.getElementById(id).style.display = "none";
-}
 
 function hideElement(id) {
     document.getElementById(id).style.display = "none";

@@ -139,18 +139,14 @@
 
     <div class="map-cases-region">
         <div id="map">
-            <div id="region-name">
+            <div id="region-name" style="display: none;">
                 <span></span>
             </div>
             <div id="evolution" style="display: none;">
                 <p id="province"></p>
                 <p id="region"></p>
-                <div id="nbCases" class="nbCases"></div>
-                <div>
-                    <svg class="region-selected" height="160" width="200">
-                        <polygon onmouseover="provinceHover(this)" onmouseout="hideBuble()"  class="region-selected-map" id="region-selected-map" points="162.3,52.1 153.6,57.3 159.8,67.4 153.6,69.8 141.3,63.7 92.8,83 97.9,92.4 95.7,100.4 92.8,108.9 90.2,121 97.3,123.3 97.9,137.4 56.2,145.7 26.3,129.3 87.2,6.6 168,16.7 171,29.7 153.6,37.1 162.3,52.1"/>
-                    </svg>
-                </div>
+                <p id="nbCases" class="nbCases"></p>
+                <p id="region-selected" class="region-selected"></p>
             </div>
             <div id="scale">
                 <div class="color_range">
