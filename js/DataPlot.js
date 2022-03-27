@@ -447,14 +447,14 @@ function setRecoveriesPlot(status, response) {
 
         if (response["features"][idf]["attributes"]["Rétablis_par_jour"] == undefined) {
             recovData.push(corr[IndCorr])
-            recovDates.push(casesDates[idf + 14])
+            recovDates.push(casesDates[idf + 15])
             IndCorr++
 
             continue
         }
 
         recovData.push(response["features"][idf]["attributes"]["Rétablis_par_jour"])
-        recovDates.push(casesDates[idf + 14])
+        recovDates.push(casesDates[idf + 15])
     }
 
     for (let k = 0; k < response["features"].length; k++) {
@@ -968,15 +968,6 @@ function setRecoveryPlot() {
         recovRDates.push(recovDates[index - 5])
     }
 
-    //console.log(recovRData);
-
-    // console.log(recovRDates);
-
-    // console.log(recovData);
-
-    // console.log(casesData[18]);
-
-
 
     for (idf = 5; idf < recovData.length; idf++) {
 
@@ -993,17 +984,6 @@ function setRecoveryPlot() {
 
         recovRDaily.push(10 * ((parseInt(recovData[idf]) / parseInt(casesData[idf + 5 + 9]))).toFixed(2))
     }
-
-    console.log(recovRData);
-
-    //console.log(recovDates);
-
-    //console.log(recovRDates);
-
-    //console.log(casesData);
-
-    console.log(recovRDaily);
-
 
 
     document.getElementById("smooth").checked = false;
