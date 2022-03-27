@@ -569,11 +569,11 @@ function setLethalityPlot() {
         lethalityDates.push(casesDates[index + 5])
     }
 
-    for (let index = 0; index < casesData.length; index++) {
-        if (deathsData[index + 5] == casesData[index + 5]) {
-            lethalityDaily[index] = 0
+    for (let index = 38; index < casesData.length; index++) {
+        if (deathsData[index + 5] == 1 && casesData[index + 5] == 1) {
+            lethalityDaily.push(0)
         } else {
-            lethalityDaily[index] = ((parseInt(deathsData[index + 5]) / parseInt(casesData[index + 5])) * 100).toFixed(2)
+            lethalityDaily.push(((parseInt(deathsData[index + 5]) / parseInt(casesData[index + 5])) * 100).toFixed(2))
         }
     }
 
