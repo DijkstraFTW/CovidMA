@@ -156,12 +156,10 @@ function setDateRange() {
     let btn = document.createElement("button");
     let range = document.createElement("input");
 
-
     var today = new Date();
     var Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var Days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    dateLabel.innerText = Days[today.getDay()] + ', ' + Months[today.getMonth()] + ' ' + date[date.length - 1][8] + date[date.length - 1][9] + ', ' + today.getFullYear();
+    dateLabel.innerText = Months[today.getMonth()] + ' ' + date[date.length - 1][8] + date[date.length - 1][9] + ', ' + today.getFullYear();
 
     range.setAttribute("type", "range");
     range.setAttribute("min", 0);
