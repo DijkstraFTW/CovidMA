@@ -576,7 +576,7 @@ a.button1:active {
 .footer4 {
     position: absolute;
     width: 970px;
-    height: 464px;
+    height: 964px;
     left: 85px;
     top: 3448px;
     bottom: 200px;
@@ -585,7 +585,7 @@ a.button1:active {
 
 .footer4018-footer4018 {
     width: 1440px;
-    height: 682px;
+    height: 964px;
     display: flex;
     overflow: hidden;
     position: relative;
@@ -694,16 +694,6 @@ a.button1:active {
     border-color: rgba(0, 0, 0, 1);
 }
 
-.footer4018-image4 {
-    top: 630px;
-    left: 1400px;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    object-fit: cover;
-    border-color: transparent;
-}
-
 .footer4018-image5 {
     top: 95px;
     left: 102px;
@@ -727,7 +717,7 @@ a.button1:active {
 }
 
 .footer4018-image7 {
-    top: 135px;
+    top: 130px;
     left: 392px;
     width: 400px;
     height: 102px;
@@ -735,4 +725,50 @@ a.button1:active {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     object-fit: cover;
     border-color: rgba(0, 0, 0, 1);
+}
+
+.disclaimer-box {
+    top: 650px;
+    width: 1410px;
+    height: 210px;
+    position: relative;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    object-fit: cover;
+    border-color: transparent;
+    background-color: #E5E5E5;
+}
+
+.disclaimer-title {
+    position: relative;
+    top: 10px;
+    left: 20px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+}
+
+.disclaimer-text {
+    position: relative;
+    margin-right: 20px;
+    top: 10px;
+    left: 20px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+    color: #000000;
+}
+
+.footer4018-image4 {
+    top: 900px;
+    left: 1400px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    object-fit: cover;
+    border-color: transparent;
 }
