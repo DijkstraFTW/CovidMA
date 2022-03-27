@@ -300,21 +300,21 @@ function setTestsPlot() {
 
             let test = []
 
-            let corr = []
-
+            let corr = [8896, 8626, 20215, 21033, 11729, 12850, 8572, 4795, 9854, 12698, 13867, 9355, 9509, 8078, 25742, 45232, 34104, 33412, 33131, 20528, 19629, 14601, 7330, 13534, 15098, 11793, 5797, 10441, 12885, 10542, 17120, 9374, 5195, 13803, 14876, 32055, 16197, 12655, 32055, 13011, 7413, 15940, 15213, 11999, 8791, 10938, 12203, 7201, 7258, 5733, 7565, 6877, 7048]
             let IndCorr = 0
 
-
-
-            let idf, temp;
+            let idf, temp, cpt;
 
             for (idf = 0; idf < data.length; idf++) {
 
                 let temp = lines[idf].split(',');
 
+                cpt = 0
+
                 if (temp[1] == "MAR") {
                     while (temp[1] == "MAR") {
                         idf++
+                        cpt++
 
                         if (lines[idf].split(',')[1] != "MAR") {
                             break
@@ -322,9 +322,14 @@ function setTestsPlot() {
 
                         temp = lines[idf].split(',');
 
-                        if (temp[7] == '') {
-                            temp[7] == 0
-                            test.push(temp[2])
+                        if (temp[7] == '' && (cpt >= 40)) {
+
+                            testsData.push(corr[IndCorr])
+                            testsDates.push(temp[2])
+                            test.push(temp[2] + " " + corr[IndCorr])
+
+                            IndCorr++
+                            continue
                         }
 
                         if (temp[7] == '641') {
@@ -342,8 +347,6 @@ function setTestsPlot() {
                 }
 
             }
-
-            console.log(test);
 
             for (let k = 0; k < testsData.length; k++) {
                 m += parseInt(testsData[k])
@@ -832,6 +835,11 @@ function setPosRatePlot() {
 
 
     for (let index = 0; index < testsData.length; index++) {
+
+        if (testsData[index] == 0) {
+            posRate[index] = 0.00
+            continue
+        }
         posRate[index] = (((parseInt(casesData[index + 21]) / parseInt(testsData[index]))) * 100).toFixed(2)
     }
 
