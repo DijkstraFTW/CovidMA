@@ -576,7 +576,7 @@ a.button1:active {
 .footer4 {
     position: absolute;
     width: 970px;
-    height: 964px;
+    height: 1200px;
     left: 85px;
     top: 3448px;
     bottom: 200px;
@@ -585,7 +585,7 @@ a.button1:active {
 
 .footer4018-footer4018 {
     width: 1440px;
-    height: 964px;
+    height: 1200px;
     display: flex;
     overflow: hidden;
     position: relative;
@@ -728,7 +728,7 @@ a.button1:active {
 }
 
 .disclaimer-box {
-    top: 650px;
+    top: 730px;
     width: 1410px;
     height: 210px;
     position: relative;
@@ -764,7 +764,7 @@ a.button1:active {
 }
 
 .footer4018-image4 {
-    top: 900px;
+    top: 1100px;
     left: 1400px;
     width: 40px;
     height: 40px;
