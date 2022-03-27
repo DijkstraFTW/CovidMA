@@ -965,7 +965,7 @@ function setRecoveryPlot() {
         }
 
         recovRData.push((100 - (tempRecoveries / tempCases)).toFixed(2))
-        recovRDates.push(recovDates[index + 8])
+        recovRDates.push(recovDates[index - 5])
     }
 
     //console.log(recovRData);
@@ -978,11 +978,31 @@ function setRecoveryPlot() {
 
 
 
-    for (idf = 0; idf < recovData.length; idf++) {
-        recovRDaily.push(10 * ((parseInt(casesData[idf + 14]) / parseInt(recovData[idf]))).toFixed(2))
+    for (idf = 5; idf < recovData.length; idf++) {
+
+        if (parseInt(casesData[idf + 5 + 9]) == 0) {
+            recovRDaily.push(0)
+            continue
+        }
+
+        if (((parseInt(recovData[idf]) / parseInt(casesData[idf + 5 + 9]))) > 15) {
+            recovRDaily.push(((parseInt(recovData[idf]) / parseInt(casesData[idf + 5 + 9]))).toFixed(2))
+            continue
+        }
+
+
+        recovRDaily.push(10 * ((parseInt(recovData[idf]) / parseInt(casesData[idf + 5 + 9]))).toFixed(2))
     }
 
-    console.log(recovRDates);
+    console.log(recovRData);
+
+    //console.log(recovDates);
+
+    //console.log(recovRDates);
+
+    //console.log(casesData);
+
+    console.log(recovRDaily);
 
 
 
