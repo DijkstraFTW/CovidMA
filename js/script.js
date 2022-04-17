@@ -7,6 +7,10 @@ const slider = document.getElementById("zoomRange");
 const zvgZoom = document.getElementById("svgZoom");
 const zoomValue = document.getElementById("zoomValue");
 
+var ProvincesGenData = [];
+var ProvincesDemog = [];
+
+
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -35,26 +39,6 @@ function hexToRgbA(hex) {
     throw new Error('Bad Hex');
 }
 
-function drawLine(cases) {
-    let svgWidth = 400;
-    let svgHeight = 150;
-    let points = "";
-    let max = Math.max(...cases);
-    let step = ((svgWidth - 4) / cases.length);
-    let x = 2
-    for (i = 0; i <= dateIndex; i++) {
-        let y = (cases[i] * (svgHeight - 4) / max) + 2;
-        coo = x + "," + y + " ";
-        x += step;
-        points += coo;
-    }
-
-    return "\
-    <polyline id='lineChart' stroke='rgb(219, 88, 88)' fill='none' stroke-width='1' points='" + points + "' /> \
-    <circle cx='" + (2 + (step * dateIndex)) + "' cy='" + ((cases[dateIndex] * (svgHeight - 4) / max) + 2) + "' r='2' fill='#9b0000' stroke-width='1' fill='blue' /> \
-    "
-}
-
 function formatDate(x) {
     let l = x.split("-");
     return l[2] + "/" + l[1] + "/" + l[0];
@@ -63,15 +47,14 @@ function formatDate(x) {
 function regionData(x) {
 
     let id = x.id.replace("pr-", "");
-    let provinceID = id
     let info = data[id - 1];
 
     document.getElementById("nbCases").style.backgroundColor = x.getAttribute("fill") + "";
 
-    document.getElementById("region-selected").innerText = "Size : " + "\n" +
-        "Population : " + "\n" +
-        "Density : " + "\n" +
-        "Rural/Urban : ";
+    document.getElementById("region-selected").innerText = "Size : " + (ProvincesGenData[id - 1]["size"]).toLocaleString() + " km²\n" +
+        "Population : " + ProvincesGenData[id - 1]["population"] + " hab.\n" +
+        "Density : " + ProvincesGenData[id - 1]["density"] + "  hab/km²\n" +
+        "Rural/Urban : \n" + ProvincesGenData[id - 1]["rural"] + " hab / " + ProvincesGenData[id - 1]["urban"] + " hab";
 
 
     document.getElementById("province").innerText = info.province;
@@ -79,19 +62,8 @@ function regionData(x) {
     document.getElementById("nbCases").innerText = info.cases[dateIndex];
     document.getElementById("evolution").setAttribute("province", id);
     document.getElementById("evolution").style.display = 'block';
-    //document.getElementById("chart").innerHTML = drawLine(info.cases);
 }
 
-function updateData(x) {
-    let id = document.getElementById("evolution").getAttribute("province");
-    if (id) {
-        let info = data[id - 1];
-        document.getElementById("province").innerText = info.province;
-        document.getElementById("region").innerText = info.region;
-        document.getElementById("nbCases").innerText = info.cases[dateIndex];
-        document.getElementById("chart").innerHTML = drawLine(info.cases);
-    }
-}
 
 function addShade(color) {
     let container = document.getElementById("scale");
@@ -120,34 +92,7 @@ function setMap(status, response) {
     dateIndex = date.length - 1;
     data.map(province => setProvinceColor(province, dateIndex));
     setDateRange();
-}
-
-function playTime(btn) {
-    btn.innerHTML = '<img src="https://img.icons8.com/fluency-systems-filled/20/000000/pause.png"/>';
-    btn.onclick = function() { stopTime(this) };
-
-    interval = setInterval(function() {
-        let newVal = (parseInt(dateIndex) + 1);
-        if (newVal < date.length) {
-            dateIndex = newVal % date.length;
-            document.getElementById("range").value = dateIndex;
-            resetMap();
-        } else {
-            stopTime(btn);
-            btn.onclick = function() { rePlayTime(this) };
-        }
-    }, 100);
-}
-
-function stopTime(btn) {
-    clearInterval(interval);
-    btn.innerHTML = '<img src="https://img.icons8.com/fluency-systems-filled/20/000000/play.png"/>';
-    btn.onclick = function() { playTime(this) };
-}
-
-function rePlayTime(btn) {
-    dateIndex = -1;
-    playTime(btn)
+    setProvincesGenData();
 }
 
 function setDateRange() {
@@ -181,11 +126,6 @@ function resetMap() {
     updateData();
 }
 
-function moreZoom(x) {
-    zoom = zoom + x < 100 ? 100 : zoom + x;
-    zvgZoom.style.transform = `scale(${zoom / 100})`;
-}
-
 function showBuble(x) {
     let posx = 0;
     let posy = 0;
@@ -204,9 +144,27 @@ function showBuble(x) {
     pos.style.top = posy + "px";
     pos.style.display = 'block';
     pos.style.position = 'relative';
+}
 
-    //console.log("left " + posx);
-    //console.log("top " + posy);
+function setProvincesGenData() {
+
+    d3.csv("data/ProvincesGenData.csv", function(d) {
+        ProvincesGenData.push(d)
+        return {
+            id: d.id,
+            name: d.name,
+            size: d.size,
+            population: d.population,
+            density: d.density,
+            rural: d.rural,
+            urban: d.urban,
+        }
+    }, function test(params) {
+
+        for (let index = 0; index < ProvincesGenData.length; index++) {
+            ProvincesDemog.push(ProvincesGenData[index]);
+        }
+    })
 }
 
 
@@ -221,14 +179,8 @@ function provinceHover(x) {
         posx = e.clientX;
         posy = e.clientY;
     }
+    //let pos = document.getElementById("region-selected");
 
-
-    let pos = document.getElementById("region-selected");
-
-    pos.innerText = "<pre>" + "   Region information : " + provinceID + "<br></br>" + "Size : " + "<br></br>" +
-        "Population : " + "<br></br>" +
-        "Density : " + "<br></br>" +
-        "Rural/Urban : ";
     pos.style.left = 180 + "px";
     pos.style.top = 240 + "px";
     pos.style.display = 'block';

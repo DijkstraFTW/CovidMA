@@ -32,9 +32,16 @@ function setCumulData(status, response) {
     document.getElementById("total-deaths-data").innerHTML = deaths.toLocaleString();
     document.getElementById("total-tests-data").innerHTML = tests.toLocaleString();
     document.getElementById("r0-data").innerHTML = r0;
-    document.getElementById("new-tests-data").innerHTML = " +" + n_tests.toLocaleString() + " Tests";
-    document.getElementById("new-cases-data").innerHTML = " +" + n_cases.toLocaleString() + " Cases";
-    document.getElementById("new-deaths-data").innerHTML = " +" + n_deaths.toLocaleString() + " Deaths";
+
+    try {
+        document.getElementById("new-tests-data").innerHTML = " +" + n_tests.toLocaleString() + " Tests";
+        document.getElementById("new-cases-data").innerHTML = " +" + n_cases.toLocaleString() + " Cases";
+        document.getElementById("new-deaths-data").innerHTML = " +" + n_deaths.toLocaleString() + " Deaths";
+    } catch (error) {
+        document.getElementById("new-tests-data").innerHTML = "+ N/A Tests";
+        document.getElementById("new-cases-data").innerHTML = "+ N/A Cases";
+        document.getElementById("new-deaths-data").innerHTML = "+ N/A Deaths";
+    }
 }
 
 function setNewData(status, response) {
