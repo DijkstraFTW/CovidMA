@@ -3,8 +3,8 @@
 <head>
     <title>Covid Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <link rel="stylesheet" type="text/css" href="/css/styles2.css">
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/styles2.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <meta charset="UTF-8">
 
 
@@ -75,7 +75,7 @@
 
     <div class="total-cases-card"></div>
 
-    <script src="//js/cumulData.js">
+    <script src="js/cumulData.js">
         window.onload = function() {
             getJSON("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json", setCumulData);
         }
@@ -110,7 +110,7 @@
         <div class="loader"></div>
     </div>
 
-    <script type="text/javascript" src="//js/DataPlot.js">
+    <script type="text/javascript" src="js/DataPlot.js">
         setCasesPlot();
     </script>
 
@@ -129,7 +129,7 @@
 
         <canvas class="rankings-chart" id="rankings-chart" width="500" height="700"></canvas>
 
-        <script src="//js/RegionRankings.js">
+        <script src="js/RegionRankings.js">
             window.onload = function() {
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setRankings);
             }
@@ -437,7 +437,7 @@
             </div>
             <p style="font-family :-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif; font-size : 22px; left: 370px; bottom: 20px; position: absolute;"><span id="dateLabel"></span></p>
         </div>
-        <script src="//js/map.js"></script>
+        <script src="js/map.js"></script>
         <script>
             window.onload = function() {
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setMap);
@@ -456,7 +456,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
-        <script src="//js/VaxPlot.js"></script>
+        <script src="js/VaxPlot.js"></script>
     </div>
 
     <div class="pct-vaccination">
@@ -474,7 +474,7 @@
         </div>
 
         <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-        <script src="//js/VaxPctChart.js">
+        <script src="js/VaxPctChart.js">
             window.onload = function() {
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
             }
