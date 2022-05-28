@@ -61,7 +61,7 @@ function setCasesPlot() {
                 let doc = {};
                 for (let j = 0; j < fields.length; j++) {
                     doc[fields[j]] = current[j];
-                    if (i == 191 && j > 3) {
+                    if (i == 192 && j > 3) {
                         resultDates[j] = fields[j]
                         resultData[j] = current[j]
                     }
@@ -95,6 +95,8 @@ function setCasesPlot() {
                 plot = casesData;
                 dates = casesDates
             }
+
+            console.log(resultData);
 
             x.style.display = "none"
 
@@ -186,7 +188,7 @@ function setDeathsPlot() {
                 let doc = {};
                 for (let j = 0; j < fields.length; j++) {
                     doc[fields[j]] = current[j];
-                    if (i == 191 && j > 3) {
+                    if (i == 192 && j > 3) {
                         resultDeathsDates[j] = fields[j]
                         resultDeaths[j] = current[j]
                     }
