@@ -96,8 +96,6 @@ function setCasesPlot() {
                 dates = casesDates
             }
 
-            console.log(resultData);
-
             x.style.display = "none"
 
             var ctx = document.getElementById('plot-data').getContext('2d')
