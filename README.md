@@ -34,7 +34,7 @@ The data used in this website was used for showcasing purposes only, and shouldn
 |--|--|
 | Region cases ranking | Ranking of all regions by the number of COVID-19 cases. |
 | Map daily cases | Daily COVID-19 cases by region and province. |
-| Vaccination daily| Daily evolution of the COVID-19 vaccination program. ( Stopped at 13/02/2022 for a lack of centralized data )|
+| Vaccination daily| Daily evolution of the COVID-19 vaccination program. |
 | Vaccination progress | Cumulative percentage of each vaccination category. |
 
 
