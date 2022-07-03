@@ -41,22 +41,16 @@ var getJSON = function(url, callback) {
     xhr.send();
 };
 
-
-function setLastVaxData(status, response) {
-    vax3 = response["dose_3_total"]
-
-}
-
-
 function setVaxPct(status, response) {
 
     obj = 30000000;
 
-    vax1 = response['vaccine'];
-    vax2 = response['fullyVaccined'];
-    remainder = (obj - vax1);
+    var data = response[140]["data"];
 
-    //console.log(vax1 - vax3)
+    vax1 = data[data.length - 1]['people_vaccinated'];
+    vax2 = data[data.length - 1]['people_fully_vaccinated'];
+    vax3 = data[data.length - 1]["total_boosters"]
+    remainder = (obj - vax1);
 
     dataPopulation.push(vax3)
     dataPopulation.push(vax2)
@@ -184,5 +178,5 @@ function drawRect(theData, dataV, w, h, pctY, colorNB) {
 
 
 
-getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/resume.json", setLastVaxData);
-getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/vaccination.json", setVaxPct);
+//getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/resume.json", setLastVaxData);
+getJSON("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.json", setVaxPct);
