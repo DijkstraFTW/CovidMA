@@ -33,6 +33,7 @@ function setCumulData(status, response) {
 
     document.getElementById("marquee").innerHTML += " +" + n_cases.toLocaleString() + " New Cases | ";
     document.getElementById("marquee").innerHTML += " +" + n_deaths.toLocaleString() + " New Deaths | ";
+
     if (n_tests != null) {
         document.getElementById("marquee").innerHTML += " +" + n_tests.toLocaleString() + " New Tests | ";
     } else {
@@ -54,6 +55,10 @@ function setNewData(status, response, n_recoveries, total_recoveries) {
         total_recoveries = response["features"][(response["features"].length - 2)]["attributes"]["Retablis"]
     }
 
+    if (tests == null) {
+        tests = "N/A"
+    }
+
 
     document.getElementById("marquee").innerHTML += " +" + n_recoveries.toLocaleString() + " New Recoveries | ";
     document.getElementById("marquee").innerHTML += " Positivity Rate : " + pos * 100 + "% | ";
@@ -63,7 +68,6 @@ function setNewData(status, response, n_recoveries, total_recoveries) {
     document.getElementById("marquee").innerHTML += deaths.toLocaleString() + " Total Deaths | ";
     document.getElementById("marquee").innerHTML += tests.toLocaleString() + " Total Tests | ";
     document.getElementById("marquee").innerHTML += total_recoveries.toLocaleString() + " Total Recoveries";
-    console.log(document.getElementById("marquee").innerHTML);
 
 
 }

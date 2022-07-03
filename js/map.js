@@ -51,10 +51,10 @@ function regionData(x) {
 
     document.getElementById("nbCases").style.backgroundColor = x.getAttribute("fill") + "";
 
-    document.getElementById("region-selected").innerText = "Size : " + (ProvincesGenData[id - 1]["size"]).toLocaleString() + " km²\n" +
-        "Population : " + ProvincesGenData[id - 1]["population"] + " hab.\n" +
-        "Density : " + ProvincesGenData[id - 1]["density"] + "  hab/km²\n" +
-        "Rural/Urban : \n" + ProvincesGenData[id - 1]["rural"] + " hab / " + ProvincesGenData[id - 1]["urban"] + " hab";
+    document.getElementById("region-selected").innerText = "Size : " + Number(ProvincesGenData[id - 1]["size"]).toLocaleString() + " km²\n" +
+        "Population : " + Number(ProvincesGenData[id - 1]["population"]).toLocaleString() + " hab.\n" +
+        "Density : " + Number(ProvincesGenData[id - 1]["density"]).toLocaleString() + "  hab/km²\n" +
+        "Rural/Urban : \n" + Number(ProvincesGenData[id - 1]["rural"]).toLocaleString() + " hab / " + Number(ProvincesGenData[id - 1]["urban"]).toLocaleString() + " hab";
 
 
     document.getElementById("province").innerText = info.province;
@@ -96,34 +96,13 @@ function setMap(status, response) {
 }
 
 function setDateRange() {
-    let container = document.getElementById("dateRange");
     let dateLabel = document.getElementById("dateLabel");
-    let btn = document.createElement("button");
-    let range = document.createElement("input");
 
-    var today = new Date();
+    const today = date[date.length - 1].split('-');
     var Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    dateLabel.innerText = Months[today.getMonth()] + ' ' + date[date.length - 1][8] + date[date.length - 1][9] + ', ' + today.getFullYear();
+    dateLabel.innerText = Months[Number(today[1]) - 1] + ' ' + Number(today[2]) + ', ' + today[0];
 
-    range.setAttribute("type", "range");
-    range.setAttribute("min", 0);
-    range.setAttribute("max", dateIndex);
-    range.setAttribute("value", dateIndex);
-    range.id = "range";
-    range.oninput = resetMap;
-
-    btn.onclick = function() { rePlayTime(this) };
-    btn.innerHTML = '<img src="https://img.icons8.com/fluency-systems-filled/20/000000/play.png"/>';
-    btn.id = "playBtn";
-}
-
-function resetMap() {
-    let id = document.getElementById("range").value;
-    document.getElementById("dateLabel").innerText = formatDate(date[id]);
-    dateIndex = id;
-    data.map(province => setProvinceColor(province, dateIndex));
-    updateData();
 }
 
 function showBuble(x) {
@@ -166,31 +145,6 @@ function setProvincesGenData() {
         }
     })
 }
-
-
-function provinceHover(x) {
-    let posx = 0;
-    let posy = 0;
-    let id = x.id.replace("pr-", "");
-    let info = data[id - 1];
-
-    if (!e) var e = window.event;
-    if (e.clientX || e.clientY) {
-        posx = e.clientX;
-        posy = e.clientY;
-    }
-    //let pos = document.getElementById("region-selected");
-
-    pos.style.left = 180 + "px";
-    pos.style.top = 240 + "px";
-    pos.style.display = 'block';
-    pos.style.position = 'relative';
-
-    console.log("left " + posx);
-    console.log("top " + posy);
-
-}
-
 
 function hideElement(id) {
     document.getElementById(id).style.display = "none";
