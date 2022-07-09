@@ -73,18 +73,28 @@
 
 #province,
 #region,
-#nbCases {
+#nbCases,
+#rt-region {
     padding: 0;
     margin: 2px
 }
 
-#nbCases {
+#nbCases-card {
     background-color: #f2df91;
     padding: 3px 10px;
     border-radius: 5px;
     font-size: larger;
-    width: intrinsic;
-    width: 30px;
+    width: fit-content;
+    text-align: center;
+    margin: 0%;
+}
+
+#rt-region {
+    background-color: #f2df91;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: larger;
+    width: fit-content;
     text-align: center;
 }
 
@@ -94,6 +104,18 @@
 
 .nbCases {
     display: block;
+    position: relative;
+    top: 5px;
+}
+
+.nbCases-card {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+}
+
+.rt-region {
+    display: inline-block;
     position: relative;
     top: 5px;
 }
@@ -127,7 +149,7 @@
 
 .region-selected {
     position: relative;
-    top: 5px;
+    top: 1px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;

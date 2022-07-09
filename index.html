@@ -146,7 +146,8 @@
             <div id="evolution" style="display: none;">
                 <p id="province"></p>
                 <p id="region"></p>
-                <p id="nbCases" class="nbCases"></p>
+                <p id="nbCases-card" class="nbCases-card"></p>
+                <p id="rt-region" class="rt-region"></p>
                 <p id="region-selected" class="region-selected"></p>
             </div>
             <div id="scale">
@@ -436,11 +437,12 @@
         
                     </svg>
             </div>
-            <p style="font-family :Montserrat; font-style:italic; font-size : 22px; left: 370px; bottom: 20px; position: absolute;"><span id="dateLabel"></span></p>
+            <p style="font-family : Montserrat; font-style:italic; font-size : 22px; left: 370px; bottom: 20px; position: absolute;"><span id="dateLabel"></span></p>
         </div>
         <script src="js/map.js"></script>
         <script>
             window.onload = function() {
+                getJSON('data/rt.json', setRegionRt);
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setMap);
             }
         </script>
@@ -554,10 +556,8 @@
 
     <div class="footer-end">
         <span style="position:relative;top:12px; left:40px">© 2022 DijkstraFTW</span>
-
         <a alt="githublogo" src="images/25231.png" href="https://twitter.com/dijkstra_ftw"><img style="position: absolute; left:92%;top:8px" src="https://img.icons8.com/material/48/FFFFFF/twitter--v2.png" /></a>
         <a alt="githublogo" src="images/25231.png" href="https://github.com/DijkstraFTW/CovidMA"><img style="position: absolute; left:96%;top:8px" src="https://img.icons8.com/material-rounded/48/FFFFFF/github.png" /></a>
-
     </div>
 
 </body>

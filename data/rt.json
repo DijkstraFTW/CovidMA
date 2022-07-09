@@ -1,0 +1,111 @@
+{
+    "data": [{
+            "name": "Tanger - Tétouan - Al Hoceima",
+            "abr": "TTA",
+            "ml": 0.86,
+            "low_90": 0.6,
+            "high_90": 1.17,
+            "low_50": 0.78,
+            "high_50": 1.02
+        },
+        {
+            "name": "Rabat - Salé - Kénitra",
+            "abr": "RSK",
+            "ml": 0.81,
+            "low_90": 0.49,
+            "high_90": 1.13,
+            "low_50": 0.71,
+            "high_50": 0.98
+        },
+        {
+            "name": "Casalanca - Settat",
+            "abr": "CS",
+            "ml": 1.02,
+            "low_90": 0.8,
+            "high_90": 1.28,
+            "low_50": 0.95,
+            "high_50": 1.15
+        },
+        {
+            "name": "Marrakech - Safi",
+            "abr": "MS",
+            "ml": 0.84,
+            "low_90": 0.47,
+            "high_90": 1.23,
+            "low_50": 0.68,
+            "high_50": 0.99
+        },
+        {
+            "name": "Fès - Meknès",
+            "abr": "FM",
+            "ml": 0.76,
+            "low_90": 0.32,
+            "high_90": 1.2,
+            "low_50": 0.63,
+            "high_50": 1.0
+        },
+        {
+            "name": "Oriental",
+            "abr": "O",
+            "ml": 1.01,
+            "low_90": 0.69,
+            "high_90": 1.36,
+            "low_50": 0.91,
+            "high_50": 1.19
+        },
+        {
+            "name": "Béni Mellal - Khénifra",
+            "abr": "BK",
+            "ml": 0.82,
+            "low_90": 0.35,
+            "high_90": 1.31,
+            "low_50": 0.67,
+            "high_50": 1.07
+        },
+        {
+            "name": "Dakhla Oued Eddahab",
+            "abr": "DO",
+            "ml": 1.01,
+            "low_90": 0.5,
+            "high_90": 1.53,
+            "low_50": 0.85,
+            "high_50": 1.28
+        },
+        {
+            "name": "Darâa - Tafilalet",
+            "abr": "DT",
+            "ml": 0.85,
+            "low_90": 0.39,
+            "high_90": 1.33,
+            "low_50": 0.7,
+            "high_50": 1.09
+        },
+        {
+            "name": "Souss - Massa",
+            "abr": "SM",
+            "ml": 0.82,
+            "low_90": 0.47,
+            "high_90": 1.19,
+            "low_50": 0.7,
+            "high_50": 1.0
+        },
+        {
+            "name": "Laâyoune-Sakia El Hamra",
+            "abr": "LS",
+            "ml": 0.84,
+            "low_90": 0.36,
+            "high_90": 1.33,
+            "low_50": 0.67,
+            "high_50": 1.07
+        },
+        {
+            "name": "Guelmim - Oued Noun",
+            "abr": "GO",
+            "ml": 0.74,
+            "low_90": 0.21,
+            "high_90": 1.29,
+            "low_50": 0.56,
+            "high_50": 1.01
+        }
+    ]
+}

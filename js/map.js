@@ -1,14 +1,13 @@
 var data = null;
 var date = null;
 var dateIndex = null;
-var zoom = 100;
-var interval = null;
-const slider = document.getElementById("zoomRange");
-const zvgZoom = document.getElementById("svgZoom");
-const zoomValue = document.getElementById("zoomValue");
+var dataRT_regions = null;
 
 var ProvincesGenData = [];
 var ProvincesDemog = [];
+
+var regions_list = ['Tanger Tétouan Al Hoceima', 'Rabat Salé Kénitra', 'Casablanca Settat', 'Marrakech Safi', 'Fès-Meknès', "L'oriental", 'Beni Mellal Khenifra', 'Drâa-Tafilet', ' Souss - Massa ', 'Laâyoune - Sakia El Hamra', 'Guelmim - Oued Noun'];
+var ml = [];
 
 
 var getJSON = function(url, callback) {
@@ -49,7 +48,10 @@ function regionData(x) {
     let id = x.id.replace("pr-", "");
     let info = data[id - 1];
 
-    document.getElementById("nbCases").style.backgroundColor = x.getAttribute("fill") + "";
+    document.getElementById("nbCases-card").style.backgroundColor = x.getAttribute("fill") + "";
+    document.getElementById("rt-region").style.backgroundColor = x.getAttribute("fill") + "";
+
+    document.getElementById("rt-region").innerText = "Region's RT : " + dataRT_regions[Number(regions_list.indexOf(info.region) + 1)]["ml"];
 
     document.getElementById("region-selected").innerText = "Size : " + Number(ProvincesGenData[id - 1]["size"]).toLocaleString() + " km²\n" +
         "Population : " + Number(ProvincesGenData[id - 1]["population"]).toLocaleString() + " hab.\n" +
@@ -59,7 +61,7 @@ function regionData(x) {
 
     document.getElementById("province").innerText = info.province;
     document.getElementById("region").innerText = info.region;
-    document.getElementById("nbCases").innerText = info.cases[dateIndex];
+    document.getElementById("nbCases-card").innerText = "+" + info.cases[dateIndex];
     document.getElementById("evolution").setAttribute("province", id);
     document.getElementById("evolution").style.display = 'block';
 }
@@ -144,6 +146,10 @@ function setProvincesGenData() {
             ProvincesDemog.push(ProvincesGenData[index]);
         }
     })
+}
+
+function setRegionRt(status, response) {
+    dataRT_regions = response['data'];
 }
 
 function hideElement(id) {

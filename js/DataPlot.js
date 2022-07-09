@@ -515,9 +515,6 @@ function setRecoveriesPlot(status, response) {
                     grid: {
                         display: true
                     }
-                },
-                ticks: {
-                    fontFamily: "Montserrat",
                 }
             },
         }
