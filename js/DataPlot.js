@@ -489,6 +489,7 @@ function setRecoveriesPlot(status, response) {
             }]
         },
         options: {
+            spanGaps: true,
             interaction: {
                 intersect: false
             },
@@ -514,6 +515,9 @@ function setRecoveriesPlot(status, response) {
                     grid: {
                         display: true
                     }
+                },
+                ticks: {
+                    fontFamily: "Montserrat",
                 }
             },
         }

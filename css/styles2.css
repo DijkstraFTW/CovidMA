@@ -1,34 +1,41 @@
+html,
+body {
+    background-color: #F8FCFC;
+    font-family: -apple-system, Montserrat, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+    margin: 0;
+    padding: 0
+}
+
+.covid-img-card {
+    border-radius: 16px;
+}
+
 .covid-img {
     position: absolute;
+    top: 20px;
+    left: 2%;
+    width: 1500px;
+    height: 740px;
+    margin: 15px;
+    border-radius: 16px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .covid-title {
     /* COVID-19 in Morocco */
     position: absolute;
-    width: 849px;
+    width: 880px;
     height: 99px;
-    left: 43px;
-    top: 206px;
+    left: 80px;
+    top: 180px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 80px;
     line-height: 98px;
     text-align: center;
-    color: #000000;
+    color: #ffffff;
     mix-blend-mode: normal;
-}
-
-.covid-title-card {
-    position: absolute;
-    width: 880px;
-    height: 116px;
-    left: 38px;
-    top: 198px;
-    background: #C4C4C4;
-    mix-blend-mode: soft-light;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .morocco-flag {
@@ -36,7 +43,7 @@
     width: 309px;
     height: 167px;
     left: 1200px;
-    top: 173px;
+    top: 150px;
     mix-blend-mode: hard-light;
 }
 
@@ -44,7 +51,7 @@
     position: absolute;
     width: 390px;
     height: 84px;
-    left: 43px;
+    left: 70px;
     top: 590px;
     background: #C4C4C4;
     mix-blend-mode: overlay;
@@ -57,22 +64,69 @@
     position: absolute;
     width: 396px;
     height: 59px;
-    left: 56px;
+    left: 92px;
     top: 570px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 40px;
     line-height: 49px;
-    color: #000000;
-    mix-blend-mode: normal;
+    color: #ffffff;
 }
 
 .datetime2 {
     /* date */
     position: absolute;
-    left: 175px;
+    left: 180px;
     bottom: -30px;
+}
+
+.cumul-cases-text {
+    position: absolute;
+    left: 240px;
+    top: 440px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
+    color: #ffffff;
+}
+
+.cumul-deaths-text {
+    position: absolute;
+    left: 600px;
+    top: 440px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
+    color: #ffffff;
+}
+
+.cumul-tests-text {
+    position: absolute;
+    left: 900px;
+    top: 440px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
+    color: #ffffff;
+}
+
+.cumul-recoveries-text {
+    position: absolute;
+    left: 1200px;
+    top: 440px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
+    color: #ffffff;
 }
 
 .modalconent {
@@ -88,25 +142,18 @@
 }
 
 .marquee {
-    position: relative;
+    position: absolute;
     width: 1006px;
     height: 84px;
-    top: 15px;
+    left: 523px;
+    top: 608px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 40px;
     line-height: 49px;
-    color: #000000;
-    mix-blend-mode: darken;
-}
-
-.plot-buttons {
-    position: absolute;
-    width: 1500px;
-    height: 700px;
-    left: 35px;
-    top: 850px;
+    color: #ffffff;
+    mix-blend-mode: normal;
 }
 
 .loading {
@@ -152,28 +199,36 @@
     }
 }
 
+.plot-buttons {
+    position: absolute;
+    width: 1500px;
+    height: 700px;
+    left: 2%;
+    top: 850px;
+    margin: 15px;
+}
+
 a.button1 {
     display: inline-block;
     padding: 0.35em 1.2em;
-    border: 0.1em solid #FFFFFF;
+    border: 0.1em solid #ffffff;
     margin: 0 0.3em 0.3em 0;
-    border-radius: 0.12em;
-    box-sizing: border-box;
-    text-decoration: none;
+    border-radius: 16px;
     font-family: Montserrat;
-    font-weight: 300;
-    color: #000000;
+    font-weight: bold;
+    color: #ffffff;
     text-align: center;
     transition: all 0.2s;
+    background-color: #0099FF;
 }
 
 a.button1:hover {
-    color: #000000;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #4edce6;
 }
 
 a.button1:active {
-    background-color: #0004ff;
+    background-color: #15b304;
 }
 
 @media all and (max-width:30em) {
@@ -186,6 +241,7 @@ a.button1:active {
 .choiceSmooth {
     position: relative;
     left: 200px;
+    border-radius: 16px;
 }
 
 .choiceSmoothLabel {
@@ -195,33 +251,35 @@ a.button1:active {
     padding: 0.35em 1.2em;
     border: 0.1em solid #FFFFFF;
     margin: 0 0.3em 0.3em 0;
-    border-radius: 0.12em;
+    border-radius: 16px;
     box-sizing: border-box;
     text-decoration: none;
     font-family: Montserrat;
-    font-weight: 300;
-    color: #000000;
+    font-weight: bold;
+    color: #ffffff;
     text-align: center;
     transition: all 0.2s;
+    background-color: #0099FF;
 }
 
 .plot-card {
     position: absolute;
     width: 1500px;
     height: 700px;
-    left: 35px;
+    left: 2%;
+    margin: 15px;
     top: 895px;
-    background: #E5E5E5;
+    background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
 }
 
-.plots {
+.plot-data {
     /* Cases Deaths Recoveries Tests plot */
     position: relative;
-    width: 1500px;
-    height: 700px;
-    left: 35px;
-    margin-top: 895px;
+    width: 1300px;
+    height: 400px;
+    margin: 10px;
 }
 
 .top-provinces {
@@ -229,10 +287,13 @@ a.button1:active {
     position: absolute;
     width: 550px;
     height: 873px;
-    left: 85px;
+    left: 2%;
+    border-radius: 16px;
     top: 1705px;
-    background: #E5E5E5;
+    margin: 15px;
+    background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
 }
 
 .rankings-title {
@@ -241,7 +302,7 @@ a.button1:active {
     left: 130px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 24px;
     line-height: 29px;
     color: #000000;
@@ -258,29 +319,33 @@ a.button1:active {
     width: 850px;
     height: 873px;
     left: 664px;
+    border-radius: 16px;
+    margin: 15px;
     top: 1705px;
-    background: #E5E5E5;
+    background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .plot-vaccination {
     /* plot vaccination */
     position: absolute;
-    width: 970px;
+    width: 1040px;
     height: 634px;
-    left: 85px;
+    left: 2%;
+    border-radius: 16px;
     top: 2748px;
-    background: #E5E5E5;
+    background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .container-vax {
     position: relative;
-    top: 30px;
+    top: 20px;
 }
 
 .plot-vax {
     position: absolute;
+    margin: 15px;
 }
 
 .pct-vaccination {
@@ -289,8 +354,10 @@ a.button1:active {
     width: 356px;
     height: 390px;
     left: 1137px;
+    border-radius: 16px;
+    margin: 15px;
     top: 2748px;
-    background: #E5E5E5;
+    background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -306,7 +373,7 @@ a.button1:active {
     top: -200px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 28px;
     line-height: 29px;
     color: #000000;
@@ -318,7 +385,7 @@ a.button1:active {
     left: 50px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 24px;
     line-height: 29px;
     color: #000000;
@@ -326,7 +393,7 @@ a.button1:active {
 
 .waffle-pct-vaccination {
     position: relative;
-    top: 30px;
+    top: 28px;
     left: 24px;
 }
 
@@ -336,21 +403,23 @@ a.button1:active {
     width: 359px;
     height: 236px;
     left: 1135px;
+    border-radius: 16px;
+    margin: 15px;
     top: 3150px;
-    background: #E5E5E5;
+    background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .vaccines-title {
     /* Vaccines in use : */
     position: absolute;
-    width: 195px;
+    width: 210px;
     height: 29px;
     left: 1221px;
-    top: 3154px;
+    top: 3174px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 24px;
     line-height: 29px;
     color: #000000;
@@ -360,8 +429,8 @@ a.button1:active {
     /* Vaccines countries of origin */
     position: absolute;
     width: auto;
-    left: 1154px;
-    top: 3186px;
+    left: 1164px;
+    top: 3206px;
 }
 
 .vaccines-names {
@@ -369,8 +438,8 @@ a.button1:active {
     position: absolute;
     width: 195px;
     height: 29px;
-    left: 1268px;
-    top: 3180px;
+    left: 1288px;
+    top: 3200px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
@@ -378,37 +447,34 @@ a.button1:active {
     line-height: 29px;
 }
 
-.footer4 {
+.footer {
     position: absolute;
     width: 970px;
-    height: 1200px;
-    left: 85px;
-    top: 3448px;
+    height: 600px;
+    left: 2%;
+    top: 3300px;
     bottom: 200px;
-    ;
+    margin: 15px;
 }
 
 .footer4018-footer4018 {
-    width: 1440px;
-    height: 1200px;
-    display: flex;
-    overflow: hidden;
+    height: 600px;
     position: relative;
-    box-sizing: border-box;
     align-items: flex-start;
     border-color: transparent;
 }
 
-.footer4018-image {
-    top: 200px;
-    left: 96px;
-    width: 1182px;
+.footer-sources {
+    top: 250px;
+    left: 30px;
+    width: 1400px;
     height: 305px;
     position: absolute;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     object-fit: cover;
     border-color: transparent;
-    background-color: #E5E5E5;
+    background-color: #FFFFFF;
+    border-radius: 16px;
 }
 
 .footer4018-image1 {
@@ -420,7 +486,7 @@ a.button1:active {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     object-fit: cover;
     border-color: transparent;
-    background-color: #E5E5E5;
+    background-color: #FFFFFF;
 }
 
 .footer4018-text {
@@ -434,7 +500,7 @@ a.button1:active {
     font-style: normal;
     text-align: left;
     font-family: Montserrat;
-    font-weight: 400;
+    font-weight: bld;
     line-height: normal;
     font-stretch: normal;
     text-decoration: none;
@@ -469,12 +535,14 @@ a.button1:active {
 }
 
 .footer4018-text3 {
+    position: relative;
     color: rgba(0, 0, 0, 1);
+    top: 60px;
     height: auto;
     align-self: auto;
     font-style: normal;
     text-align: left;
-    font-weight: 400;
+    font-weight: bold;
     font-stretch: normal;
     text-decoration: none;
 }
@@ -500,19 +568,19 @@ a.button1:active {
 }
 
 .footer4018-image5 {
-    top: 95px;
-    left: 102px;
+    top: 65px;
+    left: 320px;
     width: 185px;
     height: 182px;
     position: absolute;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     object-fit: cover;
     border-color: transparent;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .footer4018-image6 {
-    top: 98px;
-    left: 902px;
+    top: 65px;
+    left: 1102px;
     width: 180px;
     height: 182px;
     position: absolute;
@@ -522,25 +590,28 @@ a.button1:active {
 }
 
 .footer4018-image7 {
-    top: 130px;
-    left: 392px;
+    top: 100px;
+    left: 600px;
     width: 400px;
     height: 102px;
     position: absolute;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     object-fit: cover;
     border-color: rgba(0, 0, 0, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .disclaimer-box {
-    top: 730px;
+    top: 630px;
     width: 1410px;
     height: 210px;
-    position: relative;
+    left: 2%;
+    position: absolute;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     object-fit: cover;
     border-color: transparent;
-    background-color: #E5E5E5;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    margin: 15px;
 }
 
 .disclaimer-title {
@@ -549,7 +620,7 @@ a.button1:active {
     left: 20px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 24px;
     line-height: 29px;
     color: #000000;
@@ -557,9 +628,10 @@ a.button1:active {
 
 .disclaimer-text {
     position: relative;
-    margin-right: 20px;
+    width: 1370px;
+    margin: 15px;
     top: 10px;
-    left: 20px;
+    left: 4px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
@@ -576,4 +648,20 @@ a.button1:active {
     position: absolute;
     object-fit: cover;
     border-color: transparent;
+}
+
+.footer-end {
+    position: absolute;
+    top: 4300px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #42413D;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 29px;
+    color: #ffffff;
 }

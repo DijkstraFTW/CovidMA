@@ -104,7 +104,7 @@ function setVaxPlot(status, response) {
                         display: false
                     },
                     ticks: {
-                        maxTicksLimit: 16,
+                        maxTicksLimit: 12,
                         beginAtZero: true,
                         callback: function(value, index, values) {
                             return datesVax[value];

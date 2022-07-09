@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Covid Page</title>
+    <title>COVID-19 in Morocco</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <link rel="stylesheet" href="css/styles2.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -9,8 +9,8 @@
 
 
 
-    <div class="covid-img">
-        <img src="images/covid.jfif" alt="covid">
+    <div class="covid-img-card">
+        <img class="covid-img" src="images/covid.jfif" alt="covid">
     </div>
 
     <div class="covid-title">COVID-19 in Morocco</div>
@@ -47,11 +47,32 @@
             document.getElementById("datetime1").innerHTML = dformat.toLocaleString();
         </script>
     </div>
+
     <div class="datetime-card"></div>
 
     <div id="mainmodal">
         <div class="modalconent">
-            <marquee id="marquee" class="marquee" behavior="scroll" direction="left"></marquee>
+        </div>
+    </div>
+
+    <marquee id="marquee" class="marquee" behavior="scroll" direction="left"></marquee>
+
+    <div class="cumul-data">
+        <div class="cumul-cases">
+            <img style="position:absolute;top: 435px; left:150px" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/coronavirus--v3.png" />
+            <span id="cumul-cases-text" class="cumul-cases-text"></span>
+        </div>
+        <div class="cumul-deaths">
+            <img style="position:absolute;top: 435px; left:500px" src="https://img.icons8.com/glyph-neue/64/FFFFFF/self-destruct-button.png" />
+            <span id="cumul-deaths-text" class="cumul-deaths-text"></span>
+        </div>
+        <div class="cumul-tests">
+            <img style="position:absolute;top: 440px; left:820px" src="https://img.icons8.com/pastel-glyph/58/FFFFFF/pcr-test--v6.png" />
+            <span id="cumul-tests-text" class="cumul-tests-text"></span>
+        </div>
+        <div class="cumul-recoveries">
+            <img style="position:absolute;top: 440px; left:1120px" src="https://img.icons8.com/ios-filled/50/FFFFFF/recovery.png" />
+            <span id="cumul-recoveries-text" class="cumul-recoveries-text"></span>
         </div>
     </div>
 
@@ -98,7 +119,7 @@
     <div class="plot-card">
         <div class="container-data">
             <div>
-                <canvas id="plot-data" width=1500 height=700> </canvas>
+                <canvas id="plot-data" class="plot-data" width=1500 height=700> </canvas>
             </div>
         </div>
     </div>
@@ -415,7 +436,7 @@
         
                     </svg>
             </div>
-            <p style="font-family :-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif; font-size : 22px; left: 370px; bottom: 20px; position: absolute;"><span id="dateLabel"></span></p>
+            <p style="font-family :Montserrat; font-style:italic; font-size : 22px; left: 370px; bottom: 20px; position: absolute;"><span id="dateLabel"></span></p>
         </div>
         <script src="js/map.js"></script>
         <script>
@@ -482,7 +503,7 @@
     </div>
 
 
-    <div class="footer4">
+    <div class="footer">
         <div>
             <div class="footer4018-footer4018">
 
@@ -502,13 +523,13 @@
 
                 </-->
 
-                <div class="footer4018-image">
+                <div class="footer-sources">
 
                     <span class="footer4018-text2">
                     <span class="footer4018-text3">Sources :</span>
                     </span>
 
-                    <img alt="6067429514022" src="images/60674295.jfif" class="footer4018-image5" />
+                    <img alt="6067429514022" src="images/60674295.jpg" class="footer4018-image5" />
                     <a href="https://coronavirus.jhu.edu/map.html" class="footer4018-image5"></a>
 
                     <img alt="1418713514033" src="images/14187135.png" class="footer4018-image6" />
@@ -527,12 +548,16 @@
                         include links providing direct access to other Internet resources, the author is not responsible for the accuracy or content of information contained in these sites.</p>
                 </div>
 
-                <img src="images/25231.png" alt="" srcset="" class="footer4018-image4">
-                <a alt="githublogo" src="images/25231.png" href="https://github.com/DijkstraFTW/CovidMA" class="footer4018-image4"></a>
-
-
             </div>
         </div>
+    </div>
+
+    <div class="footer-end">
+        <span style="position:relative;top:12px; left:40px">© 2022 DijkstraFTW</span>
+
+        <a alt="githublogo" src="images/25231.png" href="https://twitter.com/dijkstra_ftw"><img style="position: absolute; left:92%;top:8px" src="https://img.icons8.com/material/48/FFFFFF/twitter--v2.png" /></a>
+        <a alt="githublogo" src="images/25231.png" href="https://github.com/DijkstraFTW/CovidMA"><img style="position: absolute; left:96%;top:8px" src="https://img.icons8.com/material-rounded/48/FFFFFF/github.png" /></a>
+
     </div>
 
 </body>

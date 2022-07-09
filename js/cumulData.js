@@ -30,6 +30,10 @@ function setCumulData(status, response) {
     tests = data["total_tests"];
     r0 = data["reproduction_rate"];
     pos = data["positive_rate"];
+    n_vax_smooth = data["new_vaccinations_smoothed"];
+    people_vax_hundred = data["people_vaccinated_per_hundred"];
+
+
 
     document.getElementById("marquee").innerHTML += " +" + n_cases.toLocaleString() + " New Cases | ";
     document.getElementById("marquee").innerHTML += " +" + n_deaths.toLocaleString() + " New Deaths | ";
@@ -46,7 +50,6 @@ function setNewData(status, response, n_recoveries, total_recoveries) {
     n_recoveries = response["features"][(response["features"].length - 1)]["attributes"]["Rétablis_par_jour"]
     total_recoveries = response["features"][(response["features"].length - 1)]["attributes"]["Retablis"]
 
-
     if (n_recoveries == null) {
         n_recoveries = response["features"][(response["features"].length - 2)]["attributes"]["Rétablis_par_jour"]
     }
@@ -59,15 +62,16 @@ function setNewData(status, response, n_recoveries, total_recoveries) {
         tests = "N/A"
     }
 
-
     document.getElementById("marquee").innerHTML += " +" + n_recoveries.toLocaleString() + " New Recoveries | ";
     document.getElementById("marquee").innerHTML += " Positivity Rate : " + pos * 100 + "% | ";
-    document.getElementById("marquee").innerHTML += " Reproduction Rate : " + r0 + " || ";
+    document.getElementById("marquee").innerHTML += " Reproduction Rate : " + r0 + " | ";
+    document.getElementById("marquee").innerHTML += " New Vaccinations Smoothed : " + n_vax_smooth.toLocaleString() + " | ";
+    document.getElementById("marquee").innerHTML += " People Vaccinated Per Hundred : " + people_vax_hundred.toLocaleString();
 
-    document.getElementById("marquee").innerHTML += cases.toLocaleString() + " Total Cases | ";
-    document.getElementById("marquee").innerHTML += deaths.toLocaleString() + " Total Deaths | ";
-    document.getElementById("marquee").innerHTML += tests.toLocaleString() + " Total Tests | ";
-    document.getElementById("marquee").innerHTML += total_recoveries.toLocaleString() + " Total Recoveries";
+    document.getElementById("cumul-cases-text").innerHTML = cases.toLocaleString();
+    document.getElementById("cumul-deaths-text").innerHTML = deaths.toLocaleString();
+    document.getElementById("cumul-tests-text").innerHTML = tests.toLocaleString();
+    document.getElementById("cumul-recoveries-text").innerHTML = total_recoveries.toLocaleString();
 
 
 }
