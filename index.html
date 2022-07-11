@@ -464,14 +464,12 @@
 
             const handleIncrement = () => {
                 dateIncrement++;
-                console.log(dateIncrement);
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setMap)
                 hideElement("evolution");
             };
 
             const handleDecrement = () => {
                 dateIncrement--;
-                console.log(dateIncrement);
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setMap)
                 hideElement("evolution");
             };

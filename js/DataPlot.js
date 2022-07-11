@@ -104,9 +104,11 @@ function setCasesPlot() {
                 data: {
                     labels: dates,
                     datasets: [{
-                        borderColor: 'blue',
-                        borderWidth: 1,
-                        radius: 3,
+                        borderColor: '#1a1aff',
+                        backgroundColor: '#9999ff',
+                        borderWidth: 2,
+                        radius: 0,
+                        fill: true,
                         data: plot,
                     }],
                 },
@@ -122,7 +124,8 @@ function setCasesPlot() {
                     scales: {
                         x: {
                             grid: {
-                                display: false
+                                display: false,
+                                drawBorder: false
                             },
                             ticks: {
                                 maxTicksLimit: 9,
@@ -134,7 +137,8 @@ function setCasesPlot() {
                         },
                         y: {
                             grid: {
-                                display: true
+                                display: false,
+                                drawBorder: false
                             }
                         }
                     },
@@ -225,9 +229,11 @@ function setDeathsPlot() {
                 data: {
                     labels: dates,
                     datasets: [{
-                        borderColor: 'red',
-                        borderWidth: 1,
-                        radius: 3,
+                        borderColor: '#FF0000',
+                        backgroundColor: '#ff9999',
+                        borderWidth: 2,
+                        radius: 0,
+                        fill: true,
                         data: plot,
                     }]
                 },
@@ -243,7 +249,8 @@ function setDeathsPlot() {
                     scales: {
                         x: {
                             grid: {
-                                display: false
+                                display: false,
+                                drawBorder: false
                             },
                             ticks: {
                                 maxTicksLimit: 9,
@@ -255,7 +262,8 @@ function setDeathsPlot() {
                         },
                         y: {
                             grid: {
-                                display: true
+                                display: false,
+                                drawBorder: false
                             }
                         }
                     },
@@ -374,9 +382,11 @@ function setTestsPlot() {
                 data: {
                     labels: dates,
                     datasets: [{
-                        borderColor: 'green',
-                        borderWidth: 1,
-                        radius: 3,
+                        borderColor: '#009900',
+                        backgroundColor: '#99d699',
+                        borderWidth: 2,
+                        radius: 0,
+                        fill: true,
                         data: plot,
                     }]
                 },
@@ -392,7 +402,8 @@ function setTestsPlot() {
                     scales: {
                         x: {
                             grid: {
-                                display: false
+                                display: false,
+                                drawBorder: false
                             },
                             ticks: {
                                 maxTicksLimit: 9,
@@ -404,7 +415,8 @@ function setTestsPlot() {
                         },
                         y: {
                             grid: {
-                                display: true
+                                display: false,
+                                drawBorder: false
                             }
                         }
                     },
@@ -482,9 +494,11 @@ function setRecoveriesPlot(status, response) {
         data: {
             labels: dates,
             datasets: [{
-                borderColor: 'purple',
-                borderWidth: 1,
-                radius: 3,
+                borderColor: '#800080',
+                backgroundColor: '#cc99cc',
+                borderWidth: 2,
+                radius: 0,
+                fill: true,
                 data: plot,
             }]
         },
@@ -501,7 +515,8 @@ function setRecoveriesPlot(status, response) {
             scales: {
                 x: {
                     grid: {
-                        display: false
+                        display: false,
+                        drawBorder: false
                     },
                     ticks: {
                         maxTicksLimit: 9,
@@ -513,7 +528,8 @@ function setRecoveriesPlot(status, response) {
                 },
                 y: {
                     grid: {
-                        display: true
+                        display: false,
+                        drawBorder: false
                     }
                 }
             },
@@ -590,17 +606,17 @@ function setLethalityPlot() {
         data: {
             labels: lethalityDates,
             datasets: [{
-                    borderColor: 'red',
-                    borderWidth: 1,
-                    radius: 3,
+                    borderColor: '#FF0000',
+                    borderWidth: 3,
+                    radius: 0,
                     data: lethality,
                     label: "Cumulative",
                     fill: false
                 },
                 {
                     borderColor: 'grey',
-                    borderWidth: 1,
-                    radius: 3,
+                    borderWidth: 2,
+                    radius: 0,
                     data: lethalityDaily,
                     label: "Daily",
                     fill: true
@@ -608,6 +624,7 @@ function setLethalityPlot() {
             ]
         },
         options: {
+            spanGaps: true,
             interaction: {
                 intersect: false
             },
@@ -619,7 +636,8 @@ function setLethalityPlot() {
             scales: {
                 x: {
                     grid: {
-                        display: false
+                        display: false,
+                        drawBorder: false
                     },
                     ticks: {
                         maxTicksLimit: 9,
@@ -631,7 +649,8 @@ function setLethalityPlot() {
                 },
                 y: {
                     grid: {
-                        display: true
+                        display: false,
+                        drawBorder: false
                     },
                     ticks: {
                         callback: function(label, index, labels) {
@@ -726,8 +745,8 @@ function setRtPlot() {
                     labels: dates,
                     datasets: [{
                             borderColor: 'purple',
-                            borderWidth: 1,
-                            radius: 3,
+                            borderWidth: 2,
+                            radius: 1,
                             data: plot,
                             label: "R ",
                         },
@@ -779,7 +798,8 @@ function setRtPlot() {
                     scales: {
                         x: {
                             grid: {
-                                display: false
+                                display: false,
+                                drawBorder: false
                             },
                             ticks: {
                                 maxTicksLimit: 9,
@@ -791,7 +811,8 @@ function setRtPlot() {
                         },
                         y: {
                             grid: {
-                                display: true
+                                display: false,
+                                drawBorder: false
                             }
                         }
                     },
@@ -873,9 +894,11 @@ function setPosRatePlot() {
         data: {
             labels: dates,
             datasets: [{
-                borderColor: 'blue',
-                borderWidth: 1,
-                radius: 3,
+                borderColor: '#1a1aff',
+                backgroundColor: '#9999ff',
+                borderWidth: 2,
+                radius: 0,
+                fill: true,
                 data: plot,
             }],
         },
@@ -891,7 +914,8 @@ function setPosRatePlot() {
             scales: {
                 x: {
                     grid: {
-                        display: false
+                        display: false,
+                        drawBorder: false
                     },
                     ticks: {
                         maxTicksLimit: 9,
@@ -903,7 +927,8 @@ function setPosRatePlot() {
                 },
                 y: {
                     grid: {
-                        display: true
+                        display: false,
+                        drawBorder: false
                     },
                     ticks: {
                         callback: function(label, index, labels) {
@@ -940,10 +965,10 @@ function setRecoveryPlot() {
         }, 170);
     }
 
-    recovRData = []
-    recovRDates = []
-    recovRDaily = []
-    recovRDailyDates = []
+    let recovRData = [];
+    let recovRDates = [];
+    let recovRDaily = [];
+    let recovRDailyDates = [];
 
     let plot;
     let m = 0;
@@ -958,14 +983,23 @@ function setRecoveryPlot() {
     for (let index = 5; index < recovData.length; index++) {
 
         tempCases += parseInt(casesData[index - 1 + 5 + 9]) + parseInt(casesData[index + 5 + 9])
+
+        if (recovData[index - 1] == undefined) {
+            recovData[index - 1] = 0;
+        }
+
+        if (recovData[index] == undefined) {
+            recovData[index] = 0;
+        }
+
         tempRecoveries += parseInt(recovData[index - 1]) + parseInt(recovData[index])
 
-        if (tempCases == 0) {
+        if (tempCases == 0 || tempCases == undefined) {
             recovRData.push(0)
             continue
         }
 
-        recovRData.push((100 - (tempRecoveries / tempCases)).toFixed(2))
+        recovRData.push((100 - (tempRecoveries / tempCases)).toFixed(2));
         recovRDates.push(recovDates[index - 5])
     }
 
@@ -982,7 +1016,6 @@ function setRecoveryPlot() {
             continue
         }
 
-
         recovRDaily.push(10 * ((parseInt(recovData[idf]) / parseInt(casesData[idf + 5 + 9]))).toFixed(2))
     }
 
@@ -990,7 +1023,9 @@ function setRecoveryPlot() {
     document.getElementById("smooth").checked = false;
     document.getElementById("smooth").disabled = true;
 
-    x.style.display = "none"
+    x.style.display = "none";
+
+    //console.log(recovRData);
 
     var ctx = document.getElementById('plot-data').getContext('2d')
     var graph_data = new Chart(ctx, {
@@ -998,21 +1033,22 @@ function setRecoveryPlot() {
         data: {
             labels: recovRDates,
             datasets: [{
-                borderColor: 'green',
-                borderWidth: 1,
-                radius: 3,
+                borderColor: '#009900',
+                borderWidth: 2,
+                radius: 0,
                 data: recovRData,
                 label: "Cumulative"
             }, {
                 borderColor: 'grey',
-                borderWidth: 1,
-                radius: 3,
+                borderWidth: 2,
+                radius: 0,
                 data: recovRDaily,
                 label: "Daily divided by 10",
                 fill: true
             }]
         },
         options: {
+            spanGaps: true,
             interaction: {
                 intersect: false
             },
@@ -1024,7 +1060,8 @@ function setRecoveryPlot() {
             scales: {
                 x: {
                     grid: {
-                        display: false
+                        display: false,
+                        drawBorder: false
                     },
                     ticks: {
                         maxTicksLimit: 9,
@@ -1036,7 +1073,8 @@ function setRecoveryPlot() {
                 },
                 y: {
                     grid: {
-                        display: true
+                        display: false,
+                        drawBorder: false
                     },
                     ticks: {
                         callback: function(label, index, labels) {
