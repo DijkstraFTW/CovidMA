@@ -18,7 +18,7 @@
             "high_50": 0.98
         },
         {
-            "name": "Casalanca - Settat",
+            "name": "Casablanca - Settat",
             "abr": "CS",
             "ml": 1.02,
             "low_90": 0.8,
@@ -45,7 +45,7 @@
             "high_50": 1.0
         },
         {
-            "name": "Oriental",
+            "name": "L'Oriental",
             "abr": "O",
             "ml": 1.01,
             "low_90": 0.69,
@@ -63,7 +63,7 @@
             "high_50": 1.07
         },
         {
-            "name": "Dakhla Oued Eddahab",
+            "name": "Dakhla - Oued Eddahab",
             "abr": "DO",
             "ml": 1.01,
             "low_90": 0.5,
@@ -72,7 +72,7 @@
             "high_50": 1.28
         },
         {
-            "name": "Darâa - Tafilalet",
+            "name": "Drâa - Tafilalet",
             "abr": "DT",
             "ml": 0.85,
             "low_90": 0.39,
@@ -90,7 +90,7 @@
             "high_50": 1.0
         },
         {
-            "name": "Laâyoune-Sakia El Hamra",
+            "name": "Laâyoune - Sakia El Hamra",
             "abr": "LS",
             "ml": 0.84,
             "low_90": 0.36,

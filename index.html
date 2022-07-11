@@ -153,43 +153,43 @@
             <div id="scale">
                 <div class="color_range">
                     <div style="background-color: #f2df91 /*#4afbba #f5f5dc*/;"></div>
-                    <div>0</div>
+                    <div style="position : relative; left: 26px;">0</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #f9c467 /*#24fbac #15ea00*/;"></div>
-                    <div>1-10</div>
+                    <div style="position : relative; left: 20px;">1 - 10</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #ffa83e /*#05f29b #40bf00*/;"></div>
-                    <div>10-20</div>
+                    <div style="position : relative; left: 14px;">10 - 20</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #ff8b24 /*#04cc82 #ff7300*/;"></div>
-                    <div>20-50</div>
+                    <div style="position : relative; left: 12px;">20 - 50</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #fd6a0b /*#03a56a #ff3600*/;"></div>
-                    <div>50-100</div>
+                    <div style="position : relative; left: 12px;">50 - 100</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #f04f09 /*#037f51  red;*/"></div>
-                    <div>100-200</div>
+                    <div style="position : relative; left: 10px;">100 - 200</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #af1c43 /*#025839 #b50606*/;"></div>
-                    <div>200-500</div>
+                    <div style="position : relative; left: 10px;">200 - 500</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #8a1739 /*#013220 #750c0c*/;"></div>
-                    <div>500-1000</div>
+                    <div style="position : relative; left: 10px;">500 - 1000</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #701547 /*#000c07 #2b0303*/;"></div>
-                    <div>1000-2000</div>
+                    <div style="position : relative; left: 6px;">1000 - 2000</div>
                 </div>
                 <div class="color_range">
                     <div style="background-color: #21130d /*#000c07 #2b0303*/;"></div>
-                    <div>+2000</div>
+                    <div style="position : relative; left: 16px;">+2000</div>
                 </div>
             </div>
 
@@ -437,7 +437,19 @@
         
                     </svg>
             </div>
+            <a id="date-after">
+                <div class="arrow-before">
+                    <div class="arrow-top-before"></div>
+                    <div class="arrow-bottom-before"></div>
+                </div>
+            </a>
             <p style="font-family : Montserrat; font-style:italic; font-size : 22px; left: 370px; bottom: 20px; position: absolute;"><span id="dateLabel"></span></p>
+            <a id="date-before">
+                <div class="arrow-after">
+                    <div class="arrow-top-after"></div>
+                    <div class="arrow-bottom-after"></div>
+                </div>
+            </a>
         </div>
         <script src="js/map.js"></script>
         <script>
@@ -445,6 +457,27 @@
                 getJSON('data/rt.json', setRegionRt);
                 getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setMap);
             }
+
+            var dateIncrement = 165;
+            var dateAfter = document.getElementById("date-after");
+            var dateBefore = document.getElementById("date-before");
+
+            const handleIncrement = () => {
+                dateIncrement++;
+                console.log(dateIncrement);
+                getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setMap)
+                hideElement("evolution");
+            };
+
+            const handleDecrement = () => {
+                dateIncrement--;
+                console.log(dateIncrement);
+                getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/map.json", setMap)
+                hideElement("evolution");
+            };
+
+            dateAfter.addEventListener('click', handleIncrement);
+            dateBefore.addEventListener('click', handleDecrement);
         </script>
     </div>
 

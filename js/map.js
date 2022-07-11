@@ -2,11 +2,40 @@ var data = null;
 var date = null;
 var dateIndex = null;
 var dataRT_regions = null;
+var dateIncrement;
 
 var ProvincesGenData = [];
 var ProvincesDemog = [];
 
-var regions_list = ['Tanger Tétouan Al Hoceima', 'Rabat Salé Kénitra', 'Casablanca Settat', 'Marrakech Safi', 'Fès-Meknès', "L'oriental", 'Beni Mellal Khenifra', 'Drâa-Tafilet', ' Souss - Massa ', 'Laâyoune - Sakia El Hamra', 'Guelmim - Oued Noun'];
+var regions_list = [
+    'Casablanca - Settat',
+    'Rabat - Salé - Kénitra',
+    'Tanger - Tétouan - Al Hoceima',
+    'Souss - Massa',
+    'Guelmim - Oued Noun',
+    'Laâyoune - Sakia El Hamra',
+    'Dakhla - Oued Eddahab',
+    'Drâa - Tafilalet',
+    'Marrakech - Safi',
+    'Béni Mellal - Khénifra',
+    'Fès - Meknès',
+    "L'Oriental"
+];
+
+var provinces_indexes = [
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [10, 11, 12, 13, 14, 15, 16],
+    [17, 18, 19, 20, 21, 22, 23, 24],
+    [25, 26, 27, 28, 29, 30],
+    [31, 32, 33, 34],
+    [35, 36, 37, 38],
+    [39, 40],
+    [41, 42, 43, 44, 45],
+    [46, 47, 48, 49, 50, 51, 52, 53],
+    [54, 55, 56, 57, 58],
+    [59, 60, 61, 62, 63, 64, 65, 66],
+    [67, 68, 69, 70, 71, 72, 73, 74, 75],
+]
 var ml = [];
 
 
@@ -47,11 +76,26 @@ function regionData(x) {
 
     let id = x.id.replace("pr-", "");
     let info = data[id - 1];
+    let RTindex = 0;
+
+    for (let i = 0; i < provinces_indexes.length; i++) {
+        for (let j = 0; j < provinces_indexes[i].length; j++) {
+            if (provinces_indexes[i][j] == id) {
+                info.region = regions_list[i];
+            }
+        }
+    }
 
     document.getElementById("nbCases-card").style.backgroundColor = x.getAttribute("fill") + "";
-    document.getElementById("rt-region").style.backgroundColor = x.getAttribute("fill") + "";
 
-    document.getElementById("rt-region").innerText = "Region's RT : " + dataRT_regions[Number(regions_list.indexOf(info.region) + 1)]["ml"];
+    for (let index = 0; index < dataRT_regions.length; index++) {
+        if (info.region == dataRT_regions[index]["name"]) {
+            document.getElementById("rt-region").innerText = "Region's Rt : " + dataRT_regions[index]["ml"];
+            RTindex = index;
+        }
+    }
+
+    document.getElementById("rt-region").style.backgroundColor = getGradientRT(dataRT_regions[RTindex]["ml"]);
 
     document.getElementById("region-selected").innerText = "Size : " + Number(ProvincesGenData[id - 1]["size"]).toLocaleString() + " km²\n" +
         "Population : " + Number(ProvincesGenData[id - 1]["population"]).toLocaleString() + " hab.\n" +
@@ -89,9 +133,15 @@ function setProvinceColor(province, index) {
 }
 
 function setMap(status, response) {
+
     data = response['cases'];
     date = response['date'];
-    dateIndex = date.length - 1;
+
+    if (dateIncrement == 0) {
+        dateIncrement = 1;
+    }
+    dateIndex = date.length - dateIncrement;
+
     data.map(province => setProvinceColor(province, dateIndex));
     setDateRange();
     setProvincesGenData();
@@ -100,7 +150,7 @@ function setMap(status, response) {
 function setDateRange() {
     let dateLabel = document.getElementById("dateLabel");
 
-    const today = date[date.length - 1].split('-');
+    const today = date[date.length - dateIncrement].split('-');
     var Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     dateLabel.innerText = Months[Number(today[1]) - 1] + ' ' + Number(today[2]) + ', ' + today[0];
@@ -150,6 +200,30 @@ function setProvincesGenData() {
 
 function setRegionRt(status, response) {
     dataRT_regions = response['data'];
+}
+
+function getGradientRT(ml) {
+
+    let color = null;
+
+    switch (true) {
+        case ml < 0.5:
+            color = "#f2df91";
+            break;
+        case ml < 0.8:
+            color = "#ffa83e";
+            break;
+        case ml < 1:
+            color = "#fd6a0b";
+            break;
+        case ml < 1.5:
+            color = "#f04f09";
+            break;
+        case ml < 2:
+            color = "#701547";
+            break;
+    }
+    return color
 }
 
 function hideElement(id) {
