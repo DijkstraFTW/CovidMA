@@ -103,7 +103,7 @@ function regionData(x) {
         "Rural/Urban : \n" + Number(ProvincesGenData[id - 1]["rural"]).toLocaleString() + " hab / " + Number(ProvincesGenData[id - 1]["urban"]).toLocaleString() + " hab";
 
 
-    document.getElementById("province").innerText = info.province;
+    document.getElementById("province").innerText = info.province.replace(/([a-z])([A-Z])/g, '$1 $2');
     document.getElementById("region").innerText = info.region;
     document.getElementById("nbCases-card").innerText = "+" + info.cases[dateIndex];
     document.getElementById("evolution").setAttribute("province", id);
@@ -170,7 +170,15 @@ function showBuble(x) {
         posy = e.clientY;
     }
 
-    pos.innerHTML = info.province + "<span class='nbCases'>" + info.cases[dateIndex] + "</span>";
+    if (info.province == "Eljadida") {
+        info.province = "El Jadida";
+    }
+
+    if (info.province == 'Sidibennour') {
+        info.province = 'Sidi Bennour';
+    }
+
+    pos.innerHTML = info.province.replace(/([a-z])([A-Z])/g, '$1 $2') + "<span class='nbCases'>" + info.cases[dateIndex] + "</span>";
     pos.style.left = posx - 600 + "px";
     pos.style.top = posy + "px";
     pos.style.display = 'block';
