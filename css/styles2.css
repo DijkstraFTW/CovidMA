@@ -374,7 +374,7 @@ a.button1:active {
     top: -200px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 28px;
     line-height: 29px;
     color: #000000;
@@ -603,7 +603,7 @@ a.button1:active {
 
 .disclaimer-box {
     top: 630px;
-    width: 1410px;
+    width: 1400px;
     height: 210px;
     left: 2%;
     position: absolute;
