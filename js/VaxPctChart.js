@@ -49,8 +49,17 @@ function setVaxPct(status, response) {
 
     vax1 = data[data.length - 1]['people_vaccinated'];
     vax2 = data[data.length - 1]['people_fully_vaccinated'];
-    vax3 = data[data.length - 1]["total_boosters"]
+    vax3 = data[data.length - 1]['total_boosters']
+
     remainder = (obj - vax1);
+
+    if (vax3 == undefined) {
+        index = 2;
+        while (vax3 == undefined) {
+            vax3 = data[data.length - index]['total_boosters'];
+            index++;
+        }
+    }
 
     dataPopulation.push(vax3)
     dataPopulation.push(vax2)
@@ -176,7 +185,4 @@ function drawRect(theData, dataV, w, h, pctY, colorNB) {
         });
 }
 
-
-
-//getJSON("https://raw.githubusercontent.com/medias24-src/covid-data/main/resume.json", setLastVaxData);
 getJSON("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.json", setVaxPct);
