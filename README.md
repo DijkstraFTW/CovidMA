@@ -1,18 +1,22 @@
 # CovidMA
 
-[![DijkstraFTW - CovidMA](https://img.shields.io/badge/DijkstraFTW-CovidMA-2ea44f)](https://github.com/DijkstraFTW/CovidMA)  [![Made with JavaScript](https://img.shields.io/badge/Made_with-JavaScript-blue?logo=javascript&logoColor=white)](https://www.javascript.com/ "Go to JavaScript homepage") [![Hosted with GH Pages](https://img.shields.io/badge/Hosted_with-GitHub_Pages-blue?logo=github&logoColor=white)](https://pages.github.com/ "Go to GitHub Pages homepage")
+[![DijkstraFTW - CovidMA](https://img.shields.io/badge/DijkstraFTW-CovidMA-2ea44f)](https://github.com/DijkstraFTW/CovidMA) [![Hosted with GH Pages](https://img.shields.io/badge/Hosted_with-GitHub_Pages-blue?logo=github&logoColor=white)](https://pages.github.com/ "Go to GitHub Pages homepage")
+
+<br />
+
+> **Disclaimer** 
+> 
+> The data used in this website was used for **showcasing purposes only**, and shouldn't be the base of any **serious** study or analysis.
+
+<br />
 
 
+A very basic website that regroups most of the COVID-19 statistics for Morocco. 
 
-A very basic website that regroups most of the COVID-19 data for Morocco. 
+Visit at : https://dijkstraftw.github.io/CovidMA/ 
 
-The sources of these metrics were choosen on the basis of their accuracy, which still isn't guaranted to be 100%.
+<br />
 
-Visit at : https://dijkstraftw.github.io/CovidMA/
-
-**Disclaimer**
-
-The data used in this website was used for showcasing purposes only, and shouldn't be the base of any serious study or analysis.
 
 **Metrics**
 
@@ -27,6 +31,7 @@ The data used in this website was used for showcasing purposes only, and shouldn
 |Recovery Rate| The daily and cumulative COVID-19 recovery rate in Morocco. |
 |$\textrm{R}_\textrm{t}$| The daily COVID-19 estimated reproduction rate in Morocco. |
 
+<br />   
 
 **Charts**
 
@@ -37,7 +42,7 @@ The data used in this website was used for showcasing purposes only, and shouldn
 | Vaccination daily| Daily evolution of the COVID-19 vaccination program. |
 | Vaccination progress | Cumulative percentage of each vaccination category. |
 
-
+<br />
 
 **Further improvements**
 
