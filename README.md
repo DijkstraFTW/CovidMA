@@ -25,15 +25,15 @@ The data used in this website was used for showcasing purposes only, and shouldn
 |Positivity rate  | The daily COVID-19 positivity rate in Morocco. |
 |Lethality Rate  | The daily and cumulative COVID-19 lethality rate in Morocco. |
 |Recovery Rate| The daily and cumulative COVID-19 recovery rate in Morocco. |
-|Rt| The daily COVID-19 estimated rate of transmission in Morocco. |
+|$\textrm{R}_\textrm{t}$| The daily COVID-19 estimated reproduction rate in Morocco. |
 
 
 **Charts**
 
 |Charts|Description  |
 |--|--|
-| Region cases ranking | Ranking of all regions by the number of COVID-19 cases. |
-| Map daily cases | Daily COVID-19 cases by region and province. |
+| Region cases ranking | Ranking of all regions by their number of COVID-19 cumulative cases. |
+| Map daily cases | Daily COVID-19 cases by region and province, with a custom activity indicator. |
 | Vaccination daily| Daily evolution of the COVID-19 vaccination program. |
 | Vaccination progress | Cumulative percentage of each vaccination category. |
 
@@ -43,5 +43,5 @@ The data used in this website was used for showcasing purposes only, and shouldn
 
  - Download the data as csv file.
  - Data Plot for each region.
- - Rt estimation for each region.
- - Evolution of the pandemic on a map chart.
+ - $\textrm{R}_\textrm{t}$ estimation for each region.
+ - ~~Evolution of the pandemic on a map chart.~~
