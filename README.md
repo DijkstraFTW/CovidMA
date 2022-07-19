@@ -48,5 +48,5 @@ Visit at : https://dijkstraftw.github.io/CovidMA/
 
  - Download the data as csv file.
  - Data Plot for each region.
- - $\textrm{R}_\textrm{t}$ estimation for each region.
+ - ~~$\textrm{R}_\textrm{t}$ estimation for each region.
  - ~~Evolution of the pandemic on a map chart.~~
