@@ -6,7 +6,7 @@
 
 > **Disclaimer** 
 > 
-> The data used in this website was used for **showcasing purposes only**, and shouldn't be the base of any **serious** study or analysis.
+> The data used in this website is for **showcasing purposes only**, and shouldn't be the base of any **serious** study or analysis.
 
 <br />
 
