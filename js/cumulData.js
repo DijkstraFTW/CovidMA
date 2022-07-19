@@ -63,10 +63,16 @@ function setNewData(status, response, n_recoveries, total_recoveries) {
     }
 
     document.getElementById("marquee").innerHTML += " +" + n_recoveries.toLocaleString() + " New Recoveries | ";
-    document.getElementById("marquee").innerHTML += " Positivity Rate : " + pos * 100 + "% | ";
+    if (pos != null) {
+        document.getElementById("marquee").innerHTML += " Positivity Rate : " + pos * 100 + "% | ";
+    }
     document.getElementById("marquee").innerHTML += " Reproduction Rate : " + r0 + " | ";
-    document.getElementById("marquee").innerHTML += " New Vaccinations Smoothed : " + n_vax_smooth.toLocaleString() + " | ";
-    document.getElementById("marquee").innerHTML += " People Vaccinated Per Hundred : " + people_vax_hundred.toLocaleString();
+    if (n_vax_smooth != null) {
+        document.getElementById("marquee").innerHTML += " New Vaccinations Smoothed : " + n_vax_smooth.toLocaleString() + " | ";
+    }
+    if (people_vax_hundred != null) {
+        document.getElementById("marquee").innerHTML += " People Vaccinated Per Hundred : " + people_vax_hundred.toLocaleString();
+    }
 
     document.getElementById("cumul-cases-text").innerHTML = cases.toLocaleString();
     document.getElementById("cumul-deaths-text").innerHTML = deaths.toLocaleString();
